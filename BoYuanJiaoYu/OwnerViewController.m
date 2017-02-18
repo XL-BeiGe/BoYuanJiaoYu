@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _inviteview.hidden =YES;
     // Do any additional setup after loading the view.
 }
 
@@ -33,11 +34,15 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+   //_inviteview.hidden =YES;
+    [self.view endEditing:YES];
+}
 - (IBAction)Edit:(id)sender {
 }
 
 - (IBAction)Invite:(id)sender {
+    _inviteview.hidden =NO;;
 }
 
 - (IBAction)Change:(id)sender {
@@ -46,5 +51,6 @@
 - (IBAction)About:(id)sender {
 }
 - (IBAction)Sure:(id)sender {
+    _inviteview.hidden= YES;
 }
 @end

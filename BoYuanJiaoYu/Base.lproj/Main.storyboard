@@ -214,7 +214,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="kCZ-k5-5WD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="zYh-5V-IcX" kind="relationship" relationship="viewControllers" id="0lC-op-49N"/>
@@ -227,11 +227,11 @@
             </objects>
             <point key="canvasLocation" x="-4534" y="-726"/>
         </scene>
-        <!--学生考勤-->
+        <!--最新考勤-->
         <scene sceneID="nri-I9-aUG">
             <objects>
                 <navigationController id="zYh-5V-IcX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="学生考勤" image="kq_w.png" id="HsV-YI-0Wn">
+                    <tabBarItem key="tabBarItem" title="最新考勤" id="HsV-YI-0Wn">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-5"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cB9-kY-ftM">
@@ -1033,7 +1033,9 @@
         <scene sceneID="hrI-BN-320">
             <objects>
                 <navigationController id="xmF-Rw-Rew" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="学习档案" id="53r-Rl-R55"/>
+                    <tabBarItem key="tabBarItem" title="学习档案" id="53r-Rl-R55">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-5"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LzL-J7-ItO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1051,7 +1053,9 @@
         <scene sceneID="VUq-hy-bGK">
             <objects>
                 <navigationController id="vrP-7C-e5p" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="课程中心" id="w7I-BL-ciB"/>
+                    <tabBarItem key="tabBarItem" title="课程中心" id="w7I-BL-ciB">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-5"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TkC-77-Its">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1069,7 +1073,9 @@
         <scene sceneID="Km8-ay-wXY">
             <objects>
                 <navigationController id="35x-wp-MM7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="个人中心" id="2ZB-oT-nHO"/>
+                    <tabBarItem key="tabBarItem" title="个人中心" id="2ZB-oT-nHO">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-5"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5O8-rR-Nc4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1091,7 +1097,6 @@
         <image name="fankui.png" width="526" height="144"/>
         <image name="gunayu.png" width="44" height="37"/>
         <image name="head.png" width="127" height="127"/>
-        <image name="kq_w.png" width="41" height="42"/>
         <image name="modify_ password.png" width="38" height="42"/>
         <image name="next.png" width="14" height="25"/>
         <image name="password.png" width="29" height="38"/>
