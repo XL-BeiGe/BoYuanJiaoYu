@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D708AD801E567DDB00DFB98D /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D708AD7F1E567DDB00DFB98D /* RecordViewController.m */; };
 		D72447321E5290E8003DBCE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D72447311E5290E8003DBCE4 /* main.m */; };
 		D72447351E5290E8003DBCE4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D72447341E5290E8003DBCE4 /* AppDelegate.m */; };
 		D72447381E5290E8003DBCE4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72447371E5290E8003DBCE4 /* ViewController.m */; };
@@ -31,7 +32,6 @@
 		D724479C1E52D522003DBCE4 /* 下箭头.png in Resources */ = {isa = PBXBuildFile; fileRef = D72447711E52D521003DBCE4 /* 下箭头.png */; };
 		D724479D1E52D522003DBCE4 /* 邀请家人弹窗.png in Resources */ = {isa = PBXBuildFile; fileRef = D72447721E52D521003DBCE4 /* 邀请家人弹窗.png */; };
 		D724479E1E52D522003DBCE4 /* attendance_history.png in Resources */ = {isa = PBXBuildFile; fileRef = D72447731E52D521003DBCE4 /* attendance_history.png */; };
-		D724479F1E52D522003DBCE4 /* ceshi.png in Resources */ = {isa = PBXBuildFile; fileRef = D72447741E52D521003DBCE4 /* ceshi.png */; };
 		D72447A01E52D522003DBCE4 /* cuoti.png in Resources */ = {isa = PBXBuildFile; fileRef = D72447751E52D521003DBCE4 /* cuoti.png */; };
 		D72447A11E52D522003DBCE4 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = D72447761E52D521003DBCE4 /* edit.png */; };
 		D72447A21E52D522003DBCE4 /* family.png in Resources */ = {isa = PBXBuildFile; fileRef = D72447771E52D521003DBCE4 /* family.png */; };
@@ -57,7 +57,6 @@
 		D72447B61E52D522003DBCE4 /* xuexi_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D724478B1E52D521003DBCE4 /* xuexi_bg.png */; };
 		D72447B71E52D522003DBCE4 /* xxda_w.png in Resources */ = {isa = PBXBuildFile; fileRef = D724478C1E52D521003DBCE4 /* xxda_w.png */; };
 		D72447B81E52D522003DBCE4 /* xxda_y.png in Resources */ = {isa = PBXBuildFile; fileRef = D724478D1E52D521003DBCE4 /* xxda_y.png */; };
-		D72447B91E52D522003DBCE4 /* zuoye.png in Resources */ = {isa = PBXBuildFile; fileRef = D724478E1E52D521003DBCE4 /* zuoye.png */; };
 		D72447BD1E52E5A8003DBCE4 /* AttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72447BC1E52E5A8003DBCE4 /* AttendanceViewController.m */; };
 		D72447C01E52E5C2003DBCE4 /* AttenHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72447BF1E52E5C2003DBCE4 /* AttenHistoryViewController.m */; };
 		D72447C31E52F439003DBCE4 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72447C21E52F439003DBCE4 /* TabBarViewController.m */; };
@@ -66,6 +65,9 @@
 		D729DD3B1E53FC5B00A67C07 /* OwnerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D729DD3A1E53FC5B00A67C07 /* OwnerViewController.m */; };
 		D729DD3E1E541B1100A67C07 /* ClassCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D729DD3D1E541B1100A67C07 /* ClassCenterViewController.m */; };
 		D729DD421E542BEF00A67C07 /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D729DD411E542BEF00A67C07 /* ClassInfoViewController.m */; };
+		D7F3B0D41E554C8E00FA620D /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F3B0D31E554C8E00FA620D /* FeedBackViewController.m */; };
+		D7F3B0DB1E557A3400FA620D /* ceshi.png in Resources */ = {isa = PBXBuildFile; fileRef = D7F3B0D91E557A3400FA620D /* ceshi.png */; };
+		D7F3B0DC1E557A3400FA620D /* zuoye.png in Resources */ = {isa = PBXBuildFile; fileRef = D7F3B0DA1E557A3400FA620D /* zuoye.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D708AD7E1E567DDB00DFB98D /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
+		D708AD7F1E567DDB00DFB98D /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
 		D724472D1E5290E8003DBCE4 /* BoYuanJiaoYu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoYuanJiaoYu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D72447311E5290E8003DBCE4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D72447331E5290E8003DBCE4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -118,7 +122,6 @@
 		D72447711E52D521003DBCE4 /* 下箭头.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "下箭头.png"; sourceTree = "<group>"; };
 		D72447721E52D521003DBCE4 /* 邀请家人弹窗.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "邀请家人弹窗.png"; sourceTree = "<group>"; };
 		D72447731E52D521003DBCE4 /* attendance_history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attendance_history.png; sourceTree = "<group>"; };
-		D72447741E52D521003DBCE4 /* ceshi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ceshi.png; sourceTree = "<group>"; };
 		D72447751E52D521003DBCE4 /* cuoti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cuoti.png; sourceTree = "<group>"; };
 		D72447761E52D521003DBCE4 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
 		D72447771E52D521003DBCE4 /* family.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = family.png; sourceTree = "<group>"; };
@@ -144,7 +147,6 @@
 		D724478B1E52D521003DBCE4 /* xuexi_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xuexi_bg.png; sourceTree = "<group>"; };
 		D724478C1E52D521003DBCE4 /* xxda_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xxda_w.png; sourceTree = "<group>"; };
 		D724478D1E52D521003DBCE4 /* xxda_y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xxda_y.png; sourceTree = "<group>"; };
-		D724478E1E52D521003DBCE4 /* zuoye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zuoye.png; sourceTree = "<group>"; };
 		D72447BB1E52E5A8003DBCE4 /* AttendanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceViewController.h; sourceTree = "<group>"; };
 		D72447BC1E52E5A8003DBCE4 /* AttendanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceViewController.m; sourceTree = "<group>"; };
 		D72447BE1E52E5C2003DBCE4 /* AttenHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttenHistoryViewController.h; sourceTree = "<group>"; };
@@ -159,6 +161,10 @@
 		D729DD3D1E541B1100A67C07 /* ClassCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassCenterViewController.m; sourceTree = "<group>"; };
 		D729DD401E542BEF00A67C07 /* ClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoViewController.h; sourceTree = "<group>"; };
 		D729DD411E542BEF00A67C07 /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
+		D7F3B0D21E554C8E00FA620D /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
+		D7F3B0D31E554C8E00FA620D /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
+		D7F3B0D91E557A3400FA620D /* ceshi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ceshi.png; sourceTree = "<group>"; };
+		D7F3B0DA1E557A3400FA620D /* zuoye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zuoye.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +192,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D708AD7D1E567DBE00DFB98D /* 错题记录 */ = {
+			isa = PBXGroup;
+			children = (
+				D708AD7E1E567DDB00DFB98D /* RecordViewController.h */,
+				D708AD7F1E567DDB00DFB98D /* RecordViewController.m */,
+			);
+			name = "错题记录";
+			sourceTree = "<group>";
+		};
 		D72447241E5290E8003DBCE4 = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +273,8 @@
 		D72447631E52D4EC003DBCE4 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				D7F3B0D91E557A3400FA620D /* ceshi.png */,
+				D7F3B0DA1E557A3400FA620D /* zuoye.png */,
 				D729DD341E53E51500A67C07 /* banyuan.png */,
 				D72447C41E52F527003DBCE4 /* back@2x.png */,
 				D72447641E52D521003DBCE4 /* 考勤背景.png */,
@@ -276,7 +293,6 @@
 				D72447711E52D521003DBCE4 /* 下箭头.png */,
 				D72447721E52D521003DBCE4 /* 邀请家人弹窗.png */,
 				D72447731E52D521003DBCE4 /* attendance_history.png */,
-				D72447741E52D521003DBCE4 /* ceshi.png */,
 				D72447751E52D521003DBCE4 /* cuoti.png */,
 				D72447761E52D521003DBCE4 /* edit.png */,
 				D72447771E52D521003DBCE4 /* family.png */,
@@ -302,7 +318,6 @@
 				D724478B1E52D521003DBCE4 /* xuexi_bg.png */,
 				D724478C1E52D521003DBCE4 /* xxda_w.png */,
 				D724478D1E52D521003DBCE4 /* xxda_y.png */,
-				D724478E1E52D521003DBCE4 /* zuoye.png */,
 			);
 			name = Image;
 			sourceTree = "<group>";
@@ -340,6 +355,9 @@
 		D729DD381E53FC1C00A67C07 /* 学习档案 */ = {
 			isa = PBXGroup;
 			children = (
+				D7F3B0D21E554C8E00FA620D /* FeedBackViewController.h */,
+				D7F3B0D31E554C8E00FA620D /* FeedBackViewController.m */,
+				D708AD7D1E567DBE00DFB98D /* 错题记录 */,
 			);
 			name = "学习档案";
 			sourceTree = "<group>";
@@ -462,7 +480,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D724479F1E52D522003DBCE4 /* ceshi.png in Resources */,
 				D72447A81E52D522003DBCE4 /* item_beizhu.png in Resources */,
 				D72447B81E52D522003DBCE4 /* xxda_y.png in Resources */,
 				D724479E1E52D522003DBCE4 /* attendance_history.png in Resources */,
@@ -484,7 +501,6 @@
 				D72447A21E52D522003DBCE4 /* family.png in Resources */,
 				D724479D1E52D522003DBCE4 /* 邀请家人弹窗.png in Resources */,
 				D72447401E5290E8003DBCE4 /* LaunchScreen.storyboard in Resources */,
-				D72447B91E52D522003DBCE4 /* zuoye.png in Resources */,
 				D72447931E52D522003DBCE4 /* 课程-老师.png in Resources */,
 				D72447AC1E52D522003DBCE4 /* kczx_y.png in Resources */,
 				D724479C1E52D522003DBCE4 /* 下箭头.png in Resources */,
@@ -492,6 +508,7 @@
 				D72447951E52D522003DBCE4 /* 课程-年级.png in Resources */,
 				D724478F1E52D521003DBCE4 /* 考勤背景.png in Resources */,
 				D72447A11E52D522003DBCE4 /* edit.png in Resources */,
+				D7F3B0DB1E557A3400FA620D /* ceshi.png in Resources */,
 				D72447AB1E52D522003DBCE4 /* kczx_w.png in Resources */,
 				D72447A01E52D522003DBCE4 /* cuoti.png in Resources */,
 				D72447A51E52D522003DBCE4 /* grzx_y.png in Resources */,
@@ -503,6 +520,7 @@
 				D72447B71E52D522003DBCE4 /* xxda_w.png in Resources */,
 				D72447C51E52F527003DBCE4 /* back@2x.png in Resources */,
 				D72447AA1E52D522003DBCE4 /* item_time.png in Resources */,
+				D7F3B0DC1E557A3400FA620D /* zuoye.png in Resources */,
 				D724473B1E5290E8003DBCE4 /* Main.storyboard in Resources */,
 				D72447A41E52D522003DBCE4 /* grzx_w.png in Resources */,
 				D72447A71E52D522003DBCE4 /* head.png in Resources */,
@@ -535,11 +553,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D72447C01E52E5C2003DBCE4 /* AttenHistoryViewController.m in Sources */,
+				D7F3B0D41E554C8E00FA620D /* FeedBackViewController.m in Sources */,
 				D72447381E5290E8003DBCE4 /* ViewController.m in Sources */,
 				D72447351E5290E8003DBCE4 /* AppDelegate.m in Sources */,
 				D729DD3B1E53FC5B00A67C07 /* OwnerViewController.m in Sources */,
 				D729DD3E1E541B1100A67C07 /* ClassCenterViewController.m in Sources */,
 				D72447321E5290E8003DBCE4 /* main.m in Sources */,
+				D708AD801E567DDB00DFB98D /* RecordViewController.m in Sources */,
 				D72447C31E52F439003DBCE4 /* TabBarViewController.m in Sources */,
 				D729DD421E542BEF00A67C07 /* ClassInfoViewController.m in Sources */,
 				D72447BD1E52E5A8003DBCE4 /* AttendanceViewController.m in Sources */,
