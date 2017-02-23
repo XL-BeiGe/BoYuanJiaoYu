@@ -7,7 +7,7 @@
 //
 
 #import "FeedBackViewController.h"
-
+#import "Color+Hex.h"
 @interface FeedBackViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     float width;
@@ -21,9 +21,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegate];
+    [self comeback];
+    self.title =@"课堂反馈";
     // Do any additional setup after loading the view.
 }
-
+-(void)comeback{
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back@2x"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    [self.navigationItem setLeftBarButtonItem:left];
+}
+-(void)fanhui{
+    //    XLStatisticsViewController *xln=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"statistics"];
+    //    for (UIViewController *controller in self.navigationController.viewControllers) {
+    //        if ([controller isKindOfClass:[xln class]]) {
+    //            [self.navigationController popToViewController:controller animated:YES];
+    //        }
+    //    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -93,17 +108,19 @@
     if(indexPath.row==0){
         
         UILabel *left1 =[[UILabel alloc]initWithFrame:CGRectMake(15,15,130, 20)];
-        UILabel *left2 =[[UILabel alloc]initWithFrame:CGRectMake(width-100,15,70, 20)];
+        UIButton *left2 =[[UIButton alloc]initWithFrame:CGRectMake(width-100,15,70, 20)];
         UIView *fenview= [[UIView alloc]initWithFrame:CGRectMake(0,44,width,1)];
         left1.text =@"初一数学A2班";
-        left2.text =@"数学";
+        [left2 setTitle:@"数学" forState:UIControlStateNormal];
         left1.font =[UIFont systemFontOfSize:15];
-        left2.font =[UIFont systemFontOfSize:15];
-        left2.textColor =[UIColor whiteColor];
-        left2.textAlignment =NSTextAlignmentCenter;
-        left2.backgroundColor =[UIColor blueColor];
+        left2.titleLabel.font =[UIFont systemFontOfSize:15];
+        [left2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        left2.titleLabel.textAlignment =NSTextAlignmentCenter;
+        left2.layer.cornerRadius =3;
         
-        fenview.backgroundColor =[UIColor lightGrayColor];
+        left2.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+        
+        fenview.backgroundColor =[UIColor colorWithHexString:@"f4f4f4"];
         [cell addSubview:left1];
         [cell addSubview:left2];
         [cell addSubview:fenview];
@@ -131,8 +148,8 @@
         UIButton *btn2 =[[UIButton alloc]initWithFrame:CGRectMake(width/2+20, 10, 130, 30)];
         [btn1 setTitle:@"今日作业" forState:UIControlStateNormal];
         [btn2 setTitle:@"课堂测试" forState:UIControlStateNormal];
-        [btn1 setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
-        [btn2 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [btn1 setTitleColor:[UIColor colorWithHexString:@"fe528e"] forState:UIControlStateNormal];
+        [btn2 setTitleColor:[UIColor colorWithHexString:@"01b9fe"] forState:UIControlStateNormal];
         btn1.titleLabel.font =[UIFont systemFontOfSize:15];
         btn2.titleLabel.font =[UIFont systemFontOfSize:15];
         [btn1 setImage:[UIImage imageNamed:@"zuoye.png"] forState:UIControlStateNormal];
@@ -143,6 +160,8 @@
         btn2.layer.borderWidth =1;
         btn1.layer.cornerRadius =15;
         btn2.layer.cornerRadius =15;
+        btn1.layer.borderColor =[[UIColor colorWithHexString:@"fe528e"]CGColor];
+        btn2.layer.borderColor =[[UIColor colorWithHexString:@"01b9fe"]CGColor];
         [cell addSubview:btn1];
         [cell addSubview:btn2];
         

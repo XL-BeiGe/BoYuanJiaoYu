@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AttendanceViewController.h"
 #import "TabBarViewController.h"
+#import "Color+Hex.h"
 @interface ViewController ()
 {
     BOOL use;
@@ -38,9 +39,9 @@
     
     _backview.layer.borderWidth =1;
     _backview.layer.cornerRadius =5;
-    _backview.layer.borderColor =[[UIColor orangeColor]CGColor];
-    _user.backgroundColor =[UIColor orangeColor];
-    _pass.backgroundColor =[UIColor lightGrayColor];
+    _backview.layer.borderColor =[[UIColor colorWithHexString:@"ffdb01"]CGColor];
+    _user.backgroundColor =[UIColor colorWithHexString:@"ffdb01"];
+    _pass.backgroundColor =[UIColor colorWithHexString:@"F0EDE8"];
     _user.layer.cornerRadius =5;
     _pass.layer.cornerRadius =5;
     [_forgot setTitle:@"忘记密码?" forState:UIControlStateNormal];
@@ -73,8 +74,8 @@
 
 - (IBAction)Users:(id)sender {
     use =YES;
-    _user.backgroundColor =[UIColor orangeColor];
-    _pass.backgroundColor =[UIColor lightGrayColor];
+    _user.backgroundColor =[UIColor colorWithHexString:@"ffdb01"];
+    _pass.backgroundColor =[UIColor colorWithHexString:@"F0EDE8"];
     
     [_forgot setTitle:@"忘记密码?" forState:UIControlStateNormal];
     
@@ -82,8 +83,8 @@
 
 - (IBAction)passs:(id)sender {
     use =NO;
-    _user.backgroundColor =[UIColor lightGrayColor];
-    _pass.backgroundColor =[UIColor orangeColor];
+    _user.backgroundColor =[UIColor colorWithHexString:@"F0EDE8"];
+    _pass.backgroundColor =[UIColor colorWithHexString:@"ffdb01"];
     [_forgot setTitle:@"获取验证码" forState:UIControlStateNormal];
     
 }

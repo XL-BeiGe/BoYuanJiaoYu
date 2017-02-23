@@ -8,6 +8,7 @@
 
 #import "AttendanceViewController.h"
 #import "AttenHistoryViewController.h"
+#import "Color+Hex.h"
 @interface AttendanceViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     float width;
@@ -179,7 +180,7 @@
     bzhu.font =[UIFont systemFontOfSize:15];
     tims.textAlignment =NSTextAlignmentRight;
     qtyp.textAlignment =NSTextAlignmentRight;
-    
+    qtyp.textColor =[UIColor colorWithHexString:@"40bcff"];
     
     banj.text =@"初一数学A2班";
     xuek.text =@"数学";

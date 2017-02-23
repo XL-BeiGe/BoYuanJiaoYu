@@ -63,7 +63,7 @@
     UIView *fengview = (UIView*)[cell viewWithTag:101];
     
     UILabel *title =(UILabel*)[cell viewWithTag:200];
-    UILabel *class =(UILabel*)[cell viewWithTag:201];
+    UIButton *class =(UIButton*)[cell viewWithTag:201];
     UILabel *groud =(UILabel*)[cell viewWithTag:202];
     UILabel *zhang =(UILabel*)[cell viewWithTag:203];
     UILabel *numbe =(UILabel*)[cell viewWithTag:204];
@@ -79,7 +79,7 @@
     fengview.layer.borderWidth =0;
     class.layer.cornerRadius =5;
     title.text =@"这是一个测试标题啦啦啦啦啦啦啦";
-    class.text =@"数学";
+    [class setTitle:@"数学" forState:UIControlStateNormal];
     groud.text =@"初中一年级";
     zhang.text =@"第三册第五章";
     numbe.text =@"试题编号:102102";

@@ -7,7 +7,7 @@
 //
 
 #import "AttenHistoryViewController.h"
-
+#import "Color+Hex.h"
 @interface AttenHistoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     float width;
@@ -83,7 +83,7 @@
 //    }
     
     UIView*shuxian=[[UIView alloc] initWithFrame:CGRectMake(15,5, 1,90)];
-    shuxian.backgroundColor =[UIColor blueColor];
+    shuxian.backgroundColor =[UIColor colorWithHexString:@"C9D0D6"];
     UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(0,0, 30, 30)];
     imageview.image =[UIImage imageNamed:@"attendance_history.png"];
     
@@ -107,8 +107,8 @@
     shijia.text =@"周六9:00-11:00";
     qianda.text =@"签到时间:18:45";
     
-   // qianda.backgroundColor=[UIColor colorWithHexString:@"41beff"];//蓝色
-    //qianda.backgroundColor=[UIColor colorWithHexString:@"fc619d"];//粉色
+    qianda.textColor=[UIColor colorWithHexString:@"41beff"];//蓝色
+    //qianda.textColor=[UIColor colorWithHexString:@"fc619d"];//粉色
     
     [backview addSubview:banji];
     [backview addSubview:xueke];

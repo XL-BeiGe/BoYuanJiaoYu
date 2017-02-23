@@ -7,7 +7,8 @@
 //
 
 #import "ClassCenterViewController.h"
-
+#import "Color+Hex.h"
+#import "ClassInfoViewController.h"
 @interface ClassCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     float width;
@@ -115,7 +116,11 @@
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ClassInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"classinfo"];
+    [self.navigationController pushViewController:his animated:YES];
 
+}
 /*
 #pragma mark - Navigation
 

@@ -7,7 +7,7 @@
 //
 
 #import "ClassInfoViewController.h"
-
+#import "Color+Hex.h"
 @interface ClassInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     float width;
@@ -100,24 +100,28 @@
     //    }
     if(indexPath.section==0){
        UILabel *banj =[[UILabel alloc]initWithFrame:CGRectMake(20,10,100, 20)];
-       UILabel *xuek =[[UILabel alloc]initWithFrame:CGRectMake(width-90,10,70, 20)];
+       UIButton *xuek =[[UIButton alloc]initWithFrame:CGRectMake(width-90,10,70, 20)];
        UILabel *laos =[[UILabel alloc]initWithFrame:CGRectMake(20,30,100, 20)];
        UILabel *niaj =[[UILabel alloc]initWithFrame:CGRectMake(width-100,30,80, 20)];
        UILabel *shij =[[UILabel alloc]initWithFrame:CGRectMake(20,55,150, 20)];
-       //kemu.backgroundColor =[UIColor blueColor];
-       xuek.textAlignment =NSTextAlignmentRight;
+      
+       xuek.titleLabel.textAlignment =NSTextAlignmentCenter;
        niaj.textAlignment =NSTextAlignmentRight;
        banj.font =[UIFont systemFontOfSize:15];
        laos.font =[UIFont systemFontOfSize:15];
        shij.font =[UIFont systemFontOfSize:15];
-       xuek.font =[UIFont systemFontOfSize:15];
+       xuek.titleLabel.font =[UIFont systemFontOfSize:15];
        niaj.font =[UIFont systemFontOfSize:15];
         
        banj.text =@"初一数学A2班";
        laos.text =@"张老师";
        shij.text =@"周六9:00-11:00";
-       xuek.text =@"数学";
-       niaj.text =@"初中一年级";
+        niaj.text =@"初中一年级";
+        [xuek setTitle:@"数学" forState:UIControlStateNormal];
+        [xuek setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        xuek.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+        xuek.layer.cornerRadius =3;
+        
         
         [cell addSubview:banj];
         [cell addSubview:laos];
@@ -129,7 +133,7 @@
     else{
         if(indexPath.row==0){
             UIView *imgv= [[UIView alloc]initWithFrame:CGRectMake(10,10, 5, 20)];
-            imgv.backgroundColor =[UIColor orangeColor];
+            imgv.backgroundColor =[UIColor colorWithHexString:@"FFDB00"];
             UILabel *jjj =[[UILabel alloc]initWithFrame:CGRectMake(25,10, 200, 20)];
             jjj.font =[UIFont systemFontOfSize:15];
             jjj.text =@"课程简介";
@@ -162,6 +166,10 @@
             righ2.textColor =[UIColor orangeColor];
             leftview.layer.borderWidth =1;
             rightview.layer.borderWidth =1;
+            leftview.layer.cornerRadius =20;
+            rightview.layer.cornerRadius =20;
+            leftview.layer.borderColor =[[UIColor colorWithHexString:@"EFEFEF"]CGColor];
+            rightview.layer.borderColor =[[UIColor colorWithHexString:@"EFEFEF"]CGColor];
             [leftview addSubview:left1];
             [leftview addSubview:left2];
             [rightview addSubview:righ1];
