@@ -62,8 +62,8 @@
     [self.view endEditing:YES];
 }
 - (IBAction)Edit:(id)sender {
-    StuInfoTableViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"stuinfo"];
-    [self.navigationController pushViewController:his animated:YES];
+    StuInfoTableViewController *stuinfo = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"stuinfo"];
+    [self.navigationController pushViewController:stuinfo animated:YES];
     
 }
 
@@ -74,9 +74,13 @@
 }
 
 - (IBAction)Change:(id)sender {
+    ChangePassViewController *change = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"changepass"];
+    [self.navigationController pushViewController:change animated:YES];
 }
 
 - (IBAction)About:(id)sender {
+    ExplainViewController *explain = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"explain"];
+    [self.navigationController pushViewController:explain animated:YES];
 }
 - (IBAction)Sure:(id)sender {
     _inviteview.hidden= YES;

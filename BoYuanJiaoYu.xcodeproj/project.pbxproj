@@ -100,10 +100,19 @@
 		D72447C01E52E5C2003DBCE4 /* AttenHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72447BF1E52E5C2003DBCE4 /* AttenHistoryViewController.m */; };
 		D72447C31E52F439003DBCE4 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72447C21E52F439003DBCE4 /* TabBarViewController.m */; };
 		D72447C51E52F527003DBCE4 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D72447C41E52F527003DBCE4 /* back@2x.png */; };
+		D728BA821E61161E000FFF4F /* BackInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D728BA811E61161E000FFF4F /* BackInfoViewController.m */; };
+		D728BA851E611631000FFF4F /* BackHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D728BA841E611631000FFF4F /* BackHistoryViewController.m */; };
 		D729DD351E53E51500A67C07 /* banyuan.png in Resources */ = {isa = PBXBuildFile; fileRef = D729DD341E53E51500A67C07 /* banyuan.png */; };
 		D729DD3B1E53FC5B00A67C07 /* OwnerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D729DD3A1E53FC5B00A67C07 /* OwnerViewController.m */; };
 		D729DD3E1E541B1100A67C07 /* ClassCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D729DD3D1E541B1100A67C07 /* ClassCenterViewController.m */; };
 		D729DD421E542BEF00A67C07 /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D729DD411E542BEF00A67C07 /* ClassInfoViewController.m */; };
+		D72B31A91E5FC5870092B9C2 /* 更换手机号.png in Resources */ = {isa = PBXBuildFile; fileRef = D72B31A41E5FC5870092B9C2 /* 更换手机号.png */; };
+		D72B31AA1E5FC5870092B9C2 /* 无错题.png in Resources */ = {isa = PBXBuildFile; fileRef = D72B31A51E5FC5870092B9C2 /* 无错题.png */; };
+		D72B31AB1E5FC5870092B9C2 /* 无反馈.png in Resources */ = {isa = PBXBuildFile; fileRef = D72B31A61E5FC5870092B9C2 /* 无反馈.png */; };
+		D72B31AC1E5FC5870092B9C2 /* 无考勤.png in Resources */ = {isa = PBXBuildFile; fileRef = D72B31A71E5FC5870092B9C2 /* 无考勤.png */; };
+		D72B31AD1E5FC5870092B9C2 /* 无历史.png in Resources */ = {isa = PBXBuildFile; fileRef = D72B31A81E5FC5870092B9C2 /* 无历史.png */; };
+		D72B31B11E5FD46C0092B9C2 /* NoteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72B31B01E5FD46C0092B9C2 /* NoteListViewController.m */; };
+		D72B31B41E5FD47E0092B9C2 /* NoteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72B31B31E5FD47E0092B9C2 /* NoteInfoViewController.m */; };
 		D7308B811E5D228C00FF19CD /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = D7308B801E5D228C00FF19CD /* next.png */; };
 		D73180D71E5C384600C85384 /* StuInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D73180D61E5C384600C85384 /* StuInfoTableViewController.m */; };
 		D7F3B0D41E554C8E00FA620D /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F3B0D31E554C8E00FA620D /* FeedBackViewController.m */; };
@@ -277,6 +286,10 @@
 		D72447C11E52F439003DBCE4 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		D72447C21E52F439003DBCE4 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		D72447C41E52F527003DBCE4 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		D728BA801E61161E000FFF4F /* BackInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackInfoViewController.h; sourceTree = "<group>"; };
+		D728BA811E61161E000FFF4F /* BackInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackInfoViewController.m; sourceTree = "<group>"; };
+		D728BA831E611631000FFF4F /* BackHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackHistoryViewController.h; sourceTree = "<group>"; };
+		D728BA841E611631000FFF4F /* BackHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackHistoryViewController.m; sourceTree = "<group>"; };
 		D729DD341E53E51500A67C07 /* banyuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banyuan.png; sourceTree = "<group>"; };
 		D729DD391E53FC5B00A67C07 /* OwnerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OwnerViewController.h; sourceTree = "<group>"; };
 		D729DD3A1E53FC5B00A67C07 /* OwnerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OwnerViewController.m; sourceTree = "<group>"; };
@@ -284,6 +297,15 @@
 		D729DD3D1E541B1100A67C07 /* ClassCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassCenterViewController.m; sourceTree = "<group>"; };
 		D729DD401E542BEF00A67C07 /* ClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoViewController.h; sourceTree = "<group>"; };
 		D729DD411E542BEF00A67C07 /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
+		D72B31A41E5FC5870092B9C2 /* 更换手机号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "更换手机号.png"; sourceTree = "<group>"; };
+		D72B31A51E5FC5870092B9C2 /* 无错题.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "无错题.png"; sourceTree = "<group>"; };
+		D72B31A61E5FC5870092B9C2 /* 无反馈.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "无反馈.png"; sourceTree = "<group>"; };
+		D72B31A71E5FC5870092B9C2 /* 无考勤.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "无考勤.png"; sourceTree = "<group>"; };
+		D72B31A81E5FC5870092B9C2 /* 无历史.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "无历史.png"; sourceTree = "<group>"; };
+		D72B31AF1E5FD46C0092B9C2 /* NoteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteListViewController.h; sourceTree = "<group>"; };
+		D72B31B01E5FD46C0092B9C2 /* NoteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteListViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
+		D72B31B21E5FD47E0092B9C2 /* NoteInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteInfoViewController.h; sourceTree = "<group>"; };
+		D72B31B31E5FD47E0092B9C2 /* NoteInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteInfoViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
 		D7308B801E5D228C00FF19CD /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		D73180D51E5C384600C85384 /* StuInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StuInfoTableViewController.h; sourceTree = "<group>"; };
 		D73180D61E5C384600C85384 /* StuInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StuInfoTableViewController.m; sourceTree = "<group>"; };
@@ -424,6 +446,8 @@
 			children = (
 				D7F3B0D21E554C8E00FA620D /* FeedBackViewController.h */,
 				D7F3B0D31E554C8E00FA620D /* FeedBackViewController.m */,
+				D728BA7F1E6115FD000FFF4F /* 反馈详情 */,
+				D728BA7E1E6115F3000FFF4F /* 反馈历史 */,
 			);
 			name = "课堂反馈";
 			sourceTree = "<group>";
@@ -485,6 +509,7 @@
 				D72447371E5290E8003DBCE4 /* ViewController.m */,
 				D72447C11E52F439003DBCE4 /* TabBarViewController.h */,
 				D72447C21E52F439003DBCE4 /* TabBarViewController.m */,
+				D72B31AE1E5FD43E0092B9C2 /* 通知 */,
 				D72447BA1E52E58C003DBCE4 /* 考勤 */,
 				D729DD381E53FC1C00A67C07 /* 学习档案 */,
 				D729DD371E53FC1800A67C07 /* 课程中心 */,
@@ -527,6 +552,11 @@
 		D72447631E52D4EC003DBCE4 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				D72B31A41E5FC5870092B9C2 /* 更换手机号.png */,
+				D72B31A51E5FC5870092B9C2 /* 无错题.png */,
+				D72B31A61E5FC5870092B9C2 /* 无反馈.png */,
+				D72B31A71E5FC5870092B9C2 /* 无考勤.png */,
+				D72B31A81E5FC5870092B9C2 /* 无历史.png */,
 				D7308B801E5D228C00FF19CD /* next.png */,
 				D70ED4DC1E57E3670045038C /* xxda_y.png */,
 				D70ED4DD1E57E3670045038C /* xxda_w.png */,
@@ -587,6 +617,24 @@
 			name = "考勤";
 			sourceTree = "<group>";
 		};
+		D728BA7E1E6115F3000FFF4F /* 反馈历史 */ = {
+			isa = PBXGroup;
+			children = (
+				D728BA831E611631000FFF4F /* BackHistoryViewController.h */,
+				D728BA841E611631000FFF4F /* BackHistoryViewController.m */,
+			);
+			name = "反馈历史";
+			sourceTree = "<group>";
+		};
+		D728BA7F1E6115FD000FFF4F /* 反馈详情 */ = {
+			isa = PBXGroup;
+			children = (
+				D728BA801E61161E000FFF4F /* BackInfoViewController.h */,
+				D728BA811E61161E000FFF4F /* BackInfoViewController.m */,
+			);
+			name = "反馈详情";
+			sourceTree = "<group>";
+		};
 		D729DD361E53FC1500A67C07 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +675,17 @@
 				D729DD411E542BEF00A67C07 /* ClassInfoViewController.m */,
 			);
 			name = "详情";
+			sourceTree = "<group>";
+		};
+		D72B31AE1E5FD43E0092B9C2 /* 通知 */ = {
+			isa = PBXGroup;
+			children = (
+				D72B31AF1E5FD46C0092B9C2 /* NoteListViewController.h */,
+				D72B31B01E5FD46C0092B9C2 /* NoteListViewController.m */,
+				D72B31B21E5FD47E0092B9C2 /* NoteInfoViewController.h */,
+				D72B31B31E5FD47E0092B9C2 /* NoteInfoViewController.m */,
+			);
+			name = "通知";
 			sourceTree = "<group>";
 		};
 		D73180D41E5C381900C85384 /* 学生与家长信息 */ = {
@@ -751,6 +810,7 @@
 				D724479E1E52D522003DBCE4 /* attendance_history.png in Resources */,
 				D72447981E52D522003DBCE4 /* 课程-已报名2.png in Resources */,
 				D72447AF1E52D522003DBCE4 /* modify_ password.png in Resources */,
+				D72B31AD1E5FC5870092B9C2 /* 无历史.png in Resources */,
 				D70ED4DE1E57E3670045038C /* xxda_y.png in Resources */,
 				D72447941E52D522003DBCE4 /* 课程-老师2.png in Resources */,
 				D72447901E52D522003DBCE4 /* 课程-背景.png in Resources */,
@@ -762,6 +822,7 @@
 				D72447971E52D522003DBCE4 /* 课程-已报名.png in Resources */,
 				D72447B21E52D522003DBCE4 /* QQ.png in Resources */,
 				D72447B11E52D522003DBCE4 /* password.png in Resources */,
+				D72B31AB1E5FC5870092B9C2 /* 无反馈.png in Resources */,
 				D72447A21E52D522003DBCE4 /* family.png in Resources */,
 				D724479D1E52D522003DBCE4 /* 邀请家人弹窗.png in Resources */,
 				D72447401E5290E8003DBCE4 /* LaunchScreen.storyboard in Resources */,
@@ -780,6 +841,7 @@
 				D70ED4D61E57E2BB0045038C /* kczx_y.png in Resources */,
 				D72447B51E52D522003DBCE4 /* user.png in Resources */,
 				D72447A31E52D522003DBCE4 /* fankui.png in Resources */,
+				D72B31AA1E5FC5870092B9C2 /* 无错题.png in Resources */,
 				D724473D1E5290E8003DBCE4 /* Assets.xcassets in Resources */,
 				D72447961E52D522003DBCE4 /* 课程-年级2.png in Resources */,
 				D72447C51E52F527003DBCE4 /* back@2x.png in Resources */,
@@ -787,8 +849,10 @@
 				D7F3B0DC1E557A3400FA620D /* zuoye.png in Resources */,
 				D724473B1E5290E8003DBCE4 /* Main.storyboard in Resources */,
 				D72447A71E52D522003DBCE4 /* head.png in Resources */,
+				D72B31A91E5FC5870092B9C2 /* 更换手机号.png in Resources */,
 				D70ED4DF1E57E3670045038C /* xxda_w.png in Resources */,
 				D729DD351E53E51500A67C07 /* banyuan.png in Resources */,
+				D72B31AC1E5FC5870092B9C2 /* 无考勤.png in Resources */,
 				D72447B61E52D522003DBCE4 /* xuexi_bg.png in Resources */,
 				D70ED4DA1E57E3150045038C /* grzx_y.png in Resources */,
 				D72447911E52D522003DBCE4 /* 课程-查看详情.png in Resources */,
@@ -819,6 +883,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D72B31B41E5FD47E0092B9C2 /* NoteInfoViewController.m in Sources */,
 				D7217C4D1E5A7E2E00AE9C89 /* UIImageView+HighlightedWebCache.m in Sources */,
 				D72447C01E52E5C2003DBCE4 /* AttenHistoryViewController.m in Sources */,
 				D7217C161E5A7E2700AE9C89 /* SBJsonStreamParserAdapter.m in Sources */,
@@ -840,8 +905,10 @@
 				D7217C1B1E5A7E2700AE9C89 /* SBJsonTokeniser.m in Sources */,
 				D7217C181E5A7E2700AE9C89 /* SBJsonStreamWriter.m in Sources */,
 				D7217C431E5A7E2E00AE9C89 /* SDWebImageCompat.m in Sources */,
+				D728BA821E61161E000FFF4F /* BackInfoViewController.m in Sources */,
 				D7217C451E5A7E2E00AE9C89 /* SDWebImageDownloader.m in Sources */,
 				D7217C461E5A7E2E00AE9C89 /* SDWebImageDownloaderOperation.m in Sources */,
+				D72B31B11E5FD46C0092B9C2 /* NoteListViewController.m in Sources */,
 				D7217C441E5A7E2E00AE9C89 /* SDWebImageDecoder.m in Sources */,
 				D7217C471E5A7E2E00AE9C89 /* SDWebImageManager.m in Sources */,
 				D7217BF31E5A7E1E00AE9C89 /* AFNetworkReachabilityManager.m in Sources */,
@@ -856,6 +923,7 @@
 				D7217BF41E5A7E1E00AE9C89 /* AFSecurityPolicy.m in Sources */,
 				D7217C1D1E5A7E2700AE9C89 /* SBJsonWriter.m in Sources */,
 				D7217C121E5A7E2700AE9C89 /* NSObject+SBJson.m in Sources */,
+				D728BA851E611631000FFF4F /* BackHistoryViewController.m in Sources */,
 				D7217C401E5A7E2E00AE9C89 /* MKAnnotationView+WebCache.m in Sources */,
 				D7217C4B1E5A7E2E00AE9C89 /* UIImage+MultiFormat.m in Sources */,
 				D7217BDF1E5A7BD900AE9C89 /* MBProgressHUD.m in Sources */,

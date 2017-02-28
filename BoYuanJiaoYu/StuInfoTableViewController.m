@@ -29,6 +29,7 @@
     width =[UIScreen mainScreen].bounds.size.width;
     height=[UIScreen mainScreen].bounds.size.height;
     [self delegate];
+    self.title =@"个人信息";
     [self beijing];//日期选择器背景
      //[self setExtraCellLineHidden:self.tableView];
     

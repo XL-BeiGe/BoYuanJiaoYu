@@ -1,23 +1,27 @@
 //
-//  RecordViewController.m
+//  NoteListViewController.m
 //  BoYuanJiaoYu
 //
-//  Created by newmac on 2017/2/17.
+//  Created by newmac on 2017/2/24.
 //  Copyright © 2017年 BeiGe. All rights reserved.
 //
 
-#import "RecordViewController.h"
-
-@interface RecordViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+#import "NoteListViewController.h"
+#import "NoteInfoViewController.h"
+#import "Color+Hex.h"
+@interface NoteListViewController ()
+{
+    float width;
+    float height;
+}
 @end
 
-@implementation RecordViewController
+@implementation NoteListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegate];
-    self.title =@"错题记录";
+    self.title =@"通知列表";
     // Do any additional setup after loading the view.
 }
 
@@ -32,6 +36,8 @@
     //self.table.tableFooterView=[[UIView alloc] init];
     self.automaticallyAdjustsScrollViewInsets = NO;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
+    width =[UIScreen mainScreen].bounds.size.width;
+    height =[UIScreen mainScreen].bounds.size.height;
     
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -43,15 +49,13 @@
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 145;
+    return 55;
 }
-
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-//    return 10;
-//}
-
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0;
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *aa=@"rell";
+    static NSString *aa=@"heheda";
     UITableViewCell *cell=[self.table dequeueReusableCellWithIdentifier:aa];
     if (cell==nil) {
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:aa];
@@ -59,42 +63,30 @@
     //    for (id suView in cell.contentView.subviews) {//获取当前cell的全部子视图
     //        [suView removeFromSuperview];//移除全部子视图
     //    }
-    UIView *backview = (UIView*)[cell viewWithTag:102];
-    UIView *leftview = (UIView*)[cell viewWithTag:100];
-    UIView *fengview = (UIView*)[cell viewWithTag:101];
     
-    UILabel *title =(UILabel*)[cell viewWithTag:200];
-    UIButton *class =(UIButton*)[cell viewWithTag:201];
-    UILabel *groud =(UILabel*)[cell viewWithTag:202];
-    UILabel *zhang =(UILabel*)[cell viewWithTag:203];
-    UILabel *numbe =(UILabel*)[cell viewWithTag:204];
-    UILabel *laiyu =(UILabel*)[cell viewWithTag:205];
-    UILabel *fancu =(UILabel*)[cell viewWithTag:206];
-    UILabel *fcnum =(UILabel*)[cell viewWithTag:207];
-    UILabel *gwron =(UILabel*)[cell viewWithTag:208];
-    UILabel *wrnum =(UILabel*)[cell viewWithTag:209];
+    UIView*shuxian=[[UIView alloc] initWithFrame:CGRectMake(0,0,width,50)];
+    shuxian.backgroundColor =[UIColor whiteColor];
+    UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(15,10, 30, 30)];
+    imageview.image =[UIImage imageNamed:@"attendance_history.png"];
+
+    UILabel *banji = [[UILabel alloc]initWithFrame:CGRectMake(55,10,200,30)];
     
-    backview.backgroundColor =[UIColor whiteColor];
-    backview.layer.cornerRadius =10;
-    leftview.layer.borderWidth =0;
-    fengview.layer.borderWidth =0;
-    class.layer.cornerRadius =5;
-    title.text =@"这是一个测试标题啦啦啦啦啦啦啦";
-    [class setTitle:@"数学" forState:UIControlStateNormal];
-    groud.text =@"初中一年级";
-    zhang.text =@"第三册第五章";
-    numbe.text =@"试题编号:102102";
-    laiyu.text =@"来源:课堂测试";
-    fancu.text =@"犯错次数:";
-    fcnum.text =@"150次";
-    gwron.text =@"个人犯错:";
-    wrnum.text =@"3次";
-    
+    banji.font =[UIFont systemFontOfSize:15];
+
+    banji.text =@"这里是通知标题";
+    [shuxian addSubview:imageview];
+    [shuxian addSubview:banji];
+    [cell addSubview:shuxian];
     cell.backgroundColor =[UIColor clearColor];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NoteInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]
+     instantiateViewControllerWithIdentifier:@"noteinfo"];
+    [self.navigationController pushViewController:his animated:YES];
 
+}
 /*
 #pragma mark - Navigation
 

@@ -10,8 +10,10 @@
 #import "FeedBackViewController.h"
 #import "RecordViewController.h"
 #import "Color+Hex.h"
-@interface StuRecordViewController ()
-
+@interface StuRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    NSMutableArray *arr;
+}
 @end
 
 @implementation StuRecordViewController
@@ -21,6 +23,12 @@
     _view1.layer.borderWidth =1;
     _view1.layer.cornerRadius =20;
     _view1.layer.borderColor =[[UIColor lightGrayColor]CGColor];
+    [self delegate];
+    self.title =@"学习档案";
+    arr =[NSMutableArray arrayWithObjects:@"语文",@"数学",@"英语",@"物理",@"化学",@"生物",@"思想政治", nil ];
+    
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -40,6 +48,8 @@
 */
 
 - (IBAction)tabelll:(id)sender {
+    _table.hidden=NO;
+    
 }
 
 - (IBAction)FanKui:(id)sender {
@@ -52,4 +62,47 @@
     [self.navigationController pushViewController:his animated:YES];
     //[self.navigationController pushViewController:atten animated:YES];
 }
+
+-(void)delegate{
+    _table.delegate=self;
+    _table.dataSource=self;
+    //_table.backgroundColor =[UIColor clearColor];
+   self.table.tableFooterView=[[UIView alloc] init];
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+//    _table.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return arr.count;
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 44;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *aa=@"heheda";
+    UITableViewCell *cell = [_table cellForRowAtIndexPath:indexPath];
+    if (cell==nil) {
+        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:aa];
+    }
+    cell.textLabel.text=arr[indexPath.row];
+    cell.textLabel.textAlignment =NSTextAlignmentRight;
+    
+    cell.selectionStyle =UITableViewCellSelectionStyleNone;
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    _clas.text =arr[indexPath.row];
+    _table.hidden=YES;
+
+}
+
 @end

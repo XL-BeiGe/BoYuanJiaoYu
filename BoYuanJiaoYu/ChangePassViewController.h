@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ChangePassViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *phonenum;
+@property (weak, nonatomic) IBOutlet UITextField *newpass;
+- (IBAction)SecurityCode:(id)sender;
 
 @end

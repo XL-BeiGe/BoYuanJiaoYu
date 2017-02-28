@@ -1,23 +1,25 @@
 //
-//  RecordViewController.m
+//  BackHistoryViewController.m
 //  BoYuanJiaoYu
 //
-//  Created by newmac on 2017/2/17.
+//  Created by newmac on 2017/2/25.
 //  Copyright © 2017年 BeiGe. All rights reserved.
 //
 
-#import "RecordViewController.h"
-
-@interface RecordViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+#import "BackHistoryViewController.h"
+#import "Color+Hex.h"
+@interface BackHistoryViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    float width;
+}
 @end
 
-@implementation RecordViewController
+@implementation BackHistoryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegate];
-    self.title =@"错题记录";
+    self.title =@"反馈历史";
     // Do any additional setup after loading the view.
 }
 
@@ -25,6 +27,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 -(void)delegate{
     _table.delegate=self;
     _table.dataSource=self;
@@ -32,26 +36,24 @@
     //self.table.tableFooterView=[[UIView alloc] init];
     self.automaticallyAdjustsScrollViewInsets = NO;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    width =[UIScreen mainScreen].bounds.size.width;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    return 10;
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 145;
+    return 60;
 }
-
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-//    return 10;
-//}
-
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0;
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *aa=@"rell";
+    static NSString *aa=@"heheda";
     UITableViewCell *cell=[self.table dequeueReusableCellWithIdentifier:aa];
     if (cell==nil) {
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:aa];
@@ -59,41 +61,39 @@
     //    for (id suView in cell.contentView.subviews) {//获取当前cell的全部子视图
     //        [suView removeFromSuperview];//移除全部子视图
     //    }
-    UIView *backview = (UIView*)[cell viewWithTag:102];
-    UIView *leftview = (UIView*)[cell viewWithTag:100];
-    UIView *fengview = (UIView*)[cell viewWithTag:101];
     
-    UILabel *title =(UILabel*)[cell viewWithTag:200];
-    UIButton *class =(UIButton*)[cell viewWithTag:201];
-    UILabel *groud =(UILabel*)[cell viewWithTag:202];
-    UILabel *zhang =(UILabel*)[cell viewWithTag:203];
-    UILabel *numbe =(UILabel*)[cell viewWithTag:204];
-    UILabel *laiyu =(UILabel*)[cell viewWithTag:205];
-    UILabel *fancu =(UILabel*)[cell viewWithTag:206];
-    UILabel *fcnum =(UILabel*)[cell viewWithTag:207];
-    UILabel *gwron =(UILabel*)[cell viewWithTag:208];
-    UILabel *wrnum =(UILabel*)[cell viewWithTag:209];
+    UIView*shuxian=[[UIView alloc] initWithFrame:CGRectMake(15,5, 1,60)];
+    shuxian.backgroundColor =[UIColor colorWithHexString:@"C9D0D6"];
+    UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(0,0, 30, 30)];
+    imageview.image =[UIImage imageNamed:@"attendance_history.png"];
     
+    //内部构造
+    UIView *backview =[[UIView alloc]initWithFrame:CGRectMake(30,10, width-40, 50)];
     backview.backgroundColor =[UIColor whiteColor];
-    backview.layer.cornerRadius =10;
-    leftview.layer.borderWidth =0;
-    fengview.layer.borderWidth =0;
-    class.layer.cornerRadius =5;
-    title.text =@"这是一个测试标题啦啦啦啦啦啦啦";
-    [class setTitle:@"数学" forState:UIControlStateNormal];
-    groud.text =@"初中一年级";
-    zhang.text =@"第三册第五章";
-    numbe.text =@"试题编号:102102";
-    laiyu.text =@"来源:课堂测试";
-    fancu.text =@"犯错次数:";
-    fcnum.text =@"150次";
-    gwron.text =@"个人犯错:";
-    wrnum.text =@"3次";
+    backview.layer.cornerRadius =5;
+    UILabel *banji = [[UILabel alloc]initWithFrame:CGRectMake(10,15, 130, 20)];
+    UILabel *xueke = [[UILabel alloc]initWithFrame:CGRectMake(backview.frame.size.width-130,15, 120, 20)];
+    banji.font =[UIFont systemFontOfSize:15];
+    xueke.font =[UIFont systemFontOfSize:15];
+    xueke.textAlignment =NSTextAlignmentRight;
+   
+    banji.text =@"这旮沓是作业标题";
+    xueke.text =@"时间:8:45";
+
     
+    xueke.textColor=[UIColor colorWithHexString:@"41beff"];//蓝色
+    //qianda.textColor=[UIColor colorWithHexString:@"fc619d"];//粉色
+    
+    [backview addSubview:banji];
+    [backview addSubview:xueke];
+    [cell addSubview:shuxian];
+    [cell addSubview:imageview];
+    [cell addSubview:backview];
     cell.backgroundColor =[UIColor clearColor];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
+
 
 /*
 #pragma mark - Navigation

@@ -9,6 +9,7 @@
 #import "ClassCenterViewController.h"
 #import "Color+Hex.h"
 #import "ClassInfoViewController.h"
+#import "NoteListViewController.h"
 @interface ClassCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     float width;
@@ -21,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegate];
+    [self navagat];
     self.title =@"课程中心";
     // Do any additional setup after loading the view.
 }
@@ -29,6 +31,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)navagat{
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"通知" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
+    [self.navigationItem setRightBarButtonItem:right];
+}
+
+-(void)History{
+    NoteListViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"notelist"];
+    [self.navigationController pushViewController:his animated:YES];
+}
+
+
 -(void)delegate{
     _table.delegate=self;
     _table.dataSource=self;

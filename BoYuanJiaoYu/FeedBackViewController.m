@@ -8,6 +8,7 @@
 
 #import "FeedBackViewController.h"
 #import "Color+Hex.h"
+#import "BackInfoViewController.h"
 @interface FeedBackViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     float width;
@@ -22,6 +23,7 @@
     [super viewDidLoad];
     [self delegate];
     [self comeback];
+    [self navagat];
     self.title =@"课堂反馈";
     // Do any additional setup after loading the view.
 }
@@ -39,6 +41,18 @@
     //    }
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+-(void)navagat{
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"详情" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
+    [self.navigationItem setRightBarButtonItem:right];
+}
+
+-(void)History{
+    BackInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"backinfo"];
+    [self.navigationController pushViewController:his animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

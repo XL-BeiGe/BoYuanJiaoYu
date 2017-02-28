@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegate];
+    self.title =@"课程详情";
     // Do any additional setup after loading the view.
 }
 

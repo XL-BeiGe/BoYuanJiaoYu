@@ -90,7 +90,7 @@
     //内部构造
     UIView *backview =[[UIView alloc]initWithFrame:CGRectMake(30,10, width-40, 80)];
     backview.backgroundColor =[UIColor whiteColor];
-    
+    backview.layer.cornerRadius =5;
     UILabel *banji = [[UILabel alloc]initWithFrame:CGRectMake(10, 6, 130, 20)];
     UILabel *xueke = [[UILabel alloc]initWithFrame:CGRectMake(backview.frame.size.width-130, 6, 120, 20)];
     UILabel *shijia = [[UILabel alloc]initWithFrame:CGRectMake(10, 45, 130, 20)];
