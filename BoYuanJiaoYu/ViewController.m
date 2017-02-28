@@ -36,15 +36,14 @@
 -(void)bianhua{
     _reg.layer.borderColor =[[UIColor lightGrayColor]CGColor];
     _reg.layer.borderWidth = 1;
-    
+    _forgot.hidden =YES;
     _backview.layer.borderWidth =1;
     _backview.layer.cornerRadius =5;
-    _backview.layer.borderColor =[[UIColor colorWithHexString:@"ffdb01"]CGColor];
-    _user.backgroundColor =[UIColor colorWithHexString:@"ffdb01"];
-    _pass.backgroundColor =[UIColor colorWithHexString:@"F0EDE8"];
+    _backview.layer.borderColor =[[UIColor colorWithHexString:@"FFBE01"]CGColor];
+    _user.backgroundColor =[UIColor colorWithHexString:@"FFBE01"];
+    _pass.backgroundColor =[UIColor colorWithHexString:@"EAEEF2"];
     _user.layer.cornerRadius =5;
     _pass.layer.cornerRadius =5;
-    [_forgot setTitle:@"忘记密码?" forState:UIControlStateNormal];
     use=YES;
 }
 
@@ -74,20 +73,29 @@
 
 - (IBAction)Users:(id)sender {
     use =YES;
-    _user.backgroundColor =[UIColor colorWithHexString:@"ffdb01"];
-    _pass.backgroundColor =[UIColor colorWithHexString:@"F0EDE8"];
-    
-    [_forgot setTitle:@"忘记密码?" forState:UIControlStateNormal];
+    _user.backgroundColor =[UIColor colorWithHexString:@"FFBE01"];
+    _pass.backgroundColor =[UIColor colorWithHexString:@"EAEEF2"];
+     _forgot.hidden =YES;
+   _password.placeholder =@"请输入密码";
     
 }
 
 - (IBAction)passs:(id)sender {
     use =NO;
-    _user.backgroundColor =[UIColor colorWithHexString:@"F0EDE8"];
-    _pass.backgroundColor =[UIColor colorWithHexString:@"ffdb01"];
-    [_forgot setTitle:@"获取验证码" forState:UIControlStateNormal];
-    
+    _user.backgroundColor =[UIColor colorWithHexString:@"EAEEF2"];
+    _pass.backgroundColor =[UIColor colorWithHexString:@"FFBE01"];
+     _forgot.hidden =NO;
+    _password.placeholder =@"请输入验证码";
 }
+
+//获取验证码
+-(void)SecurityCode{
+
+
+}
+
+
+
 
 // 正则判断手机号码地址格式
 - (BOOL)isMobileNumber:(NSString *)mobileNum {
