@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2A460DC1E667FD30013035F /* XL_wangluo.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A460DB1E667FD30013035F /* XL_wangluo.m */; };
 		D708AD801E567DDB00DFB98D /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D708AD7F1E567DDB00DFB98D /* RecordViewController.m */; };
 		D70ED4D11E57E1460045038C /* kq_w.png in Resources */ = {isa = PBXBuildFile; fileRef = D70ED4D01E57E1460045038C /* kq_w.png */; };
 		D70ED4D31E57E1970045038C /* kq_y.png in Resources */ = {isa = PBXBuildFile; fileRef = D70ED4D21E57E1970045038C /* kq_y.png */; };
@@ -138,6 +139,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D2A460D91E667E0A0013035F /* HongDingYi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HongDingYi.h; sourceTree = "<group>"; };
+		D2A460DA1E667FD30013035F /* XL_wangluo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XL_wangluo.h; sourceTree = "<group>"; };
+		D2A460DB1E667FD30013035F /* XL_wangluo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XL_wangluo.m; sourceTree = "<group>"; };
 		D708AD7E1E567DDB00DFB98D /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
 		D708AD7F1E567DDB00DFB98D /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
 		D70ED4D01E57E1460045038C /* kq_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kq_w.png; sourceTree = "<group>"; };
@@ -340,6 +344,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D2A460D81E667D2B0013035F /* 网络连接及宏定义 */ = {
+			isa = PBXGroup;
+			children = (
+				D2A460D91E667E0A0013035F /* HongDingYi.h */,
+				D2A460DA1E667FD30013035F /* XL_wangluo.h */,
+				D2A460DB1E667FD30013035F /* XL_wangluo.m */,
+			);
+			name = "网络连接及宏定义";
+			sourceTree = "<group>";
+		};
 		D708AD7D1E567DBE00DFB98D /* 错题记录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,6 +507,7 @@
 		D724472F1E5290E8003DBCE4 /* BoYuanJiaoYu */ = {
 			isa = PBXGroup;
 			children = (
+				D2A460D81E667D2B0013035F /* 网络连接及宏定义 */,
 				D7217C1E1E5A7E2E00AE9C89 /* SDWebImage */,
 				D7217BF81E5A7E2700AE9C89 /* SBJSON */,
 				D7217BE41E5A7E1E00AE9C89 /* AFNetworking 3.0.4 */,
@@ -930,6 +945,7 @@
 				D7217C131E5A7E2700AE9C89 /* SBJsonParser.m in Sources */,
 				D7217C411E5A7E2E00AE9C89 /* NSData+ImageContentType.m in Sources */,
 				D708AD801E567DDB00DFB98D /* RecordViewController.m in Sources */,
+				D2A460DC1E667FD30013035F /* XL_wangluo.m in Sources */,
 				D7217C4C1E5A7E2E00AE9C89 /* UIImage+WebP.m in Sources */,
 				D72447C31E52F439003DBCE4 /* TabBarViewController.m in Sources */,
 				D7217C1C1E5A7E2700AE9C89 /* SBJsonUTF8Stream.m in Sources */,
