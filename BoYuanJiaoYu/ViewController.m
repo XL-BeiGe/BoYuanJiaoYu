@@ -10,7 +10,8 @@
 #import "AttendanceViewController.h"
 #import "TabBarViewController.h"
 #import "Color+Hex.h"
-@interface ViewController ()
+#import "WarningBox.h"
+@interface ViewController ()<UITextFieldDelegate>
 {
     BOOL use;
 }
@@ -34,8 +35,7 @@
 }
 
 -(void)bianhua{
-    _reg.layer.borderColor =[[UIColor lightGrayColor]CGColor];
-    _reg.layer.borderWidth = 1;
+   
     _forgot.hidden =YES;
     _backview.layer.borderWidth =1;
     _backview.layer.cornerRadius =5;
@@ -45,29 +45,38 @@
     _user.layer.cornerRadius =5;
     _pass.layer.cornerRadius =5;
     use=YES;
+    _username.delegate =self;
+    _password.delegate =self;
 }
 
 
 - (IBAction)Login:(id)sender {
-    TabBarViewController *atten = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
-    [self presentViewController:atten animated:YES completion:^{}];
-    
-    //[self.navigationController pushViewController:atten animated:YES];
-    
-}
-
-- (IBAction)Regsi:(id)sender {
-    NSLog(@"注册页面");
-}
-
-- (IBAction)Forgot:(id)sender {
-    if(use==YES){
-        NSLog(@"跳转忘记密码");
-    }else{
-    
-        NSLog(@"获取验证码");
+    if(_username.text.length==0){
+    [WarningBox warningBoxModeText:@"请输入手机号" andView:self.view];
+    }else if (_password.text.length==0){
+    [WarningBox warningBoxModeText:@"密码或验证码不能为空" andView:self.view];
+    }
+    else{
+        NSLog(@"登录请求 成功跳转");
+        TabBarViewController *atten = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
+        [self presentViewController:atten animated:YES completion:^{}];
     }
     
+    
+
+    
+
+    
+}
+
+
+
+- (IBAction)Forgot:(id)sender {
+   
+    [self SecurityCode];
+    
+   
+
     
 }
 
@@ -90,12 +99,25 @@
 
 //获取验证码
 -(void)SecurityCode{
-
-
+  NSLog(@"获取验证码");
 }
 
 
 
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if(textField==_username){
+        if(![self isMobileNumber:_username.text]){
+         [WarningBox warningBoxModeText:@"手机号输入有误,请重新输入" andView:self.view];
+        }
+    }
+
+}
 
 // 正则判断手机号码地址格式
 - (BOOL)isMobileNumber:(NSString *)mobileNum {
