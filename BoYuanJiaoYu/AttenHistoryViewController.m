@@ -7,11 +7,14 @@
 //
 
 #import "AttenHistoryViewController.h"
+#import "AttHisInfoViewController.h"
 #import "Color+Hex.h"
+#import "XL_wangluo.h"
+#import "WarningBox.h"
 @interface AttenHistoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     float width;
-
+    NSMutableArray *arr;
 
 }
 @end
@@ -23,6 +26,7 @@
     self.title =@"考勤历史";
     [self comeback];
     [self delegate];
+    [self wlrequest];
     width =[UIScreen mainScreen].bounds.size.width;
     
     // Do any additional setup after loading the view.
@@ -47,7 +51,38 @@
      [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)wlrequest{
 
+        
+        NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+        NSString *fangshi =@"/attend/attendanceHistoryList";
+        NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1",@"pageNo",@"10",@"pageSize", nil];
+        
+        [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+            NSLog(@"成功\n%@",responseObject);
+            
+            if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+                arr =[NSMutableArray array];
+                arr=[[responseObject objectForKey:@"data"] objectForKey:@"attendList"];
+                if(arr.count==0){
+                    _backimg.hidden= NO;
+                    _table.hidden=YES;
+                    
+                }else{
+                    _backimg.hidden= YES;
+                    _table.hidden=NO;
+                     [_table reloadData];
+                }
+                
+            }
+            
+        } failure:^(NSError *error) {
+            NSLog(@"失败\n %@",error);
+        }];
+        
+        
+   
+}
 
 -(void)delegate{
     _table.delegate=self;
@@ -56,14 +91,14 @@
     //self.table.tableFooterView=[[UIView alloc] init];
     self.automaticallyAdjustsScrollViewInsets = NO;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+    _backimg.hidden= YES;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
    
-        return 10;
+        return arr.count;
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -91,29 +126,41 @@
     UIView *backview =[[UIView alloc]initWithFrame:CGRectMake(30,10, width-40, 80)];
     backview.backgroundColor =[UIColor whiteColor];
     backview.layer.cornerRadius =5;
-    UILabel *banji = [[UILabel alloc]initWithFrame:CGRectMake(10, 6, 130, 20)];
-    UILabel *xueke = [[UILabel alloc]initWithFrame:CGRectMake(backview.frame.size.width-130, 6, 120, 20)];
-    UILabel *shijia = [[UILabel alloc]initWithFrame:CGRectMake(10, 45, 130, 20)];
-    UILabel *qianda = [[UILabel alloc]initWithFrame:CGRectMake(backview.frame.size.width-130, 45, 120, 20)];
-    
+    UILabel *banji = [[UILabel alloc]initWithFrame:CGRectMake(10,15, 130, 20)];
+    UILabel *xueke = [[UILabel alloc]initWithFrame:CGRectMake(backview.frame.size.width-130,15, 120, 20)];
+    UILabel *jiaoshi = [[UILabel alloc]initWithFrame:CGRectMake(10,50, 130, 20)];
     banji.font =[UIFont systemFontOfSize:15];
     xueke.font =[UIFont systemFontOfSize:15];
-    shijia.font =[UIFont systemFontOfSize:15];
-    qianda.font =[UIFont systemFontOfSize:15];
+    jiaoshi.font =[UIFont systemFontOfSize:15];
     xueke.textAlignment =NSTextAlignmentRight;
-    qianda.textAlignment =NSTextAlignmentRight;
-    banji.text =@"初一数学A2班";
-    xueke.text =@"数学";
-    shijia.text =@"周六9:00-11:00";
-    qianda.text =@"签到时间:18:45";
+    if(nil==[arr[indexPath.row]objectForKey:@"className"]){
+        banji.text=@"";
+    }else{
+         banji.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"className"]];
+        
+    }
+    if(nil==[arr[indexPath.row]objectForKey:@"classType"]){
+       
+        xueke.text =@"";
+    }else{
+         xueke.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"classType"]];
+        
+    }
+    if(nil==[arr[indexPath.row]objectForKey:@"teacherName"]){
+        
+        jiaoshi.text =@"";
+    }else{
+        jiaoshi.text =[NSString stringWithFormat:@"任课教师:%@",[arr[indexPath.row]objectForKey:@"teacherName"]];
+        
+    }
     
-    qianda.textColor=[UIColor colorWithHexString:@"41beff"];//蓝色
-    //qianda.textColor=[UIColor colorWithHexString:@"fc619d"];//粉色
+ 
+    
+    
     
     [backview addSubview:banji];
     [backview addSubview:xueke];
-    [backview addSubview:shijia];
-    [backview addSubview:qianda];
+    [backview addSubview:jiaoshi];
     [cell addSubview:shuxian];
     [cell addSubview:imageview];
     [cell addSubview:backview];
@@ -121,7 +168,14 @@
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    AttHisInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"atthisinfo"];
+    his.claassID =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"classId"]];
+  
+    [self.navigationController pushViewController:his animated:YES];
+
+}
 /*
 #pragma mark - Navigation
 

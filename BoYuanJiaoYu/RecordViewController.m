@@ -7,7 +7,8 @@
 //
 
 #import "RecordViewController.h"
-
+#import "WarningBox.h"
+#import "XL_wangluo.h"
 @interface RecordViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -25,6 +26,64 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+
+//错题筛选
+-(void)cuotishaixuan{
+    NSString *fangshi =@"/learningPortfolio/errorScreen";
+    
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:nil type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+
+}
+//错题记录
+-(void)cuotijilu{
+    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+    NSString *fangshi =@"/learningPortfolio/errorList";
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1/2",@"isCorrect", nil];
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
+            
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+}
+//错题详情
+-(void)cuotixiangqing{
+   
+    NSString *fangshi =@"/learningPortfolio/errorInfo";
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:@"1010",@"questionId", nil];
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
+            
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+
+}
+
+
 -(void)delegate{
     _table.delegate=self;
     _table.dataSource=self;

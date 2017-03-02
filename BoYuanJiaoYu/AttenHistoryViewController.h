@@ -10,5 +10,6 @@
 
 @interface AttenHistoryViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *table;
+@property (weak, nonatomic) IBOutlet UIImageView *backimg;
 
 @end

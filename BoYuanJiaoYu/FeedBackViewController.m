@@ -9,6 +9,8 @@
 #import "FeedBackViewController.h"
 #import "Color+Hex.h"
 #import "BackInfoViewController.h"
+#import "WarningBox.h"
+#import "XL_wangluo.h"
 @interface FeedBackViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     float width;
@@ -33,14 +35,28 @@
     [self.navigationItem setLeftBarButtonItem:left];
 }
 -(void)fanhui{
-    //    XLStatisticsViewController *xln=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"statistics"];
-    //    for (UIViewController *controller in self.navigationController.viewControllers) {
-    //        if ([controller isKindOfClass:[xln class]]) {
-    //            [self.navigationController popToViewController:controller animated:YES];
-    //        }
-    //    }
+
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+-(void)ketangfankui{
+    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+    NSString *fangshi =@"/learningPortfolio/feedbackSubject";
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1111",@"classId", nil];
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
+            
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+
+}
+
 
 -(void)navagat{
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];

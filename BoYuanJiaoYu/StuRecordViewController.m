@@ -10,6 +10,8 @@
 #import "FeedBackViewController.h"
 #import "RecordViewController.h"
 #import "Color+Hex.h"
+#import "WarningBox.h"
+#import "XL_wangluo.h"
 @interface StuRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *arr;
@@ -46,6 +48,25 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)baobanliebiao{
+    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+    NSString *fangshi =@"/learningPortfolio/attendanceInfoList";
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId", nil];
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
+            
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+
+}
+
 
 - (IBAction)tabelll:(id)sender {
     _table.hidden=NO;

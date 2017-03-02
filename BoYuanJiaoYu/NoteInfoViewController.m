@@ -8,6 +8,8 @@
 
 #import "NoteInfoViewController.h"
 #import "Color+Hex.h"
+#import "WarningBox.h"
+#import "XL_wangluo.h"
 @interface NoteInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     float width;
@@ -21,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegate];
+    [self wangluo];
     self.title =@"通知详情";
     // Do any additional setup after loading the view.
 }
@@ -29,6 +32,27 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)wangluo{
+    
+    NSString *fangshi =@"/userInfo/pushInfo";
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"pushId", nil];
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
+            
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+    
+    
+}
+
+
 -(void)delegate{
     _table.delegate=self;
     _table.dataSource=self;

@@ -9,11 +9,12 @@
 #import "ClassCenterViewController.h"
 #import "Color+Hex.h"
 #import "ClassInfoViewController.h"
-#import "NoteListViewController.h"
+#import "WarningBox.h"
+#import "XL_wangluo.h"
 @interface ClassCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     float width;
-
+    NSMutableArray *arr;
 }
 @end
 
@@ -22,7 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegate];
-    [self navagat];
+    //[self shaixuan];
+    [self kechengzhongxin];
     self.title =@"课程中心";
     // Do any additional setup after loading the view.
 }
@@ -31,16 +33,59 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)navagat{
-    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
-    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"通知" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
-    [self.navigationItem setRightBarButtonItem:right];
+
+-(void)kechengzhongxin{
+    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+    NSString *fangshi =@"/curriculumCenter/classInfoList";
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"0",@"classLevel",@"0",@"classType",@"0",@"teacherId", nil];
+    
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            arr = [NSMutableArray array];
+            arr=[[responseObject objectForKey:@"data"] objectForKey:@"classInfoList"];
+           
+            if(arr.count==0){
+                //_BackImage.hidden=NO;
+                _table.hidden=YES;
+                
+            }else{
+               // _BackImage.hidden=YES;
+                _table.hidden=NO;
+                [_table reloadData];
+            }
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+    
+
+
 }
 
--(void)History{
-    NoteListViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"notelist"];
-    [self.navigationController pushViewController:his animated:YES];
+-(void)shaixuan{
+   
+    NSString *fangshi =@"/curriculumCenter/classConditionList";
+   
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:nil type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+    
+
 }
+
+
 
 
 -(void)delegate{
@@ -58,7 +103,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 10;
+    return arr.count;
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -89,7 +134,8 @@
     UILabel *xiang = [[UILabel alloc]initWithFrame:CGRectMake(width/2+45,110,100, 20)];
     
     UILabel *kemu =[[UILabel alloc]initWithFrame:CGRectMake(width-90,30,70, 20)];
-    //kemu.backgroundColor =[UIColor blueColor];
+    kemu.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+    kemu.layer.cornerRadius =5;
     kemu.textAlignment =NSTextAlignmentCenter;
     imageview.image =[UIImage imageNamed:@"课程-背景.png"];
     lsimg.image =[UIImage imageNamed:@"课程-老师.png"];
@@ -103,15 +149,60 @@
     baomi.font =[UIFont systemFontOfSize:15];
     xiang.font =[UIFont systemFontOfSize:15];
    
-    kemu.text =@"政治教育";
-    banji.text =@"初一数学A2班";
-    jiaos.text =@"张老师";
-    nianj.text =@"初中一年级";
-    baomi.text =@"已报名";
-    xiang.text =@"查看详情";
     
-    // qianda.backgroundColor=[UIColor colorWithHexString:@"41beff"];//蓝色
-    //qianda.backgroundColor=[UIColor colorWithHexString:@"fc619d"];//粉色
+    //kemu.text =@"政治教育";
+   // banji.text =@"初一数学A2班";
+   //jiaos.text =@"张老师";
+   // nianj.text =@"初中一年级";
+   // baomi.text =@"已报名";
+   // xiang.text =@"查看详情";
+    if(nil==[arr[indexPath.row]objectForKey:@"className"]){
+        
+        banji.text =@"";
+    }else{
+        banji.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"className"]];
+        
+    }
+    
+    if(nil==[arr[indexPath.row]objectForKey:@"classType"]){
+        
+        kemu.text =@"";
+    }else{
+        kemu.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"classType"]];
+        
+    }
+    
+    
+    if(nil==[arr[indexPath.row]objectForKey:@"teacherName"]){
+       
+        jiaos.text =@"";
+    }else{
+        jiaos.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"teacherName"]];
+        
+    }
+    
+    if(nil==[arr[indexPath.row]objectForKey:@"classLevel"]){
+        
+
+        nianj.text =@"";
+    }else{
+        nianj.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"classLevel"]];
+        
+    }
+ 
+    
+    if(nil==[arr[indexPath.row]objectForKey:@"isEnrol"]){
+        
+        baomi.text =@"";
+    }else{
+        if([[arr[indexPath.row]objectForKey:@"isEnrol"]intValue]==0){
+        baomi.text=@"未报名";
+        }else{
+        baomi.text=@"已报名";
+        }
+    }
+    xiang.text =@"查看详情";
+ 
     [cell addSubview:imageview];
     [cell addSubview:lsimg];
     [cell addSubview:njimg];
@@ -131,8 +222,9 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ClassInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"classinfo"];
-    [self.navigationController pushViewController:his animated:YES];
+    ClassInfoViewController *class = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"classinfo"];
+    class.claassID =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"classId"]];
+    [self.navigationController pushViewController:class animated:YES];
 
 }
 /*

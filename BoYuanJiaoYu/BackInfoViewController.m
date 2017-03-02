@@ -9,6 +9,8 @@
 #import "BackInfoViewController.h"
 #import "BackHistoryViewController.h"
 #import "Color+Hex.h"
+#import "WarningBox.h"
+#import "XL_wangluo.h"
 @interface BackInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     float width;
@@ -41,6 +43,27 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)fankuixiangqing{
+    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+    NSString *fangshi =@"/learningPortfolio/feedbackInfo";
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1111",@"currentBatchId", nil];
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
+            
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+
+
+}
+
+
 -(void)delegate{
     _table.delegate=self;
     _table.dataSource=self;

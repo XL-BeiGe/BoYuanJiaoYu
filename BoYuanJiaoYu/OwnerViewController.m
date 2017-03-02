@@ -9,9 +9,13 @@
 #import "OwnerViewController.h"
 #import "Color+Hex.h"
 #import "ExplainViewController.h"
-#import "ChangePassViewController.h"
+//#import "ChangePassViewController.h"
 #import "StuInfoTableViewController.h"
 #import "WarningBox.h"
+#import "SetPassViewController.h"
+#import "ChangePhoneViewController.h"
+#import "NoteListViewController.h"
+#import "XL_wangluo.h"
 @interface OwnerViewController ()<UITextFieldDelegate>
 {
     float width;
@@ -24,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self navagat];
     _inviteview.hidden =YES;
     _phoneNum.delegate =self;
     self.title =@"个人中心";
@@ -35,6 +40,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)navagat{
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"通知" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
+    [self.navigationItem setRightBarButtonItem:right];
+}
+
+-(void)History{
+    NoteListViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"notelist"];
+    [self.navigationController pushViewController:his animated:YES];
+}
 -(void)backview{
     width =[UIScreen mainScreen].bounds.size.width;
     height =[UIScreen mainScreen].bounds.size.height;
@@ -77,15 +92,18 @@
 }
 //修改密码
 - (IBAction)Change:(id)sender {
-    ChangePassViewController *change = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"changepass"];
-    [self.navigationController pushViewController:change animated:YES];
+    SetPassViewController *set = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"setpass"];
+    [self.navigationController pushViewController:set animated:YES];
 }
 //关于我们
 - (IBAction)About:(id)sender {
     ExplainViewController *explain = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"explain"];
     [self.navigationController pushViewController:explain animated:YES];
 }
-
+- (IBAction)ChangePho:(id)sender {
+    ChangePhoneViewController *change = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"changephone"];
+    [self.navigationController pushViewController:change animated:YES];
+}
 - (IBAction)Sure:(id)sender {
     _inviteview.hidden= YES;
     [_phoneNum resignFirstResponder];
@@ -93,8 +111,46 @@
 }
 //邀请家人接口
 -(void)inviteparents{
-[self remov];
+    
+    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+    NSString *fangshi =@"/userInfo/userInfo";
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1111",@"parentId",_phoneNum.text,@"tel", nil];
+    
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            
+           [self remov];
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+ 
+    
+   
 }
+
+//获取个人信息
+-(void)gerenxinxi{
+    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+    NSString *fangshi =@"/userInfo/getUserInfoBase";
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId", nil];
+    
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+          
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+}
+
 
 
 
@@ -120,4 +176,5 @@
     
     return [regextestmobile evaluateWithObject:mobileNum];
 }
+
 @end

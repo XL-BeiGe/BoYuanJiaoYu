@@ -8,10 +8,13 @@
 
 #import "ClassInfoViewController.h"
 #import "Color+Hex.h"
+#import "WarningBox.h"
+#import "XL_wangluo.h"
 @interface ClassInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     float width;
     UILabel*messa;
+    NSMutableDictionary *arr;
 }
 @end
 
@@ -20,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegate];
+    [self kechengxiangqing];
     self.title =@"课程详情";
     // Do any additional setup after loading the view.
 }
@@ -28,6 +32,39 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)kechengxiangqing{
+    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+    NSString *fangshi =@"/curriculumCenter/classInfo";
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_claassID,@"classId", nil];
+    
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            arr = [NSMutableDictionary dictionary];
+            arr=[responseObject objectForKey:@"data"];
+            
+            if(arr.count==0){
+                
+                _table.hidden=YES;
+                
+            }else{
+             
+                _table.hidden=NO;
+                [_table reloadData];
+            }
+   
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+
+}
+
+
 -(void)delegate{
     _table.delegate=self;
     _table.dataSource=self;
@@ -51,19 +88,18 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section==0){
-        return 85;
+        return 90;
     }else{
         if(indexPath.row==2){
             return 80;
         }
        if (indexPath.row==1){
             NSString* ss=[[NSString alloc] init];
-//            if(nil==[pushTemplate objectForKey:@"title"]){
-//                ss =@"";
-//            }else{
-//                ss =[NSString stringWithFormat:@"%@",[pushTemplate objectForKey:@"context"]];
-//            }
-           ss =@"因为iPhone平庸了几代，也因为今年是iPhone诞生十周年，人们对iPhone 8的期望格外高一些。关于即将到来的iPhone 8，坊间曾盛传其将取消实体Home键，支持屏幕指纹识别功能。如果说这之前是人们一厢情愿的期望，那么现在还真已经有了一些切实依据。据了解，苹果曾收购过一家叫做LuxVue的公司，而该公司在micro-LED方面颇有研究。通过收购，苹果已经获得了包括一种超薄柔性屏生产方法在内的一系列知识产权。现如今，苹果又获得了一项专利，详细描述了一种通过红外发射器、传感器和高分辨率触摸来读取指纹的屏幕。";
+            if(nil==[arr objectForKey:@"info"]){
+                ss =@"";
+            }else{
+                ss =[NSString stringWithFormat:@"%@",[arr objectForKey:@"info"]];
+            }
             messa=[[UILabel alloc] init];
             UIFont *font = [UIFont fontWithName:@"Arial" size:15];
             NSAttributedString *attributedText =
@@ -100,11 +136,11 @@
     //        [suView removeFromSuperview];//移除全部子视图
     //    }
     if(indexPath.section==0){
-       UILabel *banj =[[UILabel alloc]initWithFrame:CGRectMake(20,10,100, 20)];
+       UILabel *banj =[[UILabel alloc]initWithFrame:CGRectMake(20,10,130, 20)];
        UIButton *xuek =[[UIButton alloc]initWithFrame:CGRectMake(width-90,10,70, 20)];
-       UILabel *laos =[[UILabel alloc]initWithFrame:CGRectMake(20,30,100, 20)];
-       UILabel *niaj =[[UILabel alloc]initWithFrame:CGRectMake(width-100,30,80, 20)];
-       UILabel *shij =[[UILabel alloc]initWithFrame:CGRectMake(20,55,150, 20)];
+       UILabel *laos =[[UILabel alloc]initWithFrame:CGRectMake(20,40,100, 20)];
+       UILabel *niaj =[[UILabel alloc]initWithFrame:CGRectMake(width-100,40,80, 20)];
+       UILabel *shij =[[UILabel alloc]initWithFrame:CGRectMake(20,65,150, 20)];
       
        xuek.titleLabel.textAlignment =NSTextAlignmentCenter;
        niaj.textAlignment =NSTextAlignmentRight;
@@ -114,11 +150,38 @@
        xuek.titleLabel.font =[UIFont systemFontOfSize:15];
        niaj.font =[UIFont systemFontOfSize:15];
         
-       banj.text =@"初一数学A2班";
-       laos.text =@"张老师";
-       shij.text =@"周六9:00-11:00";
-        niaj.text =@"初中一年级";
-        [xuek setTitle:@"数学" forState:UIControlStateNormal];
+       //banj.text =@"初一数学A2班";
+       //laos.text =@"张老师";
+       //shij.text =@"周六9:00-11:00";
+       // niaj.text =@"初中一年级";
+        
+        if(nil==[arr objectForKey:@"className"]){
+            banj.text =@"";
+        }else{
+            banj.text =[NSString stringWithFormat:@"%@",[arr objectForKey:@"className"]];
+        }
+       
+        
+        if(nil==[arr objectForKey:@"teacherName"]){
+            laos.text =@"";
+        }else{
+            laos.text =[NSString stringWithFormat:@"%@",[arr objectForKey:@"teacherName"]];
+        }
+        
+        if(nil==[arr objectForKey:@"classLevel"]){
+                niaj.text =@"";
+        }else{
+                niaj.text =[NSString stringWithFormat:@"%@",[arr  objectForKey:@"classLevel"]];
+        }
+        
+        
+        NSString *xueke;
+        if(nil==[arr objectForKey:@"classType"]){
+            xueke =@"";
+        }else{
+            xueke =[NSString stringWithFormat:@"%@",[arr objectForKey:@"classType"]];
+        }
+        [xuek setTitle:xueke forState:UIControlStateNormal];
         [xuek setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         xuek.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
         xuek.layer.cornerRadius =3;
@@ -157,8 +220,19 @@
          UILabel *righ2 =[[UILabel alloc]initWithFrame:CGRectMake(80,10,30, 20)];
            left1.text =@"当前课次";
            righ1.text =@"剩余课次";
-           left2.text =@"20";
-           righ2.text =@"20";
+            if(nil==[arr objectForKey:@"periodsCurrent"]){
+                left2.text =@"";
+            }else{
+                left2.text =[NSString stringWithFormat:@"%@",[arr objectForKey:@"periodsCurrent"]];
+            }
+            if(nil==[arr objectForKey:@"periodsSurplus"]){
+                righ2.text =@"";
+            }else{
+                righ2.text =[NSString stringWithFormat:@"%@",[arr objectForKey:@"periodsSurplus"]];
+            }
+            
+           
+            
             left1.font =[UIFont systemFontOfSize:14];
             righ1.font =[UIFont systemFontOfSize:14];
             left2.font =[UIFont systemFontOfSize:15];
@@ -184,7 +258,7 @@
             ll.font =[UIFont systemFontOfSize:15];
             ll.textColor =[UIColor orangeColor];
             ll.text =@"本门课程余额不足,请尽快缴费";
-            [cell addSubview:ll];
+            //[cell addSubview:ll];
         }
     
     }

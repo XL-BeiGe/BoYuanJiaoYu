@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneNum;
 - (IBAction)Sure:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *inviteview;
+- (IBAction)ChangePho:(id)sender;
 
 
 @end

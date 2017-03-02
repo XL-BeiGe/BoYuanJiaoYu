@@ -7,7 +7,8 @@
 //
 
 #import "StuInfoTableViewController.h"
-
+#import "WarningBox.h"
+#import "XL_wangluo.h"
 @interface StuInfoTableViewController ()<UIActionSheetDelegate>
 {
 
@@ -158,7 +159,36 @@
 }
 
 - (IBAction)Finish:(id)sender {
+    [self xiugaixinxi];
 }
+
+
+-(void)xiugaixinxi{
+    
+   //_xingbie//性别不知道传123还是性别studentSex
+   //_shenfen//同上parentRole
+    //studentAge传年龄
+   
+    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+    NSString *fangshi =@"/userInfo/modifyUserInfoBase";
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_sutname.text,@"studentName",_birthday.text,@"studentBirtyday",_school.text,@"studentSchool",_groud.text,@"studentGrade",_classs.text,@"studentClassName",_parname.text,@"parentNick",_phone.text,@"parentTel", nil];
+    
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+}
+
+
+
+
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     

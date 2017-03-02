@@ -114,6 +114,9 @@
 		D72B31AD1E5FC5870092B9C2 /* 无历史.png in Resources */ = {isa = PBXBuildFile; fileRef = D72B31A81E5FC5870092B9C2 /* 无历史.png */; };
 		D72B31B11E5FD46C0092B9C2 /* NoteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72B31B01E5FD46C0092B9C2 /* NoteListViewController.m */; };
 		D72B31B41E5FD47E0092B9C2 /* NoteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72B31B31E5FD47E0092B9C2 /* NoteInfoViewController.m */; };
+		D72F75B01E669C44004FBCA6 /* SetPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72F75AF1E669C44004FBCA6 /* SetPassViewController.m */; };
+		D72F75B41E669C5F004FBCA6 /* ChangePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72F75B31E669C5F004FBCA6 /* ChangePhoneViewController.m */; };
+		D72F75B71E66BBB8004FBCA6 /* AttHisInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72F75B61E66BBB8004FBCA6 /* AttHisInfoViewController.m */; };
 		D7308B811E5D228C00FF19CD /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = D7308B801E5D228C00FF19CD /* next.png */; };
 		D73180D71E5C384600C85384 /* StuInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D73180D61E5C384600C85384 /* StuInfoTableViewController.m */; };
 		D7F3B0D41E554C8E00FA620D /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F3B0D31E554C8E00FA620D /* FeedBackViewController.m */; };
@@ -307,9 +310,15 @@
 		D72B31A71E5FC5870092B9C2 /* 无考勤.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "无考勤.png"; sourceTree = "<group>"; };
 		D72B31A81E5FC5870092B9C2 /* 无历史.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "无历史.png"; sourceTree = "<group>"; };
 		D72B31AF1E5FD46C0092B9C2 /* NoteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteListViewController.h; sourceTree = "<group>"; };
-		D72B31B01E5FD46C0092B9C2 /* NoteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteListViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
+		D72B31B01E5FD46C0092B9C2 /* NoteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteListViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
 		D72B31B21E5FD47E0092B9C2 /* NoteInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteInfoViewController.h; sourceTree = "<group>"; };
 		D72B31B31E5FD47E0092B9C2 /* NoteInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteInfoViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
+		D72F75AE1E669C44004FBCA6 /* SetPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPassViewController.h; sourceTree = "<group>"; };
+		D72F75AF1E669C44004FBCA6 /* SetPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPassViewController.m; sourceTree = "<group>"; };
+		D72F75B21E669C5F004FBCA6 /* ChangePhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePhoneViewController.h; sourceTree = "<group>"; };
+		D72F75B31E669C5F004FBCA6 /* ChangePhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePhoneViewController.m; sourceTree = "<group>"; };
+		D72F75B51E66BBB8004FBCA6 /* AttHisInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttHisInfoViewController.h; sourceTree = "<group>"; };
+		D72F75B61E66BBB8004FBCA6 /* AttHisInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttHisInfoViewController.m; sourceTree = "<group>"; };
 		D7308B801E5D228C00FF19CD /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		D73180D51E5C384600C85384 /* StuInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StuInfoTableViewController.h; sourceTree = "<group>"; };
 		D73180D61E5C384600C85384 /* StuInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StuInfoTableViewController.m; sourceTree = "<group>"; };
@@ -466,13 +475,13 @@
 			name = "课堂反馈";
 			sourceTree = "<group>";
 		};
-		D7217C541E5AC53100AE9C89 /* 修改密码 */ = {
+		D7217C541E5AC53100AE9C89 /* 重置密码 */ = {
 			isa = PBXGroup;
 			children = (
 				D7217C591E5AC65700AE9C89 /* ChangePassViewController.h */,
 				D7217C5A1E5AC65700AE9C89 /* ChangePassViewController.m */,
 			);
-			name = "修改密码";
+			name = "重置密码";
 			sourceTree = "<group>";
 		};
 		D7217C551E5AC53B00AE9C89 /* 关于我们 */ = {
@@ -628,6 +637,8 @@
 				D72447BC1E52E5A8003DBCE4 /* AttendanceViewController.m */,
 				D72447BE1E52E5C2003DBCE4 /* AttenHistoryViewController.h */,
 				D72447BF1E52E5C2003DBCE4 /* AttenHistoryViewController.m */,
+				D72F75B51E66BBB8004FBCA6 /* AttHisInfoViewController.h */,
+				D72F75B61E66BBB8004FBCA6 /* AttHisInfoViewController.m */,
 			);
 			name = "考勤";
 			sourceTree = "<group>";
@@ -655,9 +666,11 @@
 			children = (
 				D729DD391E53FC5B00A67C07 /* OwnerViewController.h */,
 				D729DD3A1E53FC5B00A67C07 /* OwnerViewController.m */,
+				D72F75B11E669C48004FBCA6 /* 更换手机号 */,
+				D72F75AD1E669C27004FBCA6 /* 设置密码 */,
 				D73180D41E5C381900C85384 /* 学生与家长信息 */,
 				D7217C551E5AC53B00AE9C89 /* 关于我们 */,
-				D7217C541E5AC53100AE9C89 /* 修改密码 */,
+				D7217C541E5AC53100AE9C89 /* 重置密码 */,
 			);
 			name = "个人中心";
 			sourceTree = "<group>";
@@ -701,6 +714,24 @@
 				D72B31B31E5FD47E0092B9C2 /* NoteInfoViewController.m */,
 			);
 			name = "通知";
+			sourceTree = "<group>";
+		};
+		D72F75AD1E669C27004FBCA6 /* 设置密码 */ = {
+			isa = PBXGroup;
+			children = (
+				D72F75AE1E669C44004FBCA6 /* SetPassViewController.h */,
+				D72F75AF1E669C44004FBCA6 /* SetPassViewController.m */,
+			);
+			name = "设置密码";
+			sourceTree = "<group>";
+		};
+		D72F75B11E669C48004FBCA6 /* 更换手机号 */ = {
+			isa = PBXGroup;
+			children = (
+				D72F75B21E669C5F004FBCA6 /* ChangePhoneViewController.h */,
+				D72F75B31E669C5F004FBCA6 /* ChangePhoneViewController.m */,
+			);
+			name = "更换手机号";
 			sourceTree = "<group>";
 		};
 		D73180D41E5C381900C85384 /* 学生与家长信息 */ = {
@@ -908,8 +939,10 @@
 				D7F3B0D41E554C8E00FA620D /* FeedBackViewController.m in Sources */,
 				D7217C4E1E5A7E2E00AE9C89 /* UIImageView+WebCache.m in Sources */,
 				D72447381E5290E8003DBCE4 /* ViewController.m in Sources */,
+				D72F75B01E669C44004FBCA6 /* SetPassViewController.m in Sources */,
 				D72447351E5290E8003DBCE4 /* AppDelegate.m in Sources */,
 				D7217C491E5A7E2E00AE9C89 /* UIButton+WebCache.m in Sources */,
+				D72F75B71E66BBB8004FBCA6 /* AttHisInfoViewController.m in Sources */,
 				D7217BF71E5A7E1E00AE9C89 /* AFURLSessionManager.m in Sources */,
 				D729DD3B1E53FC5B00A67C07 /* OwnerViewController.m in Sources */,
 				D7217C141E5A7E2700AE9C89 /* SBJsonStreamParser.m in Sources */,
@@ -949,6 +982,7 @@
 				D7217C4C1E5A7E2E00AE9C89 /* UIImage+WebP.m in Sources */,
 				D72447C31E52F439003DBCE4 /* TabBarViewController.m in Sources */,
 				D7217C1C1E5A7E2700AE9C89 /* SBJsonUTF8Stream.m in Sources */,
+				D72F75B41E669C5F004FBCA6 /* ChangePhoneViewController.m in Sources */,
 				D729DD421E542BEF00A67C07 /* ClassInfoViewController.m in Sources */,
 				D7217BF21E5A7E1E00AE9C89 /* AFHTTPSessionManager.m in Sources */,
 				D7217BE01E5A7BD900AE9C89 /* WarningBox.m in Sources */,
