@@ -24,4 +24,5 @@
 - (IBAction)Shenfen:(id)sender;
 - (IBAction)Finish:(id)sender;
 
+@property (strong ,nonatomic) NSDictionary * Gerenxinxi;
 @end

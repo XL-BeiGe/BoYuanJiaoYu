@@ -21,6 +21,7 @@
     float width;
     float height;
     UIView *vv;
+    NSDictionary *Gerenxinxi;
 }
 @end
 
@@ -82,6 +83,7 @@
 //修改个人信息
 - (IBAction)Edit:(id)sender {
     StuInfoTableViewController *stuinfo = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"stuinfo"];
+    stuinfo.Gerenxinxi=Gerenxinxi;
     [self.navigationController pushViewController:stuinfo animated:YES];
     
 }
@@ -145,7 +147,7 @@
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             _stuname.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"studentName"]];
             _stuclass.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"studentGrade"]];
-            
+            Gerenxinxi =[NSDictionary dictionaryWithDictionary:[responseObject objectForKey:@"data"]];
         }
         
     } failure:^(NSError *error) {
