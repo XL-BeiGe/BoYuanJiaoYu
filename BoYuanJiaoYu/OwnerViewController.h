@@ -10,6 +10,10 @@
 
 @interface OwnerViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIView *name;
+@property (weak, nonatomic) IBOutlet UILabel *stuname;
+@property (weak, nonatomic) IBOutlet UILabel *stuclass;
+
+
 
 - (IBAction)Edit:(id)sender;
 - (IBAction)Invite:(id)sender;

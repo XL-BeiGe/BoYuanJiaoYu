@@ -1281,9 +1281,6 @@
                                             <constraint firstAttribute="height" constant="20" id="RTK-iZ-uBH"/>
                                         </constraints>
                                         <state key="normal" image="edit.png"/>
-                                        <connections>
-                                            <action selector="Edit:" destination="3s6-1y-T8f" eventType="touchUpInside" id="nGk-uw-1cd"/>
-                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张晓明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9c-EQ-D2V">
                                         <rect key="frame" x="85" y="26" width="46" height="18"/>
@@ -1297,18 +1294,28 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNG-pM-1Ye">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+                                        <connections>
+                                            <action selector="Edit:" destination="3s6-1y-T8f" eventType="touchUpInside" id="Ved-1l-qFE"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="dzE-nB-3XS" firstAttribute="centerY" secondItem="PLN-Hi-gZ8" secondAttribute="centerY" id="6LD-4N-9WK"/>
                                     <constraint firstAttribute="height" constant="90" id="BGG-FB-tQA"/>
+                                    <constraint firstAttribute="trailing" secondItem="VNG-pM-1Ye" secondAttribute="trailing" id="C9c-Wm-Yte"/>
                                     <constraint firstAttribute="trailing" secondItem="UmF-sy-ZhI" secondAttribute="trailing" constant="15" id="Lb3-OZ-ola"/>
                                     <constraint firstItem="B9c-EQ-D2V" firstAttribute="centerY" secondItem="PLN-Hi-gZ8" secondAttribute="centerY" constant="-10" id="NPo-Qn-z0M"/>
                                     <constraint firstItem="B9c-EQ-D2V" firstAttribute="leading" secondItem="dzE-nB-3XS" secondAttribute="trailing" constant="5" id="XAU-12-Nlp"/>
+                                    <constraint firstAttribute="bottom" secondItem="VNG-pM-1Ye" secondAttribute="bottom" id="Z76-xR-rof"/>
                                     <constraint firstAttribute="bottom" secondItem="UmF-sy-ZhI" secondAttribute="bottom" constant="15" id="Zzy-Dg-JPP"/>
+                                    <constraint firstItem="VNG-pM-1Ye" firstAttribute="leading" secondItem="PLN-Hi-gZ8" secondAttribute="leading" id="ala-za-dfr"/>
                                     <constraint firstItem="dzE-nB-3XS" firstAttribute="leading" secondItem="PLN-Hi-gZ8" secondAttribute="leading" constant="20" id="hNh-iK-Wy8"/>
                                     <constraint firstItem="TOV-7I-A7p" firstAttribute="centerY" secondItem="PLN-Hi-gZ8" secondAttribute="centerY" constant="10" id="mOr-bK-k83"/>
                                     <constraint firstItem="TOV-7I-A7p" firstAttribute="leading" secondItem="dzE-nB-3XS" secondAttribute="trailing" constant="5" id="ouy-Lr-gUP"/>
+                                    <constraint firstItem="VNG-pM-1Ye" firstAttribute="top" secondItem="PLN-Hi-gZ8" secondAttribute="top" id="ssx-Me-lAf"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D14-SU-zQZ">
@@ -1414,7 +1421,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更换手机号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQV-F5-0TV">
-                                        <rect key="frame" x="50" y="14" width="76.5" height="18"/>
+                                        <rect key="frame" x="50" y="14" width="77" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1497,8 +1504,8 @@
                                     <constraint firstItem="hc2-Ag-2gj" firstAttribute="centerY" secondItem="RuZ-PN-JNp" secondAttribute="centerY" id="rln-iI-v9A"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yLp-cp-ORW">
-                                <rect key="frame" x="44" y="-84" width="260" height="250"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yLp-cp-ORW">
+                                <rect key="frame" x="30" y="115" width="260" height="250"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhC-X2-4Tk">
                                         <rect key="frame" x="0.0" y="0.0" width="260" height="115"/>
@@ -1598,11 +1605,13 @@
                         <outlet property="inviteview" destination="yLp-cp-ORW" id="uw4-F9-QhW"/>
                         <outlet property="name" destination="PLN-Hi-gZ8" id="Ea8-Tf-Msh"/>
                         <outlet property="phoneNum" destination="JRj-Tl-7Gx" id="tuO-Vh-ZFe"/>
+                        <outlet property="stuclass" destination="TOV-7I-A7p" id="zQJ-8J-7iL"/>
+                        <outlet property="stuname" destination="B9c-EQ-D2V" id="nSL-5k-WFT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qno-Yc-aae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1778" y="968"/>
+            <point key="canvasLocation" x="-1779.375" y="967.5"/>
         </scene>
         <!--Stu Info Table View Controller-->
         <scene sceneID="TxG-rL-I6a">

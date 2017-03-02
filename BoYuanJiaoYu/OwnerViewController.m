@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self navagat];
+    [self gerenxinxi];
     _inviteview.hidden =YES;
     _phoneNum.delegate =self;
     self.title =@"个人中心";
@@ -142,7 +143,8 @@
         NSLog(@"成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-          
+            _stuname.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"studentName"]];
+            _stuclass.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"studentGrade"]];
             
         }
         
