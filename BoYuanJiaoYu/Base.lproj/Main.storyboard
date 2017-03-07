@@ -1282,14 +1282,14 @@
                                         </constraints>
                                         <state key="normal" image="edit.png"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张晓明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9c-EQ-D2V">
-                                        <rect key="frame" x="85" y="26" width="46" height="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9c-EQ-D2V">
+                                        <rect key="frame" x="85" y="35" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="初二三班" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TOV-7I-A7p">
-                                        <rect key="frame" x="85" y="46" width="62" height="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TOV-7I-A7p">
+                                        <rect key="frame" x="85" y="55" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1824,46 +1824,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="q0q-aL-hF6">
-                                        <rect key="frame" x="0.0" y="248" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q0q-aL-hF6" id="lRg-Ww-2Hk">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属班级:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdh-l9-4Cg">
-                                                    <rect key="frame" x="15" y="13" width="70" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="70" id="v1S-i4-DJ4"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入班级" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ja2-FS-0Hx">
-                                                    <rect key="frame" x="94.5" y="13" width="130" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="130" id="tEX-dW-x8r"/>
-                                                    </constraints>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Ja2-FS-0Hx" firstAttribute="centerY" secondItem="lRg-Ww-2Hk" secondAttribute="centerY" id="Mk9-f9-k5z"/>
-                                                <constraint firstItem="Ja2-FS-0Hx" firstAttribute="leading" secondItem="kdh-l9-4Cg" secondAttribute="trailing" constant="10" id="TKX-BY-2ML"/>
-                                                <constraint firstItem="kdh-l9-4Cg" firstAttribute="centerY" secondItem="lRg-Ww-2Hk" secondAttribute="centerY" id="fjM-GO-6QR"/>
-                                                <constraint firstItem="kdh-l9-4Cg" firstAttribute="leading" secondItem="lRg-Ww-2Hk" secondAttribute="leading" constant="15" id="iFU-pQ-nut"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="家长信息" id="v5U-E5-cgH">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="9pK-J0-xHd">
-                                        <rect key="frame" x="0.0" y="320" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="276" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9pK-J0-xHd" id="5xT-ug-jWF">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1897,7 +1863,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="CfN-Ld-eaS">
-                                        <rect key="frame" x="0.0" y="364" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="320" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CfN-Ld-eaS" id="G8Y-df-egP">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1931,7 +1897,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="E2b-ag-Ffe">
-                                        <rect key="frame" x="0.0" y="408" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="364" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E2b-ag-Ffe" id="fM6-pg-e8u">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1979,7 +1945,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="6qd-Vr-ARd">
-                                        <rect key="frame" x="0.0" y="452" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="408" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6qd-Vr-ARd" id="9oG-NA-z3p">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
@@ -2019,7 +1985,6 @@
                     </tableView>
                     <connections>
                         <outlet property="birthday" destination="0u5-ak-g5o" id="FKY-J0-VRn"/>
-                        <outlet property="classs" destination="Ja2-FS-0Hx" id="9gC-I0-kL2"/>
                         <outlet property="groud" destination="Kbv-DJ-h7I" id="28U-YU-Cgg"/>
                         <outlet property="parname" destination="npF-la-ZmL" id="fSm-SZ-h5H"/>
                         <outlet property="phone" destination="FXS-wg-Fme" id="WTt-wl-Qjl"/>

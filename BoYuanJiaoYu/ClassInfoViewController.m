@@ -165,7 +165,10 @@
         if(nil==[arr objectForKey:@"teacherName"]){
             laos.text =@"";
         }else{
-            laos.text =[NSString stringWithFormat:@"%@",[arr objectForKey:@"teacherName"]];
+            NSString *dss =[NSString stringWithFormat:@"%@",[arr objectForKey:@"teacherName"]];
+            dss =[dss substringToIndex:1];
+            
+            laos.text =[NSString stringWithFormat:@"%@老师",dss];
         }
         
         if(nil==[arr objectForKey:@"classLevel"]){

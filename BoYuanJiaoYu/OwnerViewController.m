@@ -117,20 +117,23 @@
     
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/userInfo/userInfo";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1111",@"parentId",_phoneNum.text,@"tel", nil];
-    
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"parentId"],@"parentId",_phoneNum.text,@"tel", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            
+           [WarningBox warningBoxModeText:@"邀请成功" andView:self.view];
            [self remov];
+        }else{
+            [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
+            [self remov];
+
         }
         
     } failure:^(NSError *error) {
         NSLog(@"失败\n %@",error);
     }];
- 
+  
     
    
 }

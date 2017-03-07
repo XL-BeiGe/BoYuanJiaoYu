@@ -233,7 +233,9 @@
     if(nil==[arr[indexPath.section]objectForKey:@"teacherName"]){
        name.text =@"";
     }else{
-        name.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"teacherName"]];
+        NSString *iqoq =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"teacherName"]];
+        iqoq =[iqoq substringToIndex:1];
+        name.text =[NSString stringWithFormat:@"%@老师",iqoq];
         
     }
     //上课时间

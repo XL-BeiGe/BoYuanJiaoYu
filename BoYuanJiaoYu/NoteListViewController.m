@@ -39,7 +39,7 @@
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
+        
             
             
         }
@@ -88,19 +88,22 @@
     //        [suView removeFromSuperview];//移除全部子视图
     //    }
     
-    UIView*shuxian=[[UIView alloc] initWithFrame:CGRectMake(0,0,width,50)];
-    shuxian.backgroundColor =[UIColor whiteColor];
+    UIView*backview=[[UIView alloc] initWithFrame:CGRectMake(0,0,width-20,50)];
+    backview.backgroundColor =[UIColor whiteColor];
     UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(15,10, 30, 30)];
     imageview.image =[UIImage imageNamed:@"attendance_history.png"];
 
     UILabel *banji = [[UILabel alloc]initWithFrame:CGRectMake(55,10,200,30)];
     
     banji.font =[UIFont systemFontOfSize:15];
-
+    
     banji.text =@"这里是通知标题";
-    [shuxian addSubview:imageview];
-    [shuxian addSubview:banji];
-    [cell addSubview:shuxian];
+    [backview addSubview:imageview];
+    [backview addSubview:banji];
+    [cell addSubview:backview];
+    
+    
+    backview.layer.cornerRadius =5;
     cell.backgroundColor =[UIColor clearColor];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;

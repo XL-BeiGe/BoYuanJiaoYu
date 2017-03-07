@@ -177,7 +177,10 @@
        
         jiaos.text =@"";
     }else{
-        jiaos.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"teacherName"]];
+        NSString *dss =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"teacherName"]];
+        dss =[dss substringToIndex:1];
+        
+        jiaos.text =[NSString stringWithFormat:@"%@老师",dss];
         
     }
     

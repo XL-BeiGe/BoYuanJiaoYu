@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *birthday;
 @property (weak, nonatomic) IBOutlet UITextField *school;
 @property (weak, nonatomic) IBOutlet UITextField *groud;
-@property (weak, nonatomic) IBOutlet UITextField *classs;
+
 @property (weak, nonatomic) IBOutlet UITextField *parname;
 @property (weak, nonatomic) IBOutlet UITextField *phone;
 @property (weak, nonatomic) IBOutlet UITextField *shenfen;

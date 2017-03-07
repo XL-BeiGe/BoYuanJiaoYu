@@ -12,11 +12,11 @@
 @interface SetPassViewController ()
 
 @end
-
 @implementation SetPassViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title =@"设置密码";
     // Do any additional setup after loading the view.
 }
 
@@ -36,9 +36,10 @@
 */
 
 - (IBAction)Sure:(id)sender {
-    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+   NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/index/setPassword";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_password.text,@"password", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"parentId"],@"userId",_password.text,@"passWord", nil];
+
     
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);

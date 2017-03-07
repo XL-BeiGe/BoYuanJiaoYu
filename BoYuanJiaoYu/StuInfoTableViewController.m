@@ -18,6 +18,7 @@
     UIDatePicker *picker;
     NSString*parentRole;//关系
     NSString*studentSex;//性别
+    NSString*studentAge;//年龄
 }
 @end
 
@@ -30,6 +31,7 @@
     width =[UIScreen mainScreen].bounds.size.width;
     height=[UIScreen mainScreen].bounds.size.height;
     [self delegate];
+    [self xianshi];
     self.title =@"个人信息";
     [self beijing];//日期选择器背景
      //[self setExtraCellLineHidden:self.tableView];
@@ -47,13 +49,100 @@
     _birthday.delegate =self;
     _school.delegate =self;
     _groud.delegate =self;
-    _classs.delegate =self;
+  
     _parname.delegate =self;
     _phone.delegate =self;
     _shenfen.delegate =self;
 
 }
-
+-(void)xianshi{
+    //学生姓名
+    if(nil==[_Gerenxinxi objectForKey:@"studentName"]){
+     _sutname.text =@"";
+    }else{
+    _sutname.text =[NSString stringWithFormat:@"%@",[_Gerenxinxi objectForKey:@"studentName"]];
+    }
+    //生日
+    if(nil==[_Gerenxinxi objectForKey:@"studentBirtyday"]){
+        _birthday.text =@"";
+    }else{
+     _birthday.text =[NSString stringWithFormat:@"%@",[_Gerenxinxi objectForKey:@"studentBirtyday"]];
+    }
+    //学校
+    if(nil==[_Gerenxinxi objectForKey:@"studentSchool"]){
+        _school.text =@"";
+    }else{
+     _school.text =[NSString stringWithFormat:@"%@",[_Gerenxinxi objectForKey:@"studentSchool"]];
+    }
+    //年级
+    if(nil==[_Gerenxinxi objectForKey:@"studentGrade"]){
+      _groud.text =@"";
+    }else{
+     _groud.text =[NSString stringWithFormat:@"%@",[_Gerenxinxi objectForKey:@"studentGrade"]];
+    }
+    //家长姓名
+    if(nil==[_Gerenxinxi objectForKey:@"parentNick"]){
+       _parname.text =@"";
+    }else{
+      _parname.text =[NSString stringWithFormat:@"%@",[_Gerenxinxi objectForKey:@"parentNick"]];
+    }
+    //联系电话
+    if(nil==[_Gerenxinxi objectForKey:@"parentTel"]){
+       _phone.text =@"";
+    }else{
+      _phone.text =[NSString stringWithFormat:@"%@",[_Gerenxinxi objectForKey:@"parentTel"]];
+    }
+    //性别
+    if([[_Gerenxinxi objectForKey:@"studentSex"]intValue]==1){
+     _xingbie.text =@"男";
+    }else if ([[_Gerenxinxi objectForKey:@"studentSex"]intValue]==2) {
+     _xingbie.text =@"女";
+    }else if ([[_Gerenxinxi objectForKey:@"studentSex"]intValue]==3){
+     _xingbie.text =@"保密";
+    }else{
+    _xingbie.text =@"";
+    }
+    //家长身份
+    if([[_Gerenxinxi objectForKey:@"parentRole"]intValue]==1){
+        _shenfen.text =@"母亲";
+    }else if ([[_Gerenxinxi objectForKey:@"parentRole"]intValue]==2) {
+        _shenfen.text =@"父亲";
+    }else if ([[_Gerenxinxi objectForKey:@"parentRole"]intValue]==3) {
+        _shenfen.text =@"爷爷";
+    }else if ([[_Gerenxinxi objectForKey:@"parentRole"]intValue]==4) {
+        _shenfen.text =@"奶奶";
+    }else if ([[_Gerenxinxi objectForKey:@"parentRole"]intValue]==5) {
+        _shenfen.text =@"外公";
+    }else if ([[_Gerenxinxi objectForKey:@"parentRole"]intValue]==6){
+        _shenfen.text =@"外婆";
+    }else if ([[_Gerenxinxi objectForKey:@"parentRole"]intValue]==7){
+        _shenfen.text =@"其他";
+    }else {
+     _shenfen.text =@"";
+    }
+    
+    
+    
+    if(nil==[_Gerenxinxi objectForKey:@"studentAge"]){
+    studentAge =@"";
+    }else{
+    studentAge =[NSString stringWithFormat:@"%@",[_Gerenxinxi objectForKey:@"studentAge"]];
+       
+    }
+    if(nil==[_Gerenxinxi objectForKey:@"studentSex"]){
+       studentSex =@"";
+    }else{
+    studentSex =[NSString stringWithFormat:@"%@",[_Gerenxinxi objectForKey:@"studentSex"]];
+            }
+    if(nil==[_Gerenxinxi objectForKey:@"parentRole"]){
+        parentRole =@"";
+    }else{
+    parentRole =[NSString stringWithFormat:@"%@",[_Gerenxinxi objectForKey:@"parentRole"]];
+    }
+    
+    
+    
+}
 
 
 
@@ -140,25 +229,27 @@
 */
 
 - (IBAction)Sex:(id)sender {
-    
+    [self.view endEditing:YES];
     [_xingbie becomeFirstResponder];
-    
-    [self tan];
+//     _xingbie.inputView = [[UIView alloc] initWithFrame:CGRectZero];
+//    [self tan];
 }
 
 - (IBAction)Birthday:(id)sender {
-
+    [self.view endEditing:YES];
     [_birthday becomeFirstResponder];
     
 }
 
 - (IBAction)Shenfen:(id)sender {
+    [self.view endEditing:YES];
     [_shenfen becomeFirstResponder];
-    
-    [self tan1];
+//    _shenfen.inputView = [[UIView alloc] initWithFrame:CGRectZero];
+//    [self tan1];
 }
 
 - (IBAction)Finish:(id)sender {
+    [self.view endEditing:YES];
     [self xiugaixinxi];
 }
 
@@ -168,10 +259,40 @@
    //_xingbie//性别不知道传123还是性别studentSex
    //_shenfen//同上parentRole
     //studentAge传年龄
-   
+//    if([studentSex isEqualToString:@"1"]){
+//     [_Gerenxinxi setValue:studentSex forKey:@"studentSex"];
+//    }else if([studentSex isEqualToString:@"2"]){
+//     [_Gerenxinxi setValue:studentSex forKey:@"studentSex"];
+//    }else if([studentSex isEqualToString:@"3"]){
+//      [_Gerenxinxi setValue:studentSex forKey:@"studentSex"];
+//    }else{
+//    
+//    }
+//    
+//    if([parentRole isEqualToString:@"1"]){
+//    [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
+//    }else if ([parentRole isEqualToString:@"2"]){
+//    [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
+//    }else if ([parentRole isEqualToString:@"3"]){
+//        [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
+//    }else if ([parentRole isEqualToString:@"4"]){
+//        [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
+//    }else if ([parentRole isEqualToString:@"5"]){
+//        [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
+//    }else if ([parentRole isEqualToString:@"6"]){
+//        [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
+//    }else if ([parentRole isEqualToString:@"7"]){
+//        [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
+//    }else{
+//    
+//    }
+    
+    
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/userInfo/modifyUserInfoBase";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_sutname.text,@"studentName",_birthday.text,@"studentBirtyday",_school.text,@"studentSchool",_groud.text,@"studentGrade",_classs.text,@"studentClassName",_parname.text,@"parentNick",_phone.text,@"parentTel", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_sutname.text,@"studentName",_birthday.text,@"studentBirtyday",_school.text,@"studentSchool",_groud.text,@"studentGrade",_parname.text,@"parentNick",_phone.text,@"parentTel",studentSex,@"studentSex",studentAge,@"studentAge",parentRole,@"parentRole", nil];
+   
+    NSLog(@"-----------311---%@",datadic);
     
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
@@ -188,7 +309,9 @@
 
 
 
-
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    [self.view endEditing:YES];
+//}
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
@@ -205,11 +328,11 @@
     textField.inputView=picker;
     textField.tintColor=[UIColor clearColor];
     }
-   if(textField==_xingbie){
+    else if(textField==_xingbie){
        _xingbie.inputView = [[UIView alloc] initWithFrame:CGRectZero];
        [self tan];
     }
-   if(textField==_shenfen){
+   else if(textField==_shenfen){
        _shenfen.inputView = [[UIView alloc] initWithFrame:CGRectZero];
        [self tan1];
     }
@@ -224,39 +347,35 @@
     }
 
 }
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if(textField==_sutname){
-        [_xingbie becomeFirstResponder];
-       
-        [self tan];
-    }else if (textField==_xingbie){
-        [_birthday becomeFirstResponder];
-    }else if (textField==_birthday){
-        [_school becomeFirstResponder];
-    }else if (textField==_school){
-        [_groud becomeFirstResponder];
-    }else if (textField==_groud){
-        [_classs becomeFirstResponder];
-    }else if (textField==_classs){
-        [_parname becomeFirstResponder];
-    }else if (textField==_parname){
-        [_phone becomeFirstResponder];
-    }else if (textField==_phone){
-        [_shenfen becomeFirstResponder];
-                [self tan1];
-    }else if (textField==_shenfen){
-        [textField resignFirstResponder];
-    }
-    return YES;
-}
+//-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+//    if(textField==_sutname){
+//        [_xingbie becomeFirstResponder];
+//       
+//        [self tan];
+//    }else if (textField==_xingbie){
+//        [_birthday becomeFirstResponder];
+//    }else if (textField==_birthday){
+//        [_school becomeFirstResponder];
+//    }else if (textField==_school){
+//        [_groud becomeFirstResponder];
+//    }else if (textField==_groud){
+//        [_parname becomeFirstResponder];
+//    }else if (textField==_parname){
+//        [_phone becomeFirstResponder];
+//    }else if (textField==_phone){
+//        [_shenfen becomeFirstResponder];
+//                [self tan1];
+//    }else if (textField==_shenfen){
+//        [textField resignFirstResponder];
+//    }
+//    return YES;
+//}
 #pragma mark--日期选择器
 -(void)datepicker{
     picker=[[UIDatePicker alloc] init];
     picker.contentMode=UIViewContentModeCenter;
     picker.datePickerMode=UIDatePickerModeDate;
 }
-
-
 -(void)buttt{
     // 获取用户通过UIDatePicker设置的日期和时间
     NSDate *selected = [picker date];
@@ -269,13 +388,12 @@
     NSString *message =[NSString stringWithFormat:@"%@", destDateString];
     _birthday.text =message;
     [self xiaoshi];
-    [_school becomeFirstResponder];
+   // [_school becomeFirstResponder];
 }
 -(void)xiaoshi{
     [self.view endEditing:YES];
     backview.hidden=YES;
 }
-
 -(void)beijing{
     //背景
     backview=[[UIView alloc] initWithFrame:CGRectMake(0, 0,width,height)];
@@ -304,27 +422,31 @@
     [alertController addAction:[UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _xingbie.text=@"男";
         studentSex =@"1";
-         [_birthday becomeFirstResponder];
+       
+        
+       
         
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _xingbie.text=@"女";
         studentSex =@"2";
-        [_birthday becomeFirstResponder];
+       
+       
     }]];
     
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"保密" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _xingbie.text=@"保密";
         studentSex =@"3";
-         [_birthday becomeFirstResponder];
+      
+        
     }]];
- 
+    [self.view endEditing:YES];
     // 由于它是一个控制器 直接modal出来就好了
     [self presentViewController:alertController animated:YES completion:nil];
 }
 -(void)tan1{
-    [_phone resignFirstResponder];
+   
     UIAlertController *alertControllers = [UIAlertController alertControllerWithTitle:@"请选择" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     [alertControllers addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
@@ -335,38 +457,51 @@
     [alertControllers addAction:[UIAlertAction actionWithTitle:@"母亲" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _shenfen.text=@"母亲";
         parentRole =@"1";
-        [_shenfen resignFirstResponder];
+        
+        
     }]];
     [alertControllers addAction:[UIAlertAction actionWithTitle:@"父亲" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _shenfen.text=@"父亲";
         parentRole =@"2";
-         [_shenfen resignFirstResponder];
+       
+        
     }]];
     
     
     [alertControllers addAction:[UIAlertAction actionWithTitle:@"爷爷" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _shenfen.text=@"爷爷";
         parentRole =@"3";
-         [_shenfen resignFirstResponder];
+        
+        
     }]];
     [alertControllers addAction:[UIAlertAction actionWithTitle:@"奶奶" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _shenfen.text=@"奶奶";
         parentRole =@"4";
-         [_shenfen resignFirstResponder];
+       
+       
     }]];
     [alertControllers addAction:[UIAlertAction actionWithTitle:@"外公" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _shenfen.text=@"外公";
         parentRole =@"5";
-        [_shenfen resignFirstResponder];
+        
+       
     }]];
     
     
     [alertControllers addAction:[UIAlertAction actionWithTitle:@"外婆" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _shenfen.text=@"外婆";
         parentRole =@"6";
-         [_shenfen resignFirstResponder];
+        
+        
+    }]];
+    [alertControllers addAction:[UIAlertAction actionWithTitle:@"其他" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        _shenfen.text=@"其他";
+        parentRole =@"7";
+        
+       
     }]];
     
+    [self.view endEditing:YES];
     // 由于它是一个控制器 直接modal出来就好了
     [self presentViewController:alertControllers animated:YES completion:nil];
 }

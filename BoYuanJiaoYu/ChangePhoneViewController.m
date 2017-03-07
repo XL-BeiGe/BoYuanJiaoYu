@@ -36,13 +36,14 @@
 */
 
 - (IBAction)secuti:(id)sender {
+   NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/index/getAuthCode";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_phone.text,@"userName ", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_phone.text,@"userName",[def objectForKey:@"parentId"],@"userId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            
+         [WarningBox warningBoxModeText:@"验证码已发送" andView:self.view];
             
         }
         
@@ -55,15 +56,17 @@
 
 - (IBAction)Sure:(id)sender {
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
-    NSString *fangshi =@"/index/setPassword";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_phone.text,@"tel",_pass.text,@"code", nil];
+    NSString *fangshi =@"/index/modifyTel";
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"parentId"],@"userId",_phone.text,@"tel",_pass.text,@"code", nil];
     
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+        [WarningBox warningBoxModeText:@"修改成功" andView:self.view];
             
-            
+        }else{
+       [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }
         
     } failure:^(NSError *error) {
