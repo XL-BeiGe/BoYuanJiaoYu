@@ -34,11 +34,11 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+//获取验证码
 - (IBAction)secuti:(id)sender {
    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/index/getAuthCode";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_phone.text,@"userName",[def objectForKey:@"parentId"],@"userId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_phone.text,@"userName",[def objectForKey:@"parentId"],@"userId",[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         
@@ -53,11 +53,11 @@
 
     
 }
-
+//修改手机号
 - (IBAction)Sure:(id)sender {
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/index/modifyTel";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"parentId"],@"userId",_phone.text,@"tel",_pass.text,@"code", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"parentId"],@"userId",_phone.text,@"tel",_pass.text,@"code",[def objectForKey:@"officeId"],@"officeId", nil];
     
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);

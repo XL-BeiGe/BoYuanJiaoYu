@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BoYuanJiaoYu/StuInfoTableViewController.m"
-            timestampString = "510473572.583469"
+            filePath = "BoYuanJiaoYu/ViewController.m"
+            timestampString = "511151697.952847"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
-            landmarkName = "-xiugaixinxi"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "-huoqujigou"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,30 +25,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BoYuanJiaoYu/StuInfoTableViewController.m"
-            timestampString = "510473630.557913"
+            filePath = "BoYuanJiaoYu/FeedBackViewController.m"
+            timestampString = "511153004.725214"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "415"
-            endingLineNumber = "415"
-            landmarkName = "-tan"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-ketangfankui"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BoYuanJiaoYu/StuInfoTableViewController.m"
-            timestampString = "510473720.977263"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "450"
-            endingLineNumber = "450"
-            landmarkName = "-tan1"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FeedBackViewController ketangfankui]"
+                  moduleName = "BoYuanJiaoYu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/FeedBackViewController.m"
+                  timestampString = "511163487.575045"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "304">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[FeedBackViewController ketangfankui]_block_invoke"
+                  moduleName = "BoYuanJiaoYu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/FeedBackViewController.m"
+                  timestampString = "511163487.576986"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

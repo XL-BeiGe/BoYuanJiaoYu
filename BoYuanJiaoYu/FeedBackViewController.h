@@ -10,5 +10,5 @@
 
 @interface FeedBackViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *table;
-
+@property (strong, nonatomic) NSString *classId;
 @end

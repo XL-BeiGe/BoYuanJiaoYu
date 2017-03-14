@@ -34,6 +34,10 @@
     [self xianshi];
     self.title =@"个人信息";
     [self beijing];//日期选择器背景
+    
+    self.tableView.bounces =NO;
+    
+    
      //[self setExtraCellLineHidden:self.tableView];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -256,41 +260,12 @@
 
 -(void)xiugaixinxi{
     
-   //_xingbie//性别不知道传123还是性别studentSex
-   //_shenfen//同上parentRole
-    //studentAge传年龄
-//    if([studentSex isEqualToString:@"1"]){
-//     [_Gerenxinxi setValue:studentSex forKey:@"studentSex"];
-//    }else if([studentSex isEqualToString:@"2"]){
-//     [_Gerenxinxi setValue:studentSex forKey:@"studentSex"];
-//    }else if([studentSex isEqualToString:@"3"]){
-//      [_Gerenxinxi setValue:studentSex forKey:@"studentSex"];
-//    }else{
-//    
-//    }
-//    
-//    if([parentRole isEqualToString:@"1"]){
-//    [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
-//    }else if ([parentRole isEqualToString:@"2"]){
-//    [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
-//    }else if ([parentRole isEqualToString:@"3"]){
-//        [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
-//    }else if ([parentRole isEqualToString:@"4"]){
-//        [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
-//    }else if ([parentRole isEqualToString:@"5"]){
-//        [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
-//    }else if ([parentRole isEqualToString:@"6"]){
-//        [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
-//    }else if ([parentRole isEqualToString:@"7"]){
-//        [_Gerenxinxi setValue:parentRole forKey:@"parentRole"];
-//    }else{
-//    
-//    }
+
     
     
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/userInfo/modifyUserInfoBase";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_sutname.text,@"studentName",_birthday.text,@"studentBirtyday",_school.text,@"studentSchool",_groud.text,@"studentGrade",_parname.text,@"parentNick",_phone.text,@"parentTel",studentSex,@"studentSex",studentAge,@"studentAge",parentRole,@"parentRole", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"officeId"],@"officeId",_sutname.text,@"studentName",_birthday.text,@"studentBirtyday",_school.text,@"studentSchool",_groud.text,@"studentGrade",_parname.text,@"parentNick",_phone.text,@"parentTel",studentSex,@"studentSex",studentAge,@"studentAge",parentRole,@"parentRole", nil];
    
     NSLog(@"-----------311---%@",datadic);
     
@@ -387,6 +362,15 @@
     NSString *destDateString = [dateFormatter stringFromDate:selected];
     NSString *message =[NSString stringWithFormat:@"%@", destDateString];
     _birthday.text =message;
+    
+    NSDate *nowdate =[NSDate date];
+    NSString *sss =[dateFormatter stringFromDate:nowdate];
+    sss =[sss substringToIndex:4];
+    NSString *cxa =[message substringToIndex:4];
+    cxa =[NSString stringWithFormat:@"%d",[sss intValue]-[cxa intValue]+1];
+    studentAge =cxa;
+
+  
     [self xiaoshi];
    // [_school becomeFirstResponder];
 }

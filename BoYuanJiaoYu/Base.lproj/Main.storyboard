@@ -145,7 +145,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -511,6 +511,24 @@
             </objects>
             <point key="canvasLocation" x="-5929" y="2424"/>
         </scene>
+        <!--Record Info View Controller-->
+        <scene sceneID="eei-Hk-RNF">
+            <objects>
+                <viewController storyboardIdentifier="recordinfo" id="BqE-oT-HRb" customClass="RecordInfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BEB-uL-w3w"/>
+                        <viewControllerLayoutGuide type="bottom" id="BBi-xu-uyk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dLO-Cz-7Lg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2eO-fN-vgy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4999" y="2424"/>
+        </scene>
         <!--Back History View Controller-->
         <scene sceneID="2dR-Kz-whD">
             <objects>
@@ -565,6 +583,9 @@
                                     <segment title="已改正"/>
                                     <segment title="未改正"/>
                                 </segments>
+                                <connections>
+                                    <action selector="Segments:" destination="Zat-OI-qKa" eventType="valueChanged" id="BXy-gG-Bhm"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3UF-oW-IXx">
                                 <rect key="frame" x="10" y="65" width="300" height="415"/>
@@ -725,6 +746,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="fvr-bl-VXl"/>
                     <connections>
+                        <outlet property="segment" destination="SNM-JZ-WNF" id="bhQ-UW-QT6"/>
                         <outlet property="table" destination="3UF-oW-IXx" id="3ce-FL-BWy"/>
                     </connections>
                 </viewController>
@@ -833,6 +855,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="TbM-OM-5hs"/>
                     <connections>
+                        <outlet property="btn1" destination="fDU-Zw-Ktp" id="7A1-85-1Xg"/>
+                        <outlet property="btn2" destination="8B2-VC-2k5" id="SEZ-il-z58"/>
                         <outlet property="clas" destination="zno-Xl-hqJ" id="tim-6t-CX0"/>
                         <outlet property="table" destination="WbU-Zy-31N" id="KK7-9y-D6w"/>
                         <outlet property="view1" destination="6sw-a1-H6n" id="XS2-XJ-9Jd"/>

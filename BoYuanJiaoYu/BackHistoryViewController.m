@@ -30,13 +30,13 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)fankuilishi{
-
+    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/feedbackHistory";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:@"1111",@"classId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:@"1111",@"classId",[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
+            
             
             
         }
@@ -55,6 +55,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
     width =[UIScreen mainScreen].bounds.size.width;
+    _table.bounces =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;

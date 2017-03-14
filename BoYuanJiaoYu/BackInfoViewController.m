@@ -47,11 +47,11 @@
 -(void)fankuixiangqing{
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/feedbackInfo";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1111",@"currentBatchId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_currentBatchId,@"currentBatchId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
+          
             
             
         }
@@ -72,7 +72,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
     width =[UIScreen mainScreen].bounds.size.width;
-    
+    _table.bounces =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 10;
@@ -152,7 +152,7 @@
             answer.text=ss;
             [answer setFrame:CGRectMake(100,15, rect.size.width, rect.size.height)];
             
-            return answer.frame.size.height+15>40? answer.frame.size.height+15:40;
+            return answer.frame.size.height+25>40? answer.frame.size.height+25:40;
         }
         else{
             return 40;

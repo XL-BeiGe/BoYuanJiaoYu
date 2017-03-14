@@ -62,7 +62,7 @@
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
     width =[UIScreen mainScreen].bounds.size.width;
     height =[UIScreen mainScreen].bounds.size.height;
-    
+    _table.bounces =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 10;
@@ -111,6 +111,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NoteInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]
      instantiateViewControllerWithIdentifier:@"noteinfo"];
+    his.pushId =@"";
     [self.navigationController pushViewController:his animated:YES];
 
 }

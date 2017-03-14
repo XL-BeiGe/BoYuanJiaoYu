@@ -10,5 +10,5 @@
 
 @interface NoteInfoViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *table;
-
+@property (strong, nonatomic) NSString *pushId;
 @end

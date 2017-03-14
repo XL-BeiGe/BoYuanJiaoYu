@@ -14,7 +14,9 @@
 #import "XL_wangluo.h"
 @interface StuRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
+    BOOL tab;
     NSMutableArray *arr;
+    NSString*clasid;
 }
 @end
 
@@ -27,8 +29,9 @@
     _view1.layer.borderColor =[[UIColor lightGrayColor]CGColor];
     [self delegate];
     self.title =@"学习档案";
-    arr =[NSMutableArray arrayWithObjects:@"语文",@"数学",@"英语",@"物理",@"化学",@"生物",@"思想政治", nil ];
+    tab=YES;
     
+    [self baobanliebiao];
     
     
     // Do any additional setup after loading the view.
@@ -48,17 +51,26 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+//报班集合
 -(void)baobanliebiao{
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/attendanceInfoList";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
+
+            arr =[NSMutableArray array];
+            arr =[[responseObject objectForKey:@"data"] objectForKey:@"classList"];
+            if(arr.count==0){
+                _table.hidden =YES;
+                [WarningBox warningBoxModeText:@"尚未选课" andView:self.view];
+            }else{
             
+             [_table reloadData];
+            }
             
+           
         }
         
     } failure:^(NSError *error) {
@@ -69,19 +81,37 @@
 
 
 - (IBAction)tabelll:(id)sender {
-    _table.hidden=NO;
+    if(tab==YES){
+        _table.hidden=NO;
+        tab=NO;
+    }else{
+        _table.hidden=YES;
+        tab=YES;
+    }
+    
     
 }
 
 - (IBAction)FanKui:(id)sender {
+    
+    if([_clas.text isEqualToString:@""]){
+        [WarningBox warningBoxModeText:@"您没有选课" andView:self.view];
+    }else{
+    
     FeedBackViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"feedback"];
+        his.classId =clasid;
     [self.navigationController pushViewController:his animated:YES];
+    }
 }
 
 - (IBAction)CuoTi:(id)sender {
+    if([_clas.text isEqualToString:@""]){
+        [WarningBox warningBoxModeText:@"您没有选课" andView:self.view];
+    }else{
     RecordViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"record"];
     [self.navigationController pushViewController:his animated:YES];
     //[self.navigationController pushViewController:atten animated:YES];
+    }
 }
 
 -(void)delegate{
@@ -89,6 +119,7 @@
     _table.dataSource=self;
     //_table.backgroundColor =[UIColor clearColor];
    self.table.tableFooterView=[[UIView alloc] init];
+    _table.bounces =NO;
 //    self.automaticallyAdjustsScrollViewInsets = NO;
 //    _table.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -114,16 +145,17 @@
     if (cell==nil) {
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:aa];
     }
-    cell.textLabel.text=arr[indexPath.row];
+    cell.textLabel.text=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"className"]];
     cell.textLabel.textAlignment =NSTextAlignmentRight;
     
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    _clas.text =arr[indexPath.row];
+    _clas.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"className"]];
+    clasid =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"classId"]];
     _table.hidden=YES;
-
+    tab=YES;
 }
 
 @end

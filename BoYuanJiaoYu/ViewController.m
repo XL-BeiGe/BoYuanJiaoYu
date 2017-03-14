@@ -12,7 +12,7 @@
 #import "Color+Hex.h"
 #import "WarningBox.h"
 #import "XL_wangluo.h"
-@interface ViewController ()<UITextFieldDelegate>
+@interface ViewController ()<UITextFieldDelegate,UIActionSheetDelegate>
 {
     BOOL use;
 }
@@ -24,13 +24,13 @@
     [super viewDidLoad];
     
     self.title =@"登录";
-   // _username.text =@"13845120257";
-//    _password.text =@"admin";
-    _username.text =@"15005143302";
+    _username.text =@"13845120257";
     _password.text =@"123456";
+   // _username.text =@"15005143302";
+    //_password.text =@"123456";
     //_username.text =@"13111111111";
     [self bianhua];
-
+    [self huoqujigou];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -72,18 +72,42 @@
 
     }
 }
+
+-(void)huoqujigou{
+    NSString *fangshi =@"/curriculumCenter/officeList";
+    
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:nil type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+        
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+           
+        }else{
+            // [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
+    
+
+}
+-(void)tan{
+ 
+}
+
 //快速登录
 -(void)quecklogin{
     [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
     NSString *fangshi =@"/index/quickLogin";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_password.text,@"code",_username.text,@"userName",@"",@"deviceToken", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_password.text,@"code",_username.text,@"userName",@"",@"deviceToken",@"1001",@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             
             [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
             [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"parentId"] forKey:@"parentId"];
-       
+            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"officeId"] forKey:@"officeId"];
           
            [WarningBox warningBoxModeText:@"登录成功" andView:self.view];
             TabBarViewController *atten = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
@@ -101,32 +125,32 @@
 }
 //账号密码登录
 -(void)logined{
-//    [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
-//    NSString *fangshi =@"/index/login";
-//    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_password.text,@"passWord",_username.text,@"userName",@"",@"deviceToken",@"1",@"type", nil];
-//    NSLog(@"%@",datadic);
-//    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-//        NSLog(@"成功\n%@",responseObject);
-//       
-//        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-//            [WarningBox warningBoxModeText:@"登录成功" andView:self.view];
-//            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
-//            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"parentId"] forKey:@"parentId"];
-//            
+    [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
+    NSString *fangshi =@"/index/login";
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_password.text,@"passWord",_username.text,@"userName",@"",@"deviceToken",@"1",@"type",@"1001",@"officeId", nil];
+    NSLog(@"%@",datadic);
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+        NSLog(@"成功\n%@",responseObject);
+       
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            [WarningBox warningBoxModeText:@"登录成功" andView:self.view];
+            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
+            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"parentId"] forKey:@"parentId"];
+            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"officeId"] forKey:@"officeId"];
     
             
             TabBarViewController *atten = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
             [self presentViewController:atten animated:YES completion:^{}];
             
-//        }else{
-//              [WarningBox warningBoxHide:YES andView:self.view];
-//         [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
-//          
-//        }
-//        
-//    } failure:^(NSError *error) {
-//        NSLog(@"失败\n %@",error);
-//    }];
+        }else{
+              [WarningBox warningBoxHide:YES andView:self.view];
+         [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
+          
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"失败\n %@",error);
+    }];
 
 }
 
@@ -134,7 +158,7 @@
 -(void)SecurityCode{
     
     NSString *fangshi =@"/index/getAuthCode";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_username.text,@"userName", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_username.text,@"userName",@"1001",@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         
@@ -172,6 +196,7 @@
     _pass.backgroundColor =[UIColor colorWithHexString:@"FFBE01"];
     _forgot.hidden =NO;
     _password.placeholder =@"请输入验证码";
+    _password.text =@"";
 }
 
 

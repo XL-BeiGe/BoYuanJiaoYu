@@ -48,7 +48,7 @@
    
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/attend/attendanceHistoryList";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1",@"pageNo",@"10",@"pageSize",_claassID,@"classId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1",@"pageNo",@"10",@"pageSize",_claassID,@"classId",[def objectForKey:@"officeId"],@"officeId", nil];
     NSLog(@"%@",datadic);
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
@@ -84,6 +84,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
     _backimg.hidden =YES;
+     _table.bounces =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;

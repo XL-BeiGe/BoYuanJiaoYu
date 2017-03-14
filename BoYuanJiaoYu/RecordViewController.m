@@ -7,10 +7,27 @@
 //
 
 #import "RecordViewController.h"
+#import "RecordInfoViewController.h"
 #import "WarningBox.h"
 #import "XL_wangluo.h"
-@interface RecordViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "Color+Hex.h"
+#import "HongDingYi.h"
+#import "MyCollectionViewCell.h"
+@interface RecordViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+{
+    int touchNumber;//点击次数
+    UIView *VVV;//筛选
+    UICollectionView *mainCollectionView;
+    NSString *leave;
+    NSString *clastyp;
 
+    float width;
+    float heigh;
+    NSMutableArray*leavearr;
+    NSMutableArray*typearr;
+    NSMutableArray*arr;
+
+}
 @end
 
 @implementation RecordViewController
@@ -19,6 +36,18 @@
     [super viewDidLoad];
     [self delegate];
     self.title =@"错题记录";
+    _segment.selectedSegmentIndex = 0;
+    [self navagat];
+    touchNumber=1;
+    
+    [self cuotishaixuan];
+    [self collectiondelegate];
+    leave =@"0";
+    clastyp =@"0";
+   [self cuotijilu:@"1" leave:leave type:clastyp];
+    
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -32,12 +61,32 @@
 
 //错题筛选
 -(void)cuotishaixuan{
+//    NSString *fangshi =@"/learningPortfolio/errorScreen";
+//    
+//    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:nil type:Post success:^(id responseObject) {
+//        NSLog(@"成功\n%@",responseObject);
+//        
+//        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+//            
+//            
+//        }
+//        
+//    } failure:^(NSError *error) {
+//        NSLog(@"失败\n %@",error);
+//    }];
+    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/errorScreen";
-    
-    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:nil type:Post success:^(id responseObject) {
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"officeId"],@"officeId", nil];
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            leavearr =[NSMutableArray array];
+            typearr =[NSMutableArray array];
+            leavearr = [[responseObject objectForKey:@"data"] objectForKey:@"classLevelList"];
+            typearr = [[responseObject objectForKey:@"data"] objectForKey:@"classTypeList"];
+            [mainCollectionView reloadData];
+            
             
             
         }
@@ -45,43 +94,29 @@
     } failure:^(NSError *error) {
         NSLog(@"失败\n %@",error);
     }];
-
 }
 //错题记录
--(void)cuotijilu{
+-(void)cuotijilu:(NSString*)isCorrect leave:(NSString*)leaves type:(NSString*)clastype{
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/errorList";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1/2",@"isCorrect", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",isCorrect,@"isCorrect",[def objectForKey:@"officeId"],@"officeId",leaves,@"classLevel",clastype,@"classType",@"",@"quesionChapter", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
-            
-            
+            arr =[NSMutableArray array];
+           arr =[[responseObject objectForKey:@"data"] objectForKey:@"classList"];
+            if(arr.count==0){
+                NSLog(@"没有");
+            }else{
+                [_table reloadData];
+            }
         }
         
     } failure:^(NSError *error) {
         NSLog(@"失败\n %@",error);
     }];
 }
-//错题详情
--(void)cuotixiangqing{
-   
-    NSString *fangshi =@"/learningPortfolio/errorInfo";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:@"1010",@"questionId", nil];
-    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
-        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
-            
-            
-        }
-        
-    } failure:^(NSError *error) {
-        NSLog(@"失败\n %@",error);
-    }];
 
-}
 
 
 -(void)delegate{
@@ -91,10 +126,10 @@
     //self.table.tableFooterView=[[UIView alloc] init];
     self.automaticallyAdjustsScrollViewInsets = NO;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    _table.bounces =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return arr.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -138,22 +173,66 @@
     leftview.layer.borderWidth =0;
     fengview.layer.borderWidth =0;
     class.layer.cornerRadius =5;
-    title.text =@"这是一个测试标题啦啦啦啦啦啦啦";
-    [class setTitle:@"数学" forState:UIControlStateNormal];
-    groud.text =@"初中一年级";
-    zhang.text =@"第三册第五章";
-    numbe.text =@"试题编号:102102";
-    laiyu.text =@"来源:课堂测试";
+    if(nil==[arr[indexPath.section]objectForKey:@""]){
+    title.text =@"标题啦啦啦";
+    }else{
+    title.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@""]];
+    }
+    if(nil==[arr[indexPath.section]objectForKey:@""]){
+      [class setTitle:@"数学" forState:UIControlStateNormal];
+    }else{
+      [class setTitle:[arr[indexPath.section]objectForKey:@""] forState:UIControlStateNormal];
+    }
+    if(nil==[arr[indexPath.section]objectForKey:@""]){
+     groud.text =@"初中一年级";
+    }else{
+      groud.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@""]];
+    }
+    if(nil==[arr[indexPath.section]objectForKey:@""]){
+       zhang.text=@"第三册第五章";
+    }else{
+       zhang.text=[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@""]];
+    }
+    if(nil==[arr[indexPath.section]objectForKey:@""]){
+        numbe.text =@"试题编号:102102";
+    }else{
+      numbe.text=[NSString stringWithFormat:@"试题编号:%@",[arr[indexPath.section]objectForKey:@""]];
+    }
+    if(nil==[arr[indexPath.section]objectForKey:@""]){
+       laiyu.text =@"来源:课堂测试";
+    }else{
+      laiyu.text=[NSString stringWithFormat:@"来源:%@",[arr[indexPath.section]objectForKey:@""]];
+    }
     fancu.text =@"犯错次数:";
-    fcnum.text =@"150次";
     gwron.text =@"个人犯错:";
-    wrnum.text =@"3次";
+    if(nil==[arr[indexPath.section]objectForKey:@""]){
+       fcnum.text =@"150次";
+    }else{
+       fcnum.text=[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@""]];
+    }
+    if(nil==[arr[indexPath.section]objectForKey:@""]){
+        wrnum.text =@"3次"; 
+    }else{
+      wrnum.text=[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@""]];
+    }
+    
+    
+   
+    
+   
+    
+    
+   
     
     cell.backgroundColor =[UIColor clearColor];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    RecordInfoViewController *rec = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"recordinfo"];
+    rec.questionId =@"";
+    [self.navigationController pushViewController:rec animated:YES];
+}
 /*
 #pragma mark - Navigation
 
@@ -163,5 +242,239 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+- (IBAction)Segments:(UISegmentedControl *)sender {
+    if(sender.selectedSegmentIndex==0){
+        [self cuotijilu:@"1" leave:leave type:clastyp];
+    }else{
+     [self cuotijilu:@"2" leave:leave type:clastyp];
+    }
+    
+}
+#pragma mark-----筛选
+#pragma mark--筛选完成按钮
+-(void)animallllll{
+    _table.userInteractionEnabled =YES;
+    [UIView beginAnimations:nil context:nil];
+    //执行动画
+    //设置动画执行时间
+    [UIView setAnimationDuration:0.5];
+    //设置代理
+    [UIView setAnimationDelegate:self];
+    VVV.frame=CGRectMake(width,0,width-80,heigh);
+    [UIView commitAnimations];
+    touchNumber=1;
+    [self cuotijilu:@"1" leave:leave type:clastyp];
+    leave =@"0";
+    clastyp =@"0";
+   
+    
+}
+
+#pragma mark---筛选按钮+方法
+-(void)navagat{
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"筛选" style:UIBarButtonItemStyleDone target:self action:@selector(animals)];
+    [self.navigationItem setRightBarButtonItem:right];
+}
+-(void)animals{
+    
+    if(touchNumber==1){
+        [UIView beginAnimations:nil context:nil];
+        //执行动画
+        //设置动画执行时间
+        [UIView setAnimationDuration:0.5];
+        //设置代理
+        [UIView setAnimationDelegate:self];
+        //设置动画执行完毕调用的事件
+        //[UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
+        VVV.frame=CGRectMake(80, 0,width-80, heigh);
+        [UIView commitAnimations];
+        touchNumber=0;
+        _table.userInteractionEnabled =NO;
+    }else{
+        [UIView beginAnimations:nil context:nil];
+        //执行动画
+        //设置动画执行时间
+        [UIView setAnimationDuration:0.5];
+        //设置代理
+        [UIView setAnimationDelegate:self];
+        //设置动画执行完毕调用的事件
+        //[UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
+        VVV.frame=CGRectMake(width,0,width-80,heigh);
+        [UIView commitAnimations];
+        touchNumber=1;
+        _table.userInteractionEnabled =YES;
+    }
+    
+    
+    
+}
+
+#pragma mark--collectionview DataSourec代理
+-(void)collectiondelegate{
+    width =[UIScreen mainScreen].bounds.size.width;
+    heigh =[UIScreen mainScreen].bounds.size.height;
+    VVV =[[UIView alloc]initWithFrame:CGRectMake(width,0,width-80,heigh-49)];
+    VVV.backgroundColor =[UIColor colorWithHexString:@"EFEFEF"];
+    [self.view addSubview:VVV];
+    
+    UIButton *bth =[[UIButton alloc]initWithFrame:CGRectMake(20,VVV.frame.size.height-40,VVV.frame.size.width-40, 30)];
+    [bth setTitle:@"完成" forState:UIControlStateNormal];
+    [bth setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    bth.backgroundColor =[UIColor yellowColor];
+    
+    [bth  addTarget:self action:@selector(animallllll) forControlEvents:UIControlEventTouchUpInside];
+    [VVV addSubview:bth];
+    
+    //1.初始化layout
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    //设置collectionView滚动方向
+    [layout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    //设置headerView的尺寸大小
+    layout.headerReferenceSize = CGSizeMake(self.view.frame.size.width, 30);
+    //该方法也可以设置itemSize
+    layout.itemSize =CGSizeMake(110, 150);
+    
+    //2.初始化collectionView
+    mainCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10,64,width-100, VVV.frame.size.height-113) collectionViewLayout:layout];
+    
+    mainCollectionView.backgroundColor = [UIColor clearColor];
+    
+    //3.注册collectionViewCell
+    //注意，此处的ReuseIdentifier 必须和 cellForItemAtIndexPath 方法中 一致 均为 cellId
+    
+    [mainCollectionView registerClass:[MyCollectionViewCell class] forCellWithReuseIdentifier:@"cellId"];
+    //注册headerView  此处的ReuseIdentifier 必须和 cellForItemAtIndexPath 方法中 一致  均为reusableView
+    [mainCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView"];
+    
+    
+    //4.设置代理
+    
+    //    mainCollectionView.allowsSelection = YES;
+    //    mainCollectionView.allowsMultipleSelection = NO;
+    mainCollectionView.delegate = self;
+    mainCollectionView.dataSource = self;
+    mainCollectionView.bounces = NO;
+    
+    [VVV addSubview:mainCollectionView];
+}
+
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 2;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section  {
+    if(section==0){
+        return leavearr.count;
+    }else{
+        return typearr.count;
+    }
+    
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath  {
+    
+    MyCollectionViewCell *cell = (MyCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndexPath:indexPath];
+    
+    
+    if(indexPath.section==0){
+        if(nil==[leavearr[indexPath.row] objectForKey:@"classLevel"]){
+            cell.blabel.text =@"";
+        }else{
+            cell.blabel.text =[NSString stringWithFormat:@"%@",[leavearr[indexPath.row] objectForKey:@"classLevel"]];
+        }
+    }else {
+        if(nil==[typearr[indexPath.row] objectForKey:@"classType"]){
+            cell.blabel.text =@"";
+        }else{
+            cell.blabel.text =[NSString stringWithFormat:@"%@",[typearr[indexPath.row] objectForKey:@"classType"]];
+        }
+    }
+    
+    // cell.backgroundColor = [UIColor yellowColor];
+    
+    
+    
+    
+    return cell;
+    
+    
+}
+
+//按照这个尺寸设置宽和高
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath  {
+    
+    CGSize cc = CGSizeMake(70, 30);
+    
+    return cc;
+}
+//cell间距
+-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 15;
+}
+//行与行间最小距离
+-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 10;
+}
+//手动设置边距
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section  {
+    // 顺序上左下右
+    return UIEdgeInsetsMake(10,10,20,10);
+    
+}
+////标题
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
+    // headerView.backgroundColor =[UIColor grayColor];
+    
+    for (UIView *vv in headerView.subviews) {
+        [vv removeFromSuperview];
+    }
+    UILabel *label = [[UILabel alloc] initWithFrame:headerView.bounds];
+    
+    if(indexPath.section==0){
+        label.text = @"年级";
+    }else {
+        label.text = @"科目";
+    }
+    
+    
+    label.font = [UIFont systemFontOfSize:20];
+    label.textAlignment =NSTextAlignmentCenter;
+    [headerView addSubview:label];
+    return headerView;
+}
+
+//didselect方法
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UICollectionViewCell *cell =  [mainCollectionView cellForItemAtIndexPath:indexPath];
+    
+    cell.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+    //    MyCollectionViewCell *cell = (MyCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    //    NSString *msg = cell.blabel.text;
+    //    NSLog(@"%@",msg);
+    //    NSLog(@"-----%ld----%ld",(long)indexPath.section,(long)indexPath.row);
+    if(indexPath.section==0){
+        leave =[NSString stringWithFormat:@"%@",[leavearr[indexPath.row] objectForKey:@"classLevelId"]];
+    }else{
+        clastyp =[NSString stringWithFormat:@"%@",[typearr[indexPath.row] objectForKey:@"classTypeId"]];
+    }
+    
+}
+
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UICollectionViewCell *cell =  [mainCollectionView cellForItemAtIndexPath:indexPath];
+    
+    cell.backgroundColor = [UIColor clearColor];
+    
+    
+}
+
 
 @end

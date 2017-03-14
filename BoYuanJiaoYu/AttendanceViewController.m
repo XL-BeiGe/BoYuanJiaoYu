@@ -87,6 +87,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
     _BackImage.hidden=YES;
+    _table.bounces =NO;
    // _table.hidden =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

@@ -119,6 +119,8 @@
 		D72F75B71E66BBB8004FBCA6 /* AttHisInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72F75B61E66BBB8004FBCA6 /* AttHisInfoViewController.m */; };
 		D7308B811E5D228C00FF19CD /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = D7308B801E5D228C00FF19CD /* next.png */; };
 		D73180D71E5C384600C85384 /* StuInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D73180D61E5C384600C85384 /* StuInfoTableViewController.m */; };
+		D7343ACE1E6FD5FC00DDBCAC /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7343ACD1E6FD5FC00DDBCAC /* MyCollectionViewCell.m */; };
+		D75F6DBA1E76433C00037E3E /* RecordInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75F6DB91E76433C00037E3E /* RecordInfoViewController.m */; };
 		D7F3B0D41E554C8E00FA620D /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F3B0D31E554C8E00FA620D /* FeedBackViewController.m */; };
 		D7F3B0DB1E557A3400FA620D /* ceshi.png in Resources */ = {isa = PBXBuildFile; fileRef = D7F3B0D91E557A3400FA620D /* ceshi.png */; };
 		D7F3B0DC1E557A3400FA620D /* zuoye.png in Resources */ = {isa = PBXBuildFile; fileRef = D7F3B0DA1E557A3400FA620D /* zuoye.png */; };
@@ -301,7 +303,7 @@
 		D729DD391E53FC5B00A67C07 /* OwnerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OwnerViewController.h; sourceTree = "<group>"; };
 		D729DD3A1E53FC5B00A67C07 /* OwnerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OwnerViewController.m; sourceTree = "<group>"; };
 		D729DD3C1E541B1100A67C07 /* ClassCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassCenterViewController.h; sourceTree = "<group>"; };
-		D729DD3D1E541B1100A67C07 /* ClassCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassCenterViewController.m; sourceTree = "<group>"; };
+		D729DD3D1E541B1100A67C07 /* ClassCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassCenterViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
 		D729DD401E542BEF00A67C07 /* ClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoViewController.h; sourceTree = "<group>"; };
 		D729DD411E542BEF00A67C07 /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
 		D72B31A41E5FC5870092B9C2 /* 更换手机号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "更换手机号.png"; sourceTree = "<group>"; };
@@ -322,6 +324,10 @@
 		D7308B801E5D228C00FF19CD /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		D73180D51E5C384600C85384 /* StuInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StuInfoTableViewController.h; sourceTree = "<group>"; };
 		D73180D61E5C384600C85384 /* StuInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StuInfoTableViewController.m; sourceTree = "<group>"; };
+		D7343ACC1E6FD5FC00DDBCAC /* MyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
+		D7343ACD1E6FD5FC00DDBCAC /* MyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
+		D75F6DB81E76433C00037E3E /* RecordInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordInfoViewController.h; sourceTree = "<group>"; };
+		D75F6DB91E76433C00037E3E /* RecordInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordInfoViewController.m; sourceTree = "<group>"; };
 		D7F3B0D21E554C8E00FA620D /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
 		D7F3B0D31E554C8E00FA620D /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		D7F3B0D91E557A3400FA620D /* ceshi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ceshi.png; sourceTree = "<group>"; };
@@ -368,6 +374,8 @@
 			children = (
 				D708AD7E1E567DDB00DFB98D /* RecordViewController.h */,
 				D708AD7F1E567DDB00DFB98D /* RecordViewController.m */,
+				D75F6DB81E76433C00037E3E /* RecordInfoViewController.h */,
+				D75F6DB91E76433C00037E3E /* RecordInfoViewController.m */,
 			);
 			name = "错题记录";
 			sourceTree = "<group>";
@@ -680,6 +688,8 @@
 			children = (
 				D729DD3C1E541B1100A67C07 /* ClassCenterViewController.h */,
 				D729DD3D1E541B1100A67C07 /* ClassCenterViewController.m */,
+				D7343ACC1E6FD5FC00DDBCAC /* MyCollectionViewCell.h */,
+				D7343ACD1E6FD5FC00DDBCAC /* MyCollectionViewCell.m */,
 				D729DD3F1E5429FE00A67C07 /* 详情 */,
 			);
 			name = "课程中心";
@@ -950,6 +960,7 @@
 				D7217C481E5A7E2E00AE9C89 /* SDWebImagePrefetcher.m in Sources */,
 				D7217C191E5A7E2700AE9C89 /* SBJsonStreamWriterAccumulator.m in Sources */,
 				D7217C581E5AC62000AE9C89 /* ExplainViewController.m in Sources */,
+				D75F6DBA1E76433C00037E3E /* RecordInfoViewController.m in Sources */,
 				D7217C1B1E5A7E2700AE9C89 /* SBJsonTokeniser.m in Sources */,
 				D7217C181E5A7E2700AE9C89 /* SBJsonStreamWriter.m in Sources */,
 				D7217C431E5A7E2E00AE9C89 /* SDWebImageCompat.m in Sources */,
@@ -979,6 +990,7 @@
 				D7217C411E5A7E2E00AE9C89 /* NSData+ImageContentType.m in Sources */,
 				D708AD801E567DDB00DFB98D /* RecordViewController.m in Sources */,
 				D2A460DC1E667FD30013035F /* XL_wangluo.m in Sources */,
+				D7343ACE1E6FD5FC00DDBCAC /* MyCollectionViewCell.m in Sources */,
 				D7217C4C1E5A7E2E00AE9C89 /* UIImage+WebP.m in Sources */,
 				D72447C31E52F439003DBCE4 /* TabBarViewController.m in Sources */,
 				D7217C1C1E5A7E2700AE9C89 /* SBJsonUTF8Stream.m in Sources */,

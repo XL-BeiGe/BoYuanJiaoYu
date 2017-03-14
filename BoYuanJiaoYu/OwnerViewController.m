@@ -117,7 +117,7 @@
     
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/userInfo/userInfo";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"parentId"],@"parentId",_phoneNum.text,@"tel", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"parentId"],@"parentId",_phoneNum.text,@"tel",[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         
@@ -132,6 +132,8 @@
         
     } failure:^(NSError *error) {
         NSLog(@"失败\n %@",error);
+        [WarningBox warningBoxModeText:@"邀请失败,请重新邀请" andView:self.view];
+        [self remov];
     }];
   
     
@@ -142,14 +144,26 @@
 -(void)gerenxinxi{
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/userInfo/getUserInfoBase";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"officeId"],@"officeId", nil];
     
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            
+           
+            if(nil==[[responseObject objectForKey:@"data"] objectForKey:@"studentName"]){
+            _stuname.text =@"";
+            }else{
             _stuname.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"studentName"]];
-            _stuclass.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"studentGrade"]];
+            }
+            if(nil==[[responseObject objectForKey:@"data"] objectForKey:@"studentGrade"]){
+             _stuclass.text =@"";
+            }else{
+               _stuclass.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"studentGrade"]];
+            }
+            
+            
             Gerenxinxi =[NSDictionary dictionaryWithDictionary:[responseObject objectForKey:@"data"]];
         }
         

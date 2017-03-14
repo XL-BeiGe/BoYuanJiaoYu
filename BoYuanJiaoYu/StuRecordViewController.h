@@ -15,5 +15,7 @@
 - (IBAction)FanKui:(id)sender;
 - (IBAction)CuoTi:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *table;
+@property (weak, nonatomic) IBOutlet UIButton *btn1;
+@property (weak, nonatomic) IBOutlet UIButton *btn2;
 
 @end

@@ -9,13 +9,16 @@
 #define CLog(format, ...)  NSLog(format, ## __VA_ARGS__)
 
 #define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
+
+
 #define Host    @""
 #define Port    @"80"
 
 #define Scheme  @"http://"
 
-//#define WaiwangIP @"192.168.1.110:8080"
-#define WaiwangIP @"192.168.1.144:9090"
+#define WaiwangIP @"192.168.1.120:8080"
+//#define WaiwangIP @"192.168.1.144:9090"
 #define AppName @"/boyuanjiaoyu"
 #define apath    @"/api/rest/1.0"
 #define WaiWang [NSString stringWithFormat:@"%@%@%@%@",Scheme,WaiwangIP,AppName,apath]

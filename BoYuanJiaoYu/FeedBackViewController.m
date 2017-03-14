@@ -15,7 +15,7 @@
 {
     float width;
     UILabel *messa;
-
+    NSMutableArray *arr;
 }
 @end
 
@@ -25,7 +25,9 @@
     [super viewDidLoad];
     [self delegate];
     [self comeback];
-    [self navagat];
+    //[self navagat];
+    [self ketangfankui];
+    
     self.title =@"课堂反馈";
     // Do any additional setup after loading the view.
 }
@@ -38,16 +40,21 @@
 
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+//课堂反馈
 -(void)ketangfankui{
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/feedbackSubject";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1111",@"classId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_classId,@"classId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
-            
+            arr =[NSMutableArray array];
+            arr =[[responseObject objectForKey:@"data"] objectForKey:@"feedbackSubjectList"];
+            if(arr.count==0){
+                NSLog(@"暂无反馈");
+            }else{
+             [_table reloadData];
+            }
             
         }
         
@@ -58,16 +65,15 @@
 }
 
 
--(void)navagat{
-    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
-    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"详情" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
-    [self.navigationItem setRightBarButtonItem:right];
-}
-
--(void)History{
-    BackInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"backinfo"];
-    [self.navigationController pushViewController:his animated:YES];
-}
+//-(void)navagat{
+//    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+//    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"详情" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
+//    [self.navigationItem setRightBarButtonItem:right];
+//}
+//
+//-(void)History{
+//    
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -81,10 +87,10 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
     width =[UIScreen mainScreen].bounds.size.width;
-    
+    _table.bounces =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 4;
+    return arr.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
         return 4;
@@ -98,17 +104,16 @@
         }
    else if (indexPath.row==2){
             NSString* ss=[[NSString alloc] init];
-            //            if(nil==[pushTemplate objectForKey:@"title"]){
-            //                ss =@"";
-            //            }else{
-            //                ss =[NSString stringWithFormat:@"%@",[pushTemplate objectForKey:@"context"]];
-            //            }
-            ss =@"因为iPhone平庸了几代，也因为今年是iPhone诞生十周年，人们对iPhone 8的期望格外高一些。关于即将到来的iPhone 8，坊间曾盛传其将取消实体Home键，支持屏幕指纹识别功能。如果说这之前是人们一厢情愿的期望，那么现在还真已经有了一些切实依据。据了解，苹果曾收购过一家叫做LuxVue的公司，而该公司在micro-LED方面颇有研究。通过收购，苹果已经获得了包括一种超薄柔性屏生产方法在内的一系列知识产权。现如今，苹果又获得了一项专利，详细描述了一种通过红外发射器、传感器和高分辨率触摸来读取指纹的屏幕。";
+                        if(nil==[arr[indexPath.section] objectForKey:@"comment"]){
+                            ss =@"";
+                        }else{
+                            ss =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"comment"]];
+                       }
             messa=[[UILabel alloc] init];
             UIFont *font = [UIFont fontWithName:@"Arial" size:15];
             NSAttributedString *attributedText =
             [[NSAttributedString alloc]initWithString:ss attributes:@{NSFontAttributeName: font}];
-            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-40, CGFLOAT_MAX}
+            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-50, CGFLOAT_MAX}
                                                        options:NSStringDrawingUsesLineFragmentOrigin
                                                        context:nil];
             
@@ -140,8 +145,19 @@
         UILabel *left1 =[[UILabel alloc]initWithFrame:CGRectMake(15,15,130, 20)];
         UIButton *left2 =[[UIButton alloc]initWithFrame:CGRectMake(width-100,15,70, 20)];
         UIView *fenview= [[UIView alloc]initWithFrame:CGRectMake(0,44,width,1)];
-        left1.text =@"初一数学A2班";
-        [left2 setTitle:@"数学" forState:UIControlStateNormal];
+        if(nil==[arr[indexPath.section] objectForKey:@"classLevel"]){
+        left1.text =@"";
+        }else{
+        left1.text = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"classLevel"]];
+        }
+        if(nil==[arr[indexPath.section] objectForKey:@"classType"]){
+        [left2 setTitle:@"" forState:UIControlStateNormal];
+        }else{
+        [left2 setTitle:[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"classType"]] forState:UIControlStateNormal];
+        }
+        
+        
+        
         left1.font =[UIFont systemFontOfSize:15];
         left2.titleLabel.font =[UIFont systemFontOfSize:15];
         [left2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -200,7 +216,11 @@
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    BackInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"backinfo"];
+    his.currentBatchId =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"currentBatchId"]];
+    [self.navigationController pushViewController:his animated:YES];
+}
 /*
 #pragma mark - Navigation
 
