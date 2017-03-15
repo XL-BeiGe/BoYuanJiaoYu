@@ -38,7 +38,7 @@
 - (IBAction)secuti:(id)sender {
    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/index/getAuthCode";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_phone.text,@"userName",[def objectForKey:@"parentId"],@"userId",[def objectForKey:@"officeId"],@"officeId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_phone.text,@"userName",[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         

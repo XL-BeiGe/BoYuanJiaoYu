@@ -98,8 +98,14 @@
     banji.font =[UIFont systemFontOfSize:15];
     
     banji.text =@"这里是通知标题";
+    UIImageView*imageview1=[[UIImageView alloc] initWithFrame:CGRectMake(width-30,40,15,10)];
+    imageview1.image =[UIImage imageNamed:@"attendance_history.png"];
+    
+    
+    
     [backview addSubview:imageview];
     [backview addSubview:banji];
+    [backview addSubview:imageview1];
     [cell addSubview:backview];
     
     

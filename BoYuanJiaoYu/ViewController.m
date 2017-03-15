@@ -15,6 +15,8 @@
 @interface ViewController ()<UITextFieldDelegate,UIActionSheetDelegate>
 {
     BOOL use;
+    NSMutableArray *arrr;
+    NSString *jigouID;
 }
 @end
 
@@ -72,7 +74,7 @@
 
     }
 }
-
+//获取机构
 -(void)huoqujigou{
     NSString *fangshi =@"/curriculumCenter/officeList";
     
@@ -80,27 +82,51 @@
         NSLog(@"成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-           
+            arrr =[NSMutableArray array];
+            arrr =[[responseObject objectForKey:@"data"] objectForKey:@"officeList"];
+            if(arrr.count==0){
+                NSLog(@"没有机构");
+            }else{
+                [self tan];
+            }
+            
+            
         }else{
             // [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }
         
     } failure:^(NSError *error) {
+        
         NSLog(@"失败\n %@",error);
     }];
     
 
 }
 -(void)tan{
- 
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请选择机构" preferredStyle:UIAlertControllerStyleActionSheet];
+    for (int index = 0; index <arrr.count; index++) {
+        int  key = index;
+        NSString*message=[NSString stringWithFormat:@"%@",[arrr[key] objectForKey:@"name"]];
+        UIAlertAction * action = [UIAlertAction actionWithTitle:message style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSLog(@"%@",[arrr[key] objectForKey:@"name"]);
+            //给新家的lable填写信息;
+            jigouID=[NSString stringWithFormat:@"%@",[arrr[key] objectForKey:@"id"]];
+            
+        }];
+        [alert addAction:action];
+    }
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 //快速登录
 -(void)quecklogin{
     [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
     NSString *fangshi =@"/index/quickLogin";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_password.text,@"code",_username.text,@"userName",@"",@"deviceToken",@"1001",@"officeId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_password.text,@"code",_username.text,@"userName",@"",@"deviceToken",jigouID,@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
@@ -127,7 +153,7 @@
 -(void)logined{
     [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
     NSString *fangshi =@"/index/login";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_password.text,@"passWord",_username.text,@"userName",@"",@"deviceToken",@"1",@"type",@"1001",@"officeId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_password.text,@"passWord",_username.text,@"userName",@"",@"deviceToken",@"1",@"type",jigouID,@"officeId", nil];
     NSLog(@"%@",datadic);
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
@@ -158,7 +184,7 @@
 -(void)SecurityCode{
     
     NSString *fangshi =@"/index/getAuthCode";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_username.text,@"userName",@"1001",@"officeId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_username.text,@"userName",jigouID,@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         

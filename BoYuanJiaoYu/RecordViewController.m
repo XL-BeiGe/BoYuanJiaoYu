@@ -44,7 +44,7 @@
     [self collectiondelegate];
     leave =@"0";
     clastyp =@"0";
-   [self cuotijilu:@"1" leave:leave type:clastyp];
+   //[self cuotijilu:@"1" leave:leave type:clastyp];
     
     
     
@@ -62,13 +62,11 @@
 //错题筛选
 -(void)cuotishaixuan{
 //    NSString *fangshi =@"/learningPortfolio/errorScreen";
-//    
 //    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:nil type:Post success:^(id responseObject) {
 //        NSLog(@"成功\n%@",responseObject);
 //        
 //        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-//            
-//            
+//
 //        }
 //        
 //    } failure:^(NSError *error) {
@@ -86,9 +84,7 @@
             leavearr = [[responseObject objectForKey:@"data"] objectForKey:@"classLevelList"];
             typearr = [[responseObject objectForKey:@"data"] objectForKey:@"classTypeList"];
             [mainCollectionView reloadData];
-            
-            
-            
+   
         }
         
     } failure:^(NSError *error) {
@@ -99,7 +95,7 @@
 -(void)cuotijilu:(NSString*)isCorrect leave:(NSString*)leaves type:(NSString*)clastype{
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/errorList";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",isCorrect,@"isCorrect",[def objectForKey:@"officeId"],@"officeId",leaves,@"classLevel",clastype,@"classType",@"",@"quesionChapter", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",isCorrect,@"isCorrect",leaves,@"classLevel",clastype,@"classType", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
@@ -188,11 +184,11 @@
     }else{
       groud.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@""]];
     }
-    if(nil==[arr[indexPath.section]objectForKey:@""]){
-       zhang.text=@"第三册第五章";
-    }else{
-       zhang.text=[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@""]];
-    }
+//    if(nil==[arr[indexPath.section]objectForKey:@""]){
+//       zhang.text=@"第三册第五章";
+//    }else{
+//       zhang.text=[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@""]];
+//    }
     if(nil==[arr[indexPath.section]objectForKey:@""]){
         numbe.text =@"试题编号:102102";
     }else{
@@ -265,9 +261,10 @@
     VVV.frame=CGRectMake(width,0,width-80,heigh);
     [UIView commitAnimations];
     touchNumber=1;
-    [self cuotijilu:@"1" leave:leave type:clastyp];
     leave =@"0";
     clastyp =@"0";
+    [self cuotijilu:@"1" leave:leave type:clastyp];
+    
    
     
 }

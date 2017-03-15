@@ -16,6 +16,7 @@
 #import "ChangePhoneViewController.h"
 #import "NoteListViewController.h"
 #import "XL_wangluo.h"
+#import "HongDingYi.h"
 @interface OwnerViewController ()<UITextFieldDelegate>
 {
     float width;

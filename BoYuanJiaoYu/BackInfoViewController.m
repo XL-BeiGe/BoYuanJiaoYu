@@ -26,6 +26,7 @@
     [super viewDidLoad];
     [self navagat];
     [self delegate];
+    [self fankuixiangqing];
     self.title =@"反馈详情";
     // Do any additional setup after loading the view.
 }

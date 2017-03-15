@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegate];
+    [self fankuilishi];
     self.title =@"反馈历史";
     // Do any additional setup after loading the view.
 }
@@ -32,7 +33,7 @@
 -(void)fankuilishi{
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/feedbackHistory";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:@"1111",@"classId",[def objectForKey:@"officeId"],@"officeId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"classid"],@"classId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {

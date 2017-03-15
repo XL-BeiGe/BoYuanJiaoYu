@@ -100,6 +100,8 @@
     
     FeedBackViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"feedback"];
         his.classId =clasid;
+        [[NSUserDefaults standardUserDefaults]setObject:clasid forKey:@"classid"];
+        
     [self.navigationController pushViewController:his animated:YES];
     }
 }
