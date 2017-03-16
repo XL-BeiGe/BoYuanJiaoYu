@@ -114,6 +114,7 @@
 		D72B31AD1E5FC5870092B9C2 /* 无历史.png in Resources */ = {isa = PBXBuildFile; fileRef = D72B31A81E5FC5870092B9C2 /* 无历史.png */; };
 		D72B31B11E5FD46C0092B9C2 /* NoteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72B31B01E5FD46C0092B9C2 /* NoteListViewController.m */; };
 		D72B31B41E5FD47E0092B9C2 /* NoteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72B31B31E5FD47E0092B9C2 /* NoteInfoViewController.m */; };
+		D72EE6B91E7A2BE60057FBEC /* 新消息提示-2.png in Resources */ = {isa = PBXBuildFile; fileRef = D72EE6B81E7A2BE60057FBEC /* 新消息提示-2.png */; };
 		D72F75B01E669C44004FBCA6 /* SetPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72F75AF1E669C44004FBCA6 /* SetPassViewController.m */; };
 		D72F75B41E669C5F004FBCA6 /* ChangePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72F75B31E669C5F004FBCA6 /* ChangePhoneViewController.m */; };
 		D72F75B71E66BBB8004FBCA6 /* AttHisInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72F75B61E66BBB8004FBCA6 /* AttHisInfoViewController.m */; };
@@ -315,6 +316,7 @@
 		D72B31B01E5FD46C0092B9C2 /* NoteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteListViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
 		D72B31B21E5FD47E0092B9C2 /* NoteInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteInfoViewController.h; sourceTree = "<group>"; };
 		D72B31B31E5FD47E0092B9C2 /* NoteInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteInfoViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
+		D72EE6B81E7A2BE60057FBEC /* 新消息提示-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新消息提示-2.png"; sourceTree = "<group>"; };
 		D72F75AE1E669C44004FBCA6 /* SetPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPassViewController.h; sourceTree = "<group>"; };
 		D72F75AF1E669C44004FBCA6 /* SetPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPassViewController.m; sourceTree = "<group>"; };
 		D72F75B21E669C5F004FBCA6 /* ChangePhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePhoneViewController.h; sourceTree = "<group>"; };
@@ -478,18 +480,18 @@
 				D7F3B0D21E554C8E00FA620D /* FeedBackViewController.h */,
 				D7F3B0D31E554C8E00FA620D /* FeedBackViewController.m */,
 				D728BA7F1E6115FD000FFF4F /* 反馈详情 */,
-				D728BA7E1E6115F3000FFF4F /* 反馈历史 */,
+				D728BA7E1E6115F3000FFF4F /* 反馈历史不用了 */,
 			);
 			name = "课堂反馈";
 			sourceTree = "<group>";
 		};
-		D7217C541E5AC53100AE9C89 /* 重置密码 */ = {
+		D7217C541E5AC53100AE9C89 /* 重置密码不用了 */ = {
 			isa = PBXGroup;
 			children = (
 				D7217C591E5AC65700AE9C89 /* ChangePassViewController.h */,
 				D7217C5A1E5AC65700AE9C89 /* ChangePassViewController.m */,
 			);
-			name = "重置密码";
+			name = "重置密码不用了";
 			sourceTree = "<group>";
 		};
 		D7217C551E5AC53B00AE9C89 /* 关于我们 */ = {
@@ -584,6 +586,7 @@
 		D72447631E52D4EC003DBCE4 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				D72EE6B81E7A2BE60057FBEC /* 新消息提示-2.png */,
 				D72B31A41E5FC5870092B9C2 /* 更换手机号.png */,
 				D72B31A51E5FC5870092B9C2 /* 无错题.png */,
 				D72B31A61E5FC5870092B9C2 /* 无反馈.png */,
@@ -651,13 +654,13 @@
 			name = "考勤";
 			sourceTree = "<group>";
 		};
-		D728BA7E1E6115F3000FFF4F /* 反馈历史 */ = {
+		D728BA7E1E6115F3000FFF4F /* 反馈历史不用了 */ = {
 			isa = PBXGroup;
 			children = (
 				D728BA831E611631000FFF4F /* BackHistoryViewController.h */,
 				D728BA841E611631000FFF4F /* BackHistoryViewController.m */,
 			);
-			name = "反馈历史";
+			name = "反馈历史不用了";
 			sourceTree = "<group>";
 		};
 		D728BA7F1E6115FD000FFF4F /* 反馈详情 */ = {
@@ -678,7 +681,7 @@
 				D72F75AD1E669C27004FBCA6 /* 设置密码 */,
 				D73180D41E5C381900C85384 /* 学生与家长信息 */,
 				D7217C551E5AC53B00AE9C89 /* 关于我们 */,
-				D7217C541E5AC53100AE9C89 /* 重置密码 */,
+				D7217C541E5AC53100AE9C89 /* 重置密码不用了 */,
 			);
 			name = "个人中心";
 			sourceTree = "<group>";
@@ -912,6 +915,7 @@
 				D72447B61E52D522003DBCE4 /* xuexi_bg.png in Resources */,
 				D70ED4DA1E57E3150045038C /* grzx_y.png in Resources */,
 				D72447911E52D522003DBCE4 /* 课程-查看详情.png in Resources */,
+				D72EE6B91E7A2BE60057FBEC /* 新消息提示-2.png in Resources */,
 				D72447A61E52D522003DBCE4 /* gunayu.png in Resources */,
 				D70ED4DB1E57E3150045038C /* grzx_w.png in Resources */,
 				D70ED4D31E57E1970045038C /* kq_y.png in Resources */,

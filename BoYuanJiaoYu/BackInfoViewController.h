@@ -10,5 +10,5 @@
 
 @interface BackInfoViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *table;
-@property (strong, nonatomic) NSString *currentBatchId;
+@property (strong, nonatomic) NSString *classID;
 @end

@@ -115,7 +115,7 @@
 }
 //邀请家人接口
 -(void)inviteparents{
-    
+    [WarningBox warningBoxModeIndeterminate:@"正在邀请" andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/userInfo/userInfo";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"parentId"],@"parentId",_phoneNum.text,@"tel",[def objectForKey:@"officeId"],@"officeId", nil];
@@ -143,6 +143,8 @@
 
 //获取个人信息
 -(void)gerenxinxi{
+    
+  [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/userInfo/getUserInfoBase";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"officeId"],@"officeId", nil];
@@ -151,7 +153,7 @@
         NSLog(@"成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            
+           
            
             if(nil==[[responseObject objectForKey:@"data"] objectForKey:@"studentName"]){
             _stuname.text =@"";
@@ -163,7 +165,7 @@
             }else{
                _stuclass.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"studentGrade"]];
             }
-            
+            [WarningBox warningBoxHide:YES andView:self.view];
             
             Gerenxinxi =[NSDictionary dictionaryWithDictionary:[responseObject objectForKey:@"data"]];
         }

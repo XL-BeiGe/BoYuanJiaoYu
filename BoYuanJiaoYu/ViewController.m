@@ -27,7 +27,7 @@
     
     self.title =@"登录";
     _username.text =@"13845120257";
-    _password.text =@"123456";
+    _password.text =@"111111";
    // _username.text =@"15005143302";
     //_password.text =@"123456";
     //_username.text =@"13111111111";

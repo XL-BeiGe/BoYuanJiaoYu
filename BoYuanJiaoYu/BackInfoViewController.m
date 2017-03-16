@@ -17,6 +17,7 @@
     UILabel *title;
     UILabel *ownans;
     UILabel *answer;
+    NSMutableArray *infoarr;
 }
 @end
 
@@ -24,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self navagat];
+  //  [self navagat];
     [self delegate];
     [self fankuixiangqing];
     self.title =@"反馈详情";
@@ -48,12 +49,12 @@
 -(void)fankuixiangqing{
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/feedbackInfo";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_currentBatchId,@"currentBatchId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_classID,@"classId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-          
-            
+            infoarr =[NSMutableArray array];
+            infoarr =[[responseObject objectForKey:@"data"] objectForKey:@"feedbackSubjectList"];
             
         }
         
@@ -88,7 +89,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section==0){
-        return 60;
+        return 0;
     }else{
         if(indexPath.row==0){
             NSString* ss=[[NSString alloc] init];
@@ -97,7 +98,7 @@
                         //            }else{
                         //                ss =[NSString stringWithFormat:@"%@",[pushTemplate objectForKey:@"context"]];
                         //            }
-            ss =@"因为iPhone平庸了几代，也因为今年是iPhone诞生十周年，人们对iPhone 8的期望格外高一些。关于即将到来的iPhone 8，坊间曾盛传其将取消实体Home键，支持屏幕指纹识别功能。如果说这之前是人们一厢情愿的期望，那么现在还真已经有了一些切实依据。据了解，苹果曾收购过一家叫做LuxVue的公司，而该公司在micro-LED方面颇有研究。通过收购，苹果已经获得了包括一种超薄柔性屏生产方法在内的一系列知识产权。现如今，苹果又获得了一项专利，详细描述了一种通过红外发射器、传感器和高分辨率触摸来读取指纹的屏幕。";
+            ss =@"因为iPhone平庸了几";
             title=[[UILabel alloc] init];
             UIFont *font = [UIFont fontWithName:@"Arial" size:15];
             NSAttributedString *attributedText =[[NSAttributedString alloc]initWithString:ss attributes:@{NSFontAttributeName: font}];
@@ -120,7 +121,7 @@
             //            }else{
             //                ss =[NSString stringWithFormat:@"%@",[pushTemplate objectForKey:@"context"]];
             //            }
-            ss =@"因为iPhone平庸了几代，也因为今年是iPhone诞生十周年，人们对iPhone 8的期望格外高一些。关于即将到来的iPhone 8，坊间曾盛传其将取消实体Home键，支持屏幕指纹识别功能。如果说这之前是人们一厢情愿的期望，那么现在还真已经有了一些切实依据。据了解，苹果曾收购过一家叫做LuxVue的公司，而该公司在micro-LED方面颇有研究。通过收购，苹果已经获得了包括一种超薄柔性屏生产方法在内的一系列知识产权。现如今，苹果又获得了一项专利，详细描述了一种通过红外发射器、传感器和高分辨率触摸来读取指纹的屏幕。";
+            ss =@"因为iPhone平庸了几代，也因为今年是iPhone诞生十周。";
             ownans=[[UILabel alloc] init];
             UIFont *font = [UIFont fontWithName:@"Arial" size:15];
             NSAttributedString *attributedText =
@@ -141,7 +142,7 @@
             //            }else{
             //                ss =[NSString stringWithFormat:@"%@",[pushTemplate objectForKey:@"context"]];
             //            }
-            ss =@"因为iPhone平庸了几代，也因为今年是iPhone诞生十周年，人们对iPhone 8的期望格外高一些。关于即将到来的iPhone 8，坊间曾盛传其将取消实体Home键，支持屏幕指纹识别功能。如果说这之前是人们一厢情愿的期望，那么现在还真已经有了一些切实依据。据了解，苹果曾收购过一家叫做LuxVue的公司，而该公司在micro-LED方面颇有研究。通过收购，苹果已经获得了包括一种超薄柔性屏生产方法在内的一系列知识产权。现如今，苹果又获得了一项专利，详细描述了一种通过红外发射器、传感器和高分辨率触摸来读取指纹的屏幕。";
+            ss =@"详细描述了一种通过红外发射器、传感器和高分辨率触摸来读取指纹的屏幕。";
             answer=[[UILabel alloc] init];
             UIFont *font = [UIFont fontWithName:@"Arial" size:15];
             NSAttributedString *attributedText =
@@ -178,14 +179,14 @@
     //        [suView removeFromSuperview];//移除全部子视图
     //    }
     if(indexPath.section==0){
-        UILabel *score =[[UILabel alloc]initWithFrame:CGRectMake(width/2-40,10,70,40)];
-        
-        score.textAlignment =NSTextAlignmentCenter;
-        score.font =[UIFont systemFontOfSize:25];
-        score.text =@"100分";
-        score.textColor =[UIColor redColor];
-        [cell addSubview:score];
-        cell.backgroundColor =[UIColor clearColor];
+//        UILabel *score =[[UILabel alloc]initWithFrame:CGRectMake(width/2-40,10,70,40)];
+//        
+//        score.textAlignment =NSTextAlignmentCenter;
+//        score.font =[UIFont systemFontOfSize:25];
+//        score.text =@"100分";
+//        score.textColor =[UIColor redColor];
+//        [cell addSubview:score];
+//        cell.backgroundColor =[UIColor clearColor];
     }else{
         if(indexPath.row==0){
            

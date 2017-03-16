@@ -218,7 +218,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     BackInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"backinfo"];
-    his.currentBatchId =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"currentBatchId"]];
+    his.classID=_classId;
     [self.navigationController pushViewController:his animated:YES];
 }
 /*

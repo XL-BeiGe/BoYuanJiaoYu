@@ -36,15 +36,15 @@
     [super viewDidLoad];
     [self delegate];
     self.title =@"错题记录";
-    _segment.selectedSegmentIndex = 0;
+    //_segment.selectedSegmentIndex = 0;
     [self navagat];
     touchNumber=1;
     
     [self cuotishaixuan];
     [self collectiondelegate];
-    leave =@"0";
-    clastyp =@"0";
-   //[self cuotijilu:@"1" leave:leave type:clastyp];
+    leave =@"";
+    clastyp =@"";
+   [self cuotijilu:@"1" leave:leave type:clastyp];
     
     
     
@@ -61,28 +61,18 @@
 
 //错题筛选
 -(void)cuotishaixuan{
-//    NSString *fangshi =@"/learningPortfolio/errorScreen";
-//    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:nil type:Post success:^(id responseObject) {
-//        NSLog(@"成功\n%@",responseObject);
-//        
-//        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-//
-//        }
-//        
-//    } failure:^(NSError *error) {
-//        NSLog(@"失败\n %@",error);
-//    }];
+
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/errorScreen";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
+        NSLog(@"筛选成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             leavearr =[NSMutableArray array];
             typearr =[NSMutableArray array];
-            leavearr = [[responseObject objectForKey:@"data"] objectForKey:@"classLevelList"];
-            typearr = [[responseObject objectForKey:@"data"] objectForKey:@"classTypeList"];
+            leavearr = [[responseObject objectForKey:@"data"] objectForKey:@"grades"];
+            typearr = [[responseObject objectForKey:@"data"] objectForKey:@"classes"];
             [mainCollectionView reloadData];
    
         }
@@ -95,12 +85,12 @@
 -(void)cuotijilu:(NSString*)isCorrect leave:(NSString*)leaves type:(NSString*)clastype{
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/errorList";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",isCorrect,@"isCorrect",leaves,@"classLevel",clastype,@"classType", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",leaves,@"classLevel",clastype,@"classType", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
+        NSLog(@"错题成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             arr =[NSMutableArray array];
-           arr =[[responseObject objectForKey:@"data"] objectForKey:@"classList"];
+           arr =[[responseObject objectForKey:@"data"] objectForKey:@"errorList"];
             if(arr.count==0){
                 NSLog(@"没有");
             }else{
@@ -156,9 +146,9 @@
     UILabel *title =(UILabel*)[cell viewWithTag:200];
     UIButton *class =(UIButton*)[cell viewWithTag:201];
     UILabel *groud =(UILabel*)[cell viewWithTag:202];
-    UILabel *zhang =(UILabel*)[cell viewWithTag:203];
+   // UILabel *zhang =(UILabel*)[cell viewWithTag:203];
     UILabel *numbe =(UILabel*)[cell viewWithTag:204];
-    UILabel *laiyu =(UILabel*)[cell viewWithTag:205];
+    //UILabel *laiyu =(UILabel*)[cell viewWithTag:205];
     UILabel *fancu =(UILabel*)[cell viewWithTag:206];
     UILabel *fcnum =(UILabel*)[cell viewWithTag:207];
     UILabel *gwron =(UILabel*)[cell viewWithTag:208];
@@ -169,47 +159,50 @@
     leftview.layer.borderWidth =0;
     fengview.layer.borderWidth =0;
     class.layer.cornerRadius =5;
-    if(nil==[arr[indexPath.section]objectForKey:@""]){
-    title.text =@"标题啦啦啦";
+    //题目
+    if(nil==[arr[indexPath.section]objectForKey:@"quesionName"]){
+    title.text =@"";
     }else{
-    title.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@""]];
+    title.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"quesionName"]];
     }
-    if(nil==[arr[indexPath.section]objectForKey:@""]){
-      [class setTitle:@"数学" forState:UIControlStateNormal];
+    //学科
+    if(nil==[arr[indexPath.section]objectForKey:@"xkName"]){
+     [class setTitle:@"" forState:UIControlStateNormal];
     }else{
-      [class setTitle:[arr[indexPath.section]objectForKey:@""] forState:UIControlStateNormal];
+      [class setTitle:[arr[indexPath.section]objectForKey:@"xkName"] forState:UIControlStateNormal];
     }
-    if(nil==[arr[indexPath.section]objectForKey:@""]){
-     groud.text =@"初中一年级";
+    //年级
+    if(nil==[arr[indexPath.section]objectForKey:@"className"]){
+     groud.text =@"";
     }else{
-      groud.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@""]];
+      groud.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"className"]];
     }
 //    if(nil==[arr[indexPath.section]objectForKey:@""]){
 //       zhang.text=@"第三册第五章";
 //    }else{
 //       zhang.text=[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@""]];
 //    }
-    if(nil==[arr[indexPath.section]objectForKey:@""]){
-        numbe.text =@"试题编号:102102";
+    //试题编号
+    if(nil==[arr[indexPath.section]objectForKey:@"quesionId"]){
+        numbe.text =@"试题编号:";
     }else{
-      numbe.text=[NSString stringWithFormat:@"试题编号:%@",[arr[indexPath.section]objectForKey:@""]];
+      numbe.text=[NSString stringWithFormat:@"试题编号:%@",[arr[indexPath.section]objectForKey:@"quesionId"]];
     }
-    if(nil==[arr[indexPath.section]objectForKey:@""]){
-       laiyu.text =@"来源:课堂测试";
-    }else{
-      laiyu.text=[NSString stringWithFormat:@"来源:%@",[arr[indexPath.section]objectForKey:@""]];
-    }
+    
+  
     fancu.text =@"犯错次数:";
     gwron.text =@"个人犯错:";
-    if(nil==[arr[indexPath.section]objectForKey:@""]){
-       fcnum.text =@"150次";
+    //犯错总次数
+    if(nil==[arr[indexPath.section]objectForKey:@"errorCount"]){
+       fcnum.text =@"";
     }else{
-       fcnum.text=[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@""]];
+       fcnum.text=[NSString stringWithFormat:@"%@次",[arr[indexPath.section]objectForKey:@"errorCount"]];
     }
-    if(nil==[arr[indexPath.section]objectForKey:@""]){
-        wrnum.text =@"3次"; 
+    //个人犯错
+    if(nil==[arr[indexPath.section]objectForKey:@"errorSelfCount"]){
+        wrnum.text =@""; 
     }else{
-      wrnum.text=[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@""]];
+      wrnum.text=[NSString stringWithFormat:@"%@次",[arr[indexPath.section]objectForKey:@"errorSelfCount"]];
     }
     
     
@@ -226,7 +219,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     RecordInfoViewController *rec = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"recordinfo"];
-    rec.questionId =@"";
+    rec.questionId =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"quesionId"]];
     [self.navigationController pushViewController:rec animated:YES];
 }
 /*
@@ -261,10 +254,10 @@
     VVV.frame=CGRectMake(width,0,width-80,heigh);
     [UIView commitAnimations];
     touchNumber=1;
-    leave =@"0";
-    clastyp =@"0";
-    [self cuotijilu:@"1" leave:leave type:clastyp];
     
+    [self cuotijilu:@"1" leave:leave type:clastyp];
+//    leave =@"";
+//    clastyp =@"";
    
     
 }
@@ -350,7 +343,7 @@
     //4.设置代理
     
     //    mainCollectionView.allowsSelection = YES;
-    //    mainCollectionView.allowsMultipleSelection = NO;
+    mainCollectionView.allowsMultipleSelection = NO;//允许多选
     mainCollectionView.delegate = self;
     mainCollectionView.dataSource = self;
     mainCollectionView.bounces = NO;
@@ -378,16 +371,16 @@
     
     
     if(indexPath.section==0){
-        if(nil==[leavearr[indexPath.row] objectForKey:@"classLevel"]){
+        if(nil==[leavearr[indexPath.row] objectForKey:@"name"]){
             cell.blabel.text =@"";
         }else{
-            cell.blabel.text =[NSString stringWithFormat:@"%@",[leavearr[indexPath.row] objectForKey:@"classLevel"]];
+            cell.blabel.text =[NSString stringWithFormat:@"%@",[leavearr[indexPath.row] objectForKey:@"name"]];
         }
     }else {
-        if(nil==[typearr[indexPath.row] objectForKey:@"classType"]){
+        if(nil==[typearr[indexPath.row] objectForKey:@"name"]){
             cell.blabel.text =@"";
         }else{
-            cell.blabel.text =[NSString stringWithFormat:@"%@",[typearr[indexPath.row] objectForKey:@"classType"]];
+            cell.blabel.text =[NSString stringWithFormat:@"%@",[typearr[indexPath.row] objectForKey:@"name"]];
         }
     }
     
@@ -456,9 +449,9 @@
     //    NSLog(@"%@",msg);
     //    NSLog(@"-----%ld----%ld",(long)indexPath.section,(long)indexPath.row);
     if(indexPath.section==0){
-        leave =[NSString stringWithFormat:@"%@",[leavearr[indexPath.row] objectForKey:@"classLevelId"]];
+        leave =[NSString stringWithFormat:@"%@",[leavearr[indexPath.row] objectForKey:@"id"]];
     }else{
-        clastyp =[NSString stringWithFormat:@"%@",[typearr[indexPath.row] objectForKey:@"classTypeId"]];
+        clastyp =[NSString stringWithFormat:@"%@",[typearr[indexPath.row] objectForKey:@"id"]];
     }
     
 }
