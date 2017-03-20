@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RecordInfoViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *table;
 
 @property (strong, nonatomic) NSString *questionId;
 @end

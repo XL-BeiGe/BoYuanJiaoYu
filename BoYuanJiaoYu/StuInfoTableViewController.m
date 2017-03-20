@@ -34,7 +34,7 @@
     [self xianshi];
     self.title =@"个人信息";
     [self beijing];//日期选择器背景
-    
+    [self comeback];
     self.tableView.bounces =NO;
     
     
@@ -46,7 +46,15 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
+-(void)comeback{
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back@2x"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    [self.navigationItem setLeftBarButtonItem:left];
+}
+-(void)fanhui{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(void)delegate{
     _sutname.delegate =self;
     _xingbie.delegate =self;

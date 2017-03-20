@@ -17,6 +17,7 @@
     BOOL use;
     NSMutableArray *arrr;
     NSString *jigouID;
+    NSUserDefaults *def;
 }
 @end
 
@@ -24,18 +25,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    def =[NSUserDefaults standardUserDefaults];
     self.title =@"登录";
     _username.text =@"13845120257";
     _password.text =@"111111";
-   // _username.text =@"15005143302";
-    //_password.text =@"123456";
-    //_username.text =@"13111111111";
+   
     [self bianhua];
     [self huoqujigou];
     // Do any additional setup after loading the view, typically from a nib.
 }
+-(void)viewWillAppear:(BOOL)animated{
+    if(nil==[def objectForKey:@"username"]){
+        _username.text =@"";
+    }else{
+        _username.text =[NSString stringWithFormat:@"%@",[def objectForKey:@"username"]];
+    }
+    if(nil==[def objectForKey:@"password"]){
+        _password.text =@"";
+    }else{
+        _password.text =[NSString stringWithFormat:@"%@",[def objectForKey:@"password"]];
+    }
 
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -134,6 +145,8 @@
             [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
             [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"parentId"] forKey:@"parentId"];
             [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"officeId"] forKey:@"officeId"];
+            [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",_username.text] forKey:@"username"];
+            [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",_password.text] forKey:@"password"];
           
            [WarningBox warningBoxModeText:@"登录成功" andView:self.view];
             TabBarViewController *atten = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
@@ -163,7 +176,8 @@
             [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
             [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"parentId"] forKey:@"parentId"];
             [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"officeId"] forKey:@"officeId"];
-    
+            [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",_username.text] forKey:@"username"];
+            [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",_password.text] forKey:@"password"];
             
             TabBarViewController *atten = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
             [self presentViewController:atten animated:YES completion:^{}];
@@ -213,6 +227,11 @@
     _pass.backgroundColor =[UIColor colorWithHexString:@"EAEEF2"];
     _forgot.hidden =YES;
     _password.placeholder =@"请输入密码";
+    if(nil==[def objectForKey:@"password"]){
+     _password.text =@"";
+    }else{
+    _password.text =[NSString stringWithFormat:@"%@",[def objectForKey:@"password"]];
+    }
     
 }
 

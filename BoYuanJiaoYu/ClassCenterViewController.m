@@ -362,7 +362,7 @@
     //4.设置代理
     
     //    mainCollectionView.allowsSelection = YES;
-        mainCollectionView.allowsMultipleSelection = YES;
+    mainCollectionView.allowsMultipleSelection = YES;
     mainCollectionView.delegate = self;
     mainCollectionView.dataSource = self;
     mainCollectionView.bounces = NO;
@@ -427,7 +427,7 @@
 //按照这个尺寸设置宽和高
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath  {
     
-    CGSize cc = CGSizeMake(70, 30);
+    CGSize cc = CGSizeMake(80, 30);
     
     return cc;
 }
@@ -442,7 +442,7 @@
 //手动设置边距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section  {
     // 顺序上左下右
-    return UIEdgeInsetsMake(10,10,20,10);
+    return UIEdgeInsetsMake(10,5,20,5);
     
 }
 ////标题

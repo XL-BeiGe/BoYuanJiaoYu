@@ -42,6 +42,7 @@
     
     [self cuotishaixuan];
     [self collectiondelegate];
+    [self comeback];
     leave =@"";
     clastyp =@"";
    [self cuotijilu:@"1" leave:leave type:clastyp];
@@ -55,7 +56,15 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)comeback{
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back@2x"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    [self.navigationItem setLeftBarButtonItem:left];
+}
+-(void)fanhui{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 
@@ -343,7 +352,7 @@
     //4.设置代理
     
     //    mainCollectionView.allowsSelection = YES;
-    mainCollectionView.allowsMultipleSelection = NO;//允许多选
+    mainCollectionView.allowsMultipleSelection = YES;//允许多选
     mainCollectionView.delegate = self;
     mainCollectionView.dataSource = self;
     mainCollectionView.bounces = NO;
@@ -388,7 +397,7 @@
     
     
     
-    
+    cell.layer.cornerRadius =5;
     return cell;
     
     

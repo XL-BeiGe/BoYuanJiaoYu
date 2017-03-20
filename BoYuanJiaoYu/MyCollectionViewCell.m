@@ -14,7 +14,7 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        _blabel =[[UILabel alloc]initWithFrame:CGRectMake(0,0,70, 30)];
+        _blabel =[[UILabel alloc]initWithFrame:CGRectMake(0,0,80, 30)];
         
         _blabel.font =[UIFont systemFontOfSize:15];
         _blabel.textAlignment =NSTextAlignmentCenter; 

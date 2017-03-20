@@ -24,6 +24,7 @@
     [super viewDidLoad];
     [self delegate];
     [self kechengxiangqing];
+    [self comeback];
     self.title =@"课程详情";
     // Do any additional setup after loading the view.
 }
@@ -32,7 +33,15 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)comeback{
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back@2x"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    [self.navigationItem setLeftBarButtonItem:left];
+}
+-(void)fanhui{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(void)kechengxiangqing{
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/curriculumCenter/classInfo";
