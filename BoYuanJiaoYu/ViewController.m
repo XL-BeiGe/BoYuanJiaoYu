@@ -31,7 +31,7 @@
     _password.text =@"111111";
    
     [self bianhua];
-    [self huoqujigou];
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -278,4 +278,7 @@
     return [regextestmobile evaluateWithObject:mobileNum];
 }
 
+- (IBAction)Change:(id)sender {
+    [self huoqujigou];
+}
 @end

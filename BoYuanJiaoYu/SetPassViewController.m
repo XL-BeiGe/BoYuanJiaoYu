@@ -7,6 +7,7 @@
 //
 
 #import "SetPassViewController.h"
+#import "ViewController.h"
 #import "XL_wangluo.h"
 #import "WarningBox.h"
 @interface SetPassViewController ()
@@ -45,6 +46,7 @@
 */
 
 - (IBAction)Sure:(id)sender {
+    //[WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/index/setPassword";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"parentId"],@"userId",_password.text,@"passWord", nil];
@@ -54,11 +56,17 @@
         NSLog(@"成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            
+           [WarningBox warningBoxModeText:@"修改成功" andView:self.view];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                ViewController *view = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
+                [self presentViewController:view animated:YES completion:^{}];
+            });
             
         }
         
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"修改失败，请重试" andView:self.view];
         NSLog(@"失败\n %@",error);
     }];
 }
