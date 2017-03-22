@@ -10,6 +10,7 @@
 #import "AttenHistoryViewController.h"
 #import "Color+Hex.h"
 #import "XL_wangluo.h"
+#import "WarningBox.h"
 @interface AttendanceViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     float width;
@@ -51,7 +52,7 @@
 
 
 -(void)lirequest{
-   
+    [WarningBox warningBoxModeIndeterminate:@"正在加载,请稍后" andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/attend/attendMainList";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1",@"pageNo",@"10",@"pageSize", nil];
@@ -60,6 +61,7 @@
         NSLog(@"成功\n%@",responseObject);
       
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            
             arr = [NSMutableArray array];
             arr=[[responseObject objectForKey:@"data"] objectForKey:@"attendList"];
             NSLog(@"%@",arr);
@@ -72,7 +74,8 @@
                 _table.hidden=NO;
                 [_table reloadData];
             }
-            
+        
+          
         }
         
     } failure:^(NSError *error) {

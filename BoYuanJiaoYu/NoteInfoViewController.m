@@ -15,6 +15,7 @@
     float width;
     float height;
     UILabel *messa;
+    NSMutableArray*arr;
 }
 @end
 
@@ -49,7 +50,8 @@
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-     
+            arr =[NSMutableArray array];
+            arr =[[responseObject objectForKey:@"data"] objectForKey:@"List"];
             
             
         }

@@ -15,6 +15,7 @@
 {
     float width;
     float height;
+    NSMutableArray *arr;
 }
 @end
 
@@ -26,6 +27,11 @@
     [self wangluo];
     self.title =@"通知列表";
     [self comeback];
+    //没拿到具体列表名称 未读提示写的不全
+    
+    
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -51,7 +57,8 @@
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-        
+            arr =[NSMutableArray array];
+            arr =[[responseObject objectForKey:@"data"] objectForKey:@"List"];
             
             
         }
@@ -77,7 +84,7 @@
     _table.bounces =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return arr.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -111,7 +118,12 @@
     
     banji.text =@"这里是通知标题";
     UIImageView*imageview1=[[UIImageView alloc] initWithFrame:CGRectMake(width-40,35,15,10)];
-    imageview1.image =[UIImage imageNamed:@"新消息提示-2.png"];
+    if(nil==[arr[indexPath.section]objectForKey:@""]){
+      imageview1.image =[UIImage imageNamed:@"新消息提示-2.png"];
+    }else{
+      imageview1.image =[UIImage imageNamed:@""];
+    }
+   
     
     
     

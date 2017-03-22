@@ -31,7 +31,9 @@
     _password.text =@"111111";
    
     [self bianhua];
-    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
     // Do any additional setup after loading the view, typically from a nib.
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -279,6 +281,7 @@
 }
 
 - (IBAction)Change:(id)sender {
+
     [self huoqujigou];
 }
 @end
