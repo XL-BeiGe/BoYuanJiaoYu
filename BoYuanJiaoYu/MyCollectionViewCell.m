@@ -17,7 +17,8 @@
         _blabel =[[UILabel alloc]initWithFrame:CGRectMake(0,0,80, 30)];
         
         _blabel.font =[UIFont systemFontOfSize:15];
-        _blabel.textAlignment =NSTextAlignmentCenter; 
+        _blabel.textAlignment =NSTextAlignmentCenter;
+        _blabel.adjustsFontSizeToFitWidth =YES;
         _blabel.layer.cornerRadius =5;
         _blabel.layer.borderWidth=1;
         [self.contentView addSubview:_blabel];

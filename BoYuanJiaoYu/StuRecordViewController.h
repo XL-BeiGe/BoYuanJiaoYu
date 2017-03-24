@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
+@property (weak, nonatomic) IBOutlet UIView *tableView;
 
 @end

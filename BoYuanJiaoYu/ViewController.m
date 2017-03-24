@@ -18,6 +18,8 @@
     NSMutableArray *arrr;
     NSString *jigouID;
     NSUserDefaults *def;
+    CGFloat cha;
+    int pan;
 }
 @end
 
@@ -27,16 +29,18 @@
     [super viewDidLoad];
     def =[NSUserDefaults standardUserDefaults];
     self.title =@"登录";
-    _username.text =@"13845120257";
-    _password.text =@"111111";
-   
+//    _username.text =@"13845120257";
+//    _password.text =@"111111";
+    [self registerForKeyboardNotifications];
     [self bianhua];
+    [self huoqujigou];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     // Do any additional setup after loading the view, typically from a nib.
 }
 -(void)viewWillAppear:(BOOL)animated{
+    
     if(nil==[def objectForKey:@"username"]){
         _username.text =@"";
     }else{
@@ -68,24 +72,33 @@
     use=YES;
     _username.delegate =self;
     _password.delegate =self;
+    [_username setClearButtonMode:UITextFieldViewModeWhileEditing];
+    
 }
 
 
 - (IBAction)Login:(id)sender {
-    if(_username.text.length==0){
-        [WarningBox warningBoxModeText:@"请输入手机号" andView:self.view];
-    }else if (_password.text.length==0){
-        [WarningBox warningBoxModeText:@"密码或验证码不能为空" andView:self.view];
-    }
-    else{
-        
-        if(use==YES){
-            [self logined];
-        }else{
-            [self quecklogin];
-        }
 
+     if(nil==jigouID){
+        [WarningBox warningBoxModeText:@"请选择机构" andView:self.view];
+    }else{
+        if(_username.text.length==0){
+            [WarningBox warningBoxModeText:@"请输入手机号" andView:self.view];
+            
+        }else if (_password.text.length==0){
+            [WarningBox warningBoxModeText:@"密码或验证码不能为空" andView:self.view];
+        }
+        else{
+            
+            if(use==YES){
+                [self logined];
+            }else{
+                [self quecklogin];
+            }
+            
+        }
     }
+    
 }
 //获取机构
 -(void)huoqujigou{
@@ -123,8 +136,9 @@
         int  key = index;
         NSString*message=[NSString stringWithFormat:@"%@",[arrr[key] objectForKey:@"name"]];
         UIAlertAction * action = [UIAlertAction actionWithTitle:message style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSLog(@"%@",[arrr[key] objectForKey:@"name"]);
+            
             //给新家的lable填写信息;
+            
             jigouID=[NSString stringWithFormat:@"%@",[arrr[key] objectForKey:@"id"]];
             
         }];
@@ -134,7 +148,6 @@
     [alert addAction:cancelAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
-
 //快速登录
 -(void)quecklogin{
     [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
@@ -217,39 +230,6 @@
     
     
 }
-- (IBAction)Forgot:(id)sender {
-    
-    [self SecurityCode];
-  
-}
-
-- (IBAction)Users:(id)sender {
-    use =YES;
-    _user.backgroundColor =[UIColor colorWithHexString:@"FFBE01"];
-    _pass.backgroundColor =[UIColor colorWithHexString:@"EAEEF2"];
-    _forgot.hidden =YES;
-    _password.placeholder =@"请输入密码";
-    if(nil==[def objectForKey:@"password"]){
-     _password.text =@"";
-    }else{
-    _password.text =[NSString stringWithFormat:@"%@",[def objectForKey:@"password"]];
-    }
-    
-}
-
-- (IBAction)passs:(id)sender {
-    use =NO;
-    _user.backgroundColor =[UIColor colorWithHexString:@"EAEEF2"];
-    _pass.backgroundColor =[UIColor colorWithHexString:@"FFBE01"];
-    _forgot.hidden =NO;
-    _password.placeholder =@"请输入验证码";
-    _password.text =@"";
-}
-
-
-
-
-
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
@@ -265,6 +245,8 @@
     
 }
 
+
+
 // 正则判断手机号码地址格式
 - (BOOL)isMobileNumber:(NSString *)mobileNum {
     
@@ -279,9 +261,90 @@
     
     return [regextestmobile evaluateWithObject:mobileNum];
 }
-
+- (IBAction)Forgot:(id)sender {
+    
+    [self SecurityCode];
+    
+}
+- (IBAction)Users:(id)sender {
+    use =YES;
+    _user.backgroundColor =[UIColor colorWithHexString:@"FFBE01"];
+    _pass.backgroundColor =[UIColor colorWithHexString:@"EAEEF2"];
+    _forgot.hidden =YES;
+    _password.placeholder =@"请输入密码";
+    if(nil==[def objectForKey:@"password"]){
+        _password.text =@"";
+    }else{
+        _password.text =[NSString stringWithFormat:@"%@",[def objectForKey:@"password"]];
+    }
+    
+}
+- (IBAction)passs:(id)sender {
+    use =NO;
+    _user.backgroundColor =[UIColor colorWithHexString:@"EAEEF2"];
+    _pass.backgroundColor =[UIColor colorWithHexString:@"FFBE01"];
+    _forgot.hidden =NO;
+    _password.placeholder =@"请输入验证码";
+    _password.text =@"";
+}
 - (IBAction)Change:(id)sender {
 
     [self huoqujigou];
 }
+
+#pragma  mark ---注册通知
+- (void) registerForKeyboardNotifications
+{
+    cha=0.0;
+    pan=0;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(qkeyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(qkeyboardWasHidden:) name:UIKeyboardWillHideNotification object:nil];
+}
+#pragma mark ----通知实现
+- (void) qkeyboardWasShown:(NSNotification *) notif
+{
+    if (pan==0) {
+        NSDictionary *info = [notif userInfo];
+        NSValue *value = [info objectForKey:UIKeyboardFrameBeginUserInfoKey];
+        CGSize keyboardSize = [value CGRectValue].size;
+        CGRect rect = CGRectMake(_lllll.frame.origin.x, _lllll.frame.origin.y, _lllll.frame.size.width,_lllll.frame.size.height);
+        CGFloat kongjian=rect.origin.y+rect.size.height;
+        CGFloat viewK=[UIScreen mainScreen].bounds.size.height;
+        CGFloat jianpan=keyboardSize.height;
+        if (viewK > kongjian+ jianpan) {
+            cha=0;
+        }else{
+            cha=viewK-kongjian-jianpan;
+        }
+        pan=1;
+        [self animateTextField:cha  up: YES];
+    }
+}
+- (void) qkeyboardWasHidden:(NSNotification *) notif
+{
+    pan=0;
+    [self animateTextField:cha up:NO];
+}
+//视图上移的方法
+- (void) animateTextField: (CGFloat) textField up: (BOOL) up
+{
+    
+    //设置视图上移的距离，单位像素
+    const int movementDistance = textField; // tweak as needed
+    //三目运算，判定是否需要上移视图或者不变
+    int movement = (up ? movementDistance : -movementDistance);
+    //设置动画的名字
+    [UIView beginAnimations: @"Animation" context: nil];
+    //设置动画的开始移动位置
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    //设置动画的间隔时间
+    [UIView setAnimationDuration: 0.20];
+    //设置视图移动的位移
+    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    //设置动画结束
+    [UIView commitAnimations];
+    
+}
+
 @end

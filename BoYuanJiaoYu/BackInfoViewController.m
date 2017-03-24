@@ -30,6 +30,7 @@
     [self fankuixiangqing];
     self.title =@"反馈详情";
     [self comeback];
+   
     // Do any additional setup after loading the view.
 }
 -(void)comeback{

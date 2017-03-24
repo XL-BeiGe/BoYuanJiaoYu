@@ -25,6 +25,7 @@
     [super viewDidLoad];
     [self delegate];
     [self wangluo];
+    [self wangluo];
     self.title =@"通知列表";
     [self comeback];
     //没拿到具体列表名称 未读提示写的不全
@@ -69,7 +70,23 @@
     
 
 }
-
+-(void)refrish{
+    //NSLog(@"setupRefresh -- 下拉刷新");
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
+    [self.table addSubview:refreshControl];
+    
+}
+- (void)refreshClick:(UIRefreshControl *)refreshControl {
+    
+    [refreshControl beginRefreshing];
+    
+    // NSLog(@"refreshClick: -- 刷新触发");
+    // 此处添加刷新tableView数据的代码
+    [self wangluo];
+    [refreshControl endRefreshing];
+    //[self.table reloadData];// 刷新tableView即可
+}
 
 
 -(void)delegate{

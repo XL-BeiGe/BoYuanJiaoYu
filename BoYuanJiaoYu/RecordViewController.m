@@ -267,7 +267,7 @@
     [self cuotijilu:@"1" leave:leave type:clastyp];
 //    leave =@"";
 //    clastyp =@"";
-   
+  
     
 }
 

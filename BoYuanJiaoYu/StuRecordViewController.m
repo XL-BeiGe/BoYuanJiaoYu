@@ -17,6 +17,7 @@
     BOOL tab;
     NSMutableArray *arr;
     NSString*clasid;
+    
 }
 @end
 
@@ -32,7 +33,7 @@
     tab=YES;
     
     [self baobanliebiao];
-    
+    [self thdigls];
     
     // Do any additional setup after loading the view.
 }
@@ -59,18 +60,14 @@
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-
             arr =[NSMutableArray array];
             arr =[[responseObject objectForKey:@"data"] objectForKey:@"classList"];
             if(arr.count==0){
                 _table.hidden =YES;
                 [WarningBox warningBoxModeText:@"尚未选课" andView:self.view];
             }else{
-            
              [_table reloadData];
             }
-            
-           
         }
         
     } failure:^(NSError *error) {
@@ -78,15 +75,51 @@
     }];
 
 }
-
-
+-(void)thdigls{
+    _tableView.layer.masksToBounds =YES;
+    _table.frame=CGRectMake(0, 0-_tableView.frame.size.height, _tableView.frame.size.width,170) ;
+}
+-(void)upanimal{
+    [UIView beginAnimations:nil context:nil];
+    //执行动画
+    //设置动画执行时间
+    [UIView setAnimationDuration:0.5];
+    //设置代理
+    [UIView setAnimationDelegate:self];
+    //设置动画执行完毕调用的事件
+    [UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
+    _table.frame=CGRectMake(0, 0-_tableView.frame.size.height, _tableView.frame.size.width,170);
+    [UIView commitAnimations];
+    
+}
+-(void)didStopAnimation{
+    
+ _tableView.hidden =YES;
+}
+-(void)didbeginAnimation{
+ _tableView.hidden=NO;
+}
 - (IBAction)tabelll:(id)sender {
     if(tab==YES){
-        _table.hidden=NO;
         tab=NO;
+        _tableView.hidden=NO;
+        [UIView beginAnimations:nil context:nil];
+        //执行动画
+        //设置动画执行时间
+        [UIView setAnimationDuration:0.5];
+        //设置代理
+        [UIView setAnimationDelegate:self];
+        //设置动画执行完毕调用的事件
+        [UIView setAnimationDidStopSelector:@selector(didbeginAnimation)];
+        _table.frame=CGRectMake(0,0,_tableView.frame.size.width,170);
+
+        [UIView commitAnimations];
+        
     }else{
-        _table.hidden=YES;
         tab=YES;
+        [self upanimal];
+       
+       // _tableView.hidden =YES;
     }
     
     
@@ -107,19 +140,19 @@
 }
 
 - (IBAction)CuoTi:(id)sender {
-    if([_clas.text isEqualToString:@""]){
-        [WarningBox warningBoxModeText:@"您没有选课" andView:self.view];
-    }else{
+//    if([_clas.text isEqualToString:@""]){
+//        [WarningBox warningBoxModeText:@"您没有选课" andView:self.view];
+//    }else{
     RecordViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"record"];
     [self.navigationController pushViewController:his animated:YES];
     //[self.navigationController pushViewController:atten animated:YES];
-    }
+    //}
 }
 
 -(void)delegate{
     _table.delegate=self;
     _table.dataSource=self;
-    //_table.backgroundColor =[UIColor clearColor];
+    _table.backgroundColor =[UIColor clearColor];
    self.table.tableFooterView=[[UIView alloc] init];
     _table.bounces =NO;
 //    self.automaticallyAdjustsScrollViewInsets = NO;
@@ -156,7 +189,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _clas.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"className"]];
     clasid =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"classId"]];
-    _table.hidden=YES;
+    [self upanimal];
     tab=YES;
 }
 

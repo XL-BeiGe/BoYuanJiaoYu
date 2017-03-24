@@ -27,6 +27,7 @@
     [self comeback];
     [self delegate];
     [self wlrequest];
+    
     width =[UIScreen mainScreen].bounds.size.width;
     
     // Do any additional setup after loading the view.
@@ -42,25 +43,19 @@
     [self.navigationItem setLeftBarButtonItem:left];
 }
 -(void)fanhui{
-//    XLStatisticsViewController *xln=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"statistics"];
-//    for (UIViewController *controller in self.navigationController.viewControllers) {
-//        if ([controller isKindOfClass:[xln class]]) {
-//            [self.navigationController popToViewController:controller animated:YES];
-//        }
-//    }
+
      [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)wlrequest{
-
-        
+        [WarningBox warningBoxModeIndeterminate:@"正在加载,请稍后" andView:self.view];
         NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
         NSString *fangshi =@"/attend/attendanceHistoryList";
         NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1",@"pageNo",@"10",@"pageSize",[def objectForKey:@"officeId"],@"officeId", nil];
         
         [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
             NSLog(@"成功\n%@",responseObject);
-            
+            [WarningBox warningBoxHide:YES andView:self.view];
             if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
                 arr =[NSMutableArray array];
                 arr=[[responseObject objectForKey:@"data"] objectForKey:@"attendList"];
@@ -78,12 +73,30 @@
             
         } failure:^(NSError *error) {
             NSLog(@"失败\n %@",error);
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         }];
         
         
    
 }
-
+-(void)refrish{
+    //NSLog(@"setupRefresh -- 下拉刷新");
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
+    [self.table addSubview:refreshControl];
+    
+}
+- (void)refreshClick:(UIRefreshControl *)refreshControl {
+    
+    [refreshControl beginRefreshing];
+    
+    // NSLog(@"refreshClick: -- 刷新触发");
+    // 此处添加刷新tableView数据的代码
+    [self wlrequest];
+    [refreshControl endRefreshing];
+    //[self.table reloadData];// 刷新tableView即可
+}
 -(void)delegate{
     _table.delegate=self;
     _table.dataSource=self;

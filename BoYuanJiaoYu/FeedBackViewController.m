@@ -27,6 +27,7 @@
     [self comeback];
     //[self navagat];
     [self ketangfankui];
+    [self refrish];
     
     self.title =@"课堂反馈";
     // Do any additional setup after loading the view.
@@ -63,7 +64,23 @@
     }];
 
 }
-
+-(void)refrish{
+    //NSLog(@"setupRefresh -- 下拉刷新");
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
+    [self.table addSubview:refreshControl];
+    
+}
+- (void)refreshClick:(UIRefreshControl *)refreshControl {
+    
+    [refreshControl beginRefreshing];
+    
+    // NSLog(@"refreshClick: -- 刷新触发");
+    // 此处添加刷新tableView数据的代码
+    [self ketangfankui];
+    [refreshControl endRefreshing];
+    //[self.table reloadData];// 刷新tableView即可
+}
 
 //-(void)navagat{
 //    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];

@@ -26,6 +26,7 @@
     [self navagat];
     [self delegate];
     [self lirequest];
+    [self refrish];
     self.title =@"最新考勤";
     width =[UIScreen mainScreen].bounds.size.width;
     // Do any additional setup after loading the view.
@@ -59,7 +60,7 @@
    
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
-      
+       [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             
             arr = [NSMutableArray array];
@@ -80,6 +81,8 @@
         
     } failure:^(NSError *error) {
         NSLog(@"失败\n %@",error);
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
     }];
 
 
@@ -90,7 +93,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark--刷新方法
+-(void)refrish{
+    //NSLog(@"setupRefresh -- 下拉刷新");
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
+    [self.table addSubview:refreshControl];
+    
+}
+- (void)refreshClick:(UIRefreshControl *)refreshControl {
+    
+    [refreshControl beginRefreshing];
+    
+    // NSLog(@"refreshClick: -- 刷新触发");
+    // 此处添加刷新tableView数据的代码
+    [self lirequest];
+    [refreshControl endRefreshing];
+    //[self.table reloadData];// 刷新tableView即可
+}
 -(void)delegate{
     _table.delegate=self;
     _table.dataSource=self;
