@@ -46,7 +46,7 @@
 */
 
 - (IBAction)Sure:(id)sender {
-    //[WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
+   [WarningBox warningBoxModeIndeterminate:@"正在修改" andView:self.view];
    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/index/setPassword";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"parentId"],@"userId",_password.text,@"passWord", nil];

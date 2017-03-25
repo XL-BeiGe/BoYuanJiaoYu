@@ -121,7 +121,7 @@
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"parentId"],@"parentId",_phoneNum.text,@"tel",[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
-        
+         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
            [WarningBox warningBoxModeText:@"邀请成功" andView:self.view];
            [self remov];
@@ -133,6 +133,7 @@
         
     } failure:^(NSError *error) {
         NSLog(@"失败\n %@",error);
+        [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"邀请失败,请重新邀请" andView:self.view];
         [self remov];
     }];

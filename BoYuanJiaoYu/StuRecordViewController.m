@@ -71,6 +71,7 @@
         }
         
     } failure:^(NSError *error) {
+        [WarningBox warningBoxModeText:@"网络连接失败" andView:self.view];
         NSLog(@"失败\n %@",error);
     }];
 

@@ -92,12 +92,14 @@
 }
 //错题记录
 -(void)cuotijilu:(NSString*)isCorrect leave:(NSString*)leaves type:(NSString*)clastype{
+    [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/errorList";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",leaves,@"classLevel",clastype,@"classType", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"错题成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            [WarningBox warningBoxHide:YES andView:self.view];
             arr =[NSMutableArray array];
            arr =[[responseObject objectForKey:@"data"] objectForKey:@"errorList"];
             if(arr.count==0){
@@ -108,6 +110,8 @@
         }
         
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败" andView:self.view];
         NSLog(@"失败\n %@",error);
     }];
 }
@@ -406,7 +410,7 @@
 //按照这个尺寸设置宽和高
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath  {
     
-    CGSize cc = CGSizeMake(70, 30);
+    CGSize cc = CGSizeMake(80, 30);
     
     return cc;
 }
@@ -421,7 +425,7 @@
 //手动设置边距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section  {
     // 顺序上左下右
-    return UIEdgeInsetsMake(10,10,20,10);
+    return UIEdgeInsetsMake(10,5,20,5);
     
 }
 ////标题

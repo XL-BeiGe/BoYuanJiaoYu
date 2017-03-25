@@ -121,13 +121,14 @@
 
 #pragma mark--接口
 -(void)kechengclassleave:(NSString*)classle classtype:(NSString*)type teacherid:(NSString*)teachid{
+    [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/curriculumCenter/classInfoList";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",classle,@"classLevel",type,@"classType",teachid,@"teacherId",[def objectForKey:@"officeId"],@"officeId", nil];
 
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"课程中心成功\n%@",responseObject);
-        
+        [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             arr = [NSMutableArray array];
             arr=[[responseObject objectForKey:@"data"] objectForKey:@"classInfoList"];
@@ -145,6 +146,8 @@
         }
         
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
         NSLog(@"失败\n %@",error);
     }];
     

@@ -43,13 +43,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)kechengxiangqing{
+    [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/curriculumCenter/classInfo";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_claassID,@"classId",[def objectForKey:@"officeId"],@"officeId", nil];
     
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
-        
+        [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             arr = [NSMutableDictionary dictionary];
             arr=[responseObject objectForKey:@"data"];
@@ -68,6 +69,8 @@
         }
         
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
         NSLog(@"失败\n %@",error);
     }];
 

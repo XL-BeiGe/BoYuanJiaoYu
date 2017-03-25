@@ -26,7 +26,7 @@
                   moduleName = "BoYuanJiaoYu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/BackHistoryViewController.m"
-                  timestampString = "512030992.323449"
+                  timestampString = "512105597.36098"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "37"
@@ -41,7 +41,7 @@
                   moduleName = "BoYuanJiaoYu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/BackHistoryViewController.m"
-                  timestampString = "512030992.325448"
+                  timestampString = "512105597.363034"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "38"
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BoYuanJiaoYu/OwnerViewController.m"
-            timestampString = "511250242.424821"
+            timestampString = "512105596.327508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "-gerenxinxi"
             landmarkType = "7">
             <Locations>
@@ -95,102 +95,6 @@
                   startingLineNumber = "153"
                   endingLineNumber = "153"
                   offsetFromSymbolStart = "68">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BoYuanJiaoYu/StuInfoTableViewController.m"
-            timestampString = "511681735.678534"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
-            landmarkName = "-xiugaixinxi"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[StuInfoTableViewController xiugaixinxi]"
-                  moduleName = "BoYuanJiaoYu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/StuInfoTableViewController.m"
-                  timestampString = "512030992.329455"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "280"
-                  endingLineNumber = "280"
-                  offsetFromSymbolStart = "1136">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__41-[StuInfoTableViewController xiugaixinxi]_block_invoke"
-                  moduleName = "BoYuanJiaoYu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/StuInfoTableViewController.m"
-                  timestampString = "512030992.331362"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "281"
-                  endingLineNumber = "281"
-                  offsetFromSymbolStart = "48">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BoYuanJiaoYu/RecordViewController.m"
-            timestampString = "511681735.678534"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "-cuotijilu:leave:type:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[RecordViewController cuotijilu:leave:type:]"
-                  moduleName = "BoYuanJiaoYu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/RecordViewController.m"
-                  timestampString = "511254996.007491"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "89"
-                  endingLineNumber = "89"
-                  offsetFromSymbolStart = "396">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__45-[RecordViewController cuotijilu:leave:type:]_block_invoke"
-                  moduleName = "BoYuanJiaoYu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/RecordViewController.m"
-                  timestampString = "511254996.009794"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "64">
                </Location>
             </Locations>
          </BreakpointContent>

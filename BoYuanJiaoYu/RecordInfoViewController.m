@@ -32,16 +32,19 @@
 }
 //错题详情
 -(void)cuotixiangqing{
+    [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
     // NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/errorInfo";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_questionId,@"questionId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            
+            [WarningBox warningBoxHide:YES andView:self.view];
         }
         
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败" andView:self.view];
         NSLog(@"失败\n %@",error);
     }];
     

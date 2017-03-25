@@ -270,7 +270,7 @@
     
 
     
-    
+    [WarningBox warningBoxModeIndeterminate:@"正在修改" andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/userInfo/modifyUserInfoBase";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"officeId"],@"officeId",_sutname.text,@"studentName",_birthday.text,@"studentBirtyday",_school.text,@"studentSchool",_groud.text,@"studentGrade",_parname.text,@"parentNick",_phone.text,@"parentTel",studentSex,@"studentSex",studentAge,@"studentAge",parentRole,@"parentRole", nil];
@@ -279,13 +279,19 @@
     
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
+        [WarningBox warningBoxHide:YES andView:self.view];
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            
+            [WarningBox warningBoxModeText:@"修改成功" andView:self.view];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+              [self.navigationController popViewControllerAnimated:YES];  
+            });
             
         }
         
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
         NSLog(@"失败\n %@",error);
     }];
 }
