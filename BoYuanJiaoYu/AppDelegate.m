@@ -16,7 +16,7 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
-#define appkey @"f8c33a34b64f258586c0cdf3"
+#define appkey @"f3655879f18d4f1465214ca4"
 #define channell @""
 #define isProduction @"0"
 
@@ -87,12 +87,12 @@ static AppDelegate *_appDelegate;
 }
 
 -(void)method{
-    NSString*tag=[[NSUserDefaults standardUserDefaults] objectForKey:@"mendian"];
-    NSSet *tags=[NSSet setWithObjects:tag, nil];
+//    NSString*tag=[[NSUserDefaults standardUserDefaults] objectForKey:@"mendian"];
+//    NSSet *tags=[NSSet setWithObjects:tag, nil];
     
-    NSString*alias=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"]];
+    NSString*alias=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"studentId"]];
     
-    [JPUSHService setTags:tags alias:alias fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias){
+    [JPUSHService setTags:nil alias:alias fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias){
     }];
     
 }
@@ -106,15 +106,14 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 #pragma mark- JPUSHRegisterDelegate
 // iOS 10 Support
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
-    
-    NSDictionary * userInfo = notification.request.content.userInfo;
-    
     // Required
+    NSDictionary * userInfo = notification.request.content.userInfo;
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
-    }else
-        completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+    }
+    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
 }
+
 // iOS 10 Support
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
     // Required
@@ -124,17 +123,18 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     }
     completionHandler();  // 系统要求执行这个方法
 }
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
     // Required, iOS 7 Support
     [JPUSHService handleRemoteNotification:userInfo];
-    
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
--(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-  [JPUSHService handleRemoteNotification:userInfo];
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    // Required,For systems with less than or equal to iOS6
+    [JPUSHService handleRemoteNotification:userInfo];
 }
-
 
 @end
