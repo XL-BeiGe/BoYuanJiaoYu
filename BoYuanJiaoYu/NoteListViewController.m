@@ -25,7 +25,6 @@
     [super viewDidLoad];
     [self delegate];
     [self wangluo];
-    [self wangluo];
     self.title =@"通知列表";
     [self comeback];
     //没拿到具体列表名称 未读提示写的不全
@@ -52,12 +51,15 @@
 
 
 -(void)wangluo{
+    [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/userInfo/pushList";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
+        
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            [WarningBox warningBoxHide:YES andView:self.view];
             arr =[NSMutableArray array];
             arr =[[responseObject objectForKey:@"data"] objectForKey:@"List"];
             
@@ -65,6 +67,8 @@
         }
         
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
         NSLog(@"失败\n %@",error);
     }];
     

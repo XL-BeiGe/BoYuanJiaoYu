@@ -26,7 +26,6 @@
     [self delegate];
     [self wangluo];
     [self comeback];
-    [self wangluo];
     self.title =@"通知详情";
     // Do any additional setup after loading the view.
 }
@@ -45,11 +44,13 @@
 }
 
 -(void)wangluo{
+    [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
     //通知的状态还不知道有几个
     NSString *fangshi =@"/userInfo/pushInfo";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_pushId,@"pushId",@"2",@"State", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
+        [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             arr =[NSMutableArray array];
             arr =[[responseObject objectForKey:@"data"] objectForKey:@"List"];
@@ -58,6 +59,8 @@
         }
         
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
         NSLog(@"失败\n %@",error);
   
     }];

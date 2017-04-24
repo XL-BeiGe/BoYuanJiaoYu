@@ -18,7 +18,8 @@
 #define Scheme  @"http://"
 
 //#define WaiwangIP @"192.168.1.131:8080"
-#define WaiwangIP @"47.92.5.144:8080"
+//#define WaiwangIP @"47.92.5.144:8080"
+//#define WaiwangIP @"www.hljbyjy.com"
 #define AppName @"/boyuanjiaoyu"
 #define apath    @"/api/rest/1.0"
 #define WaiWang [NSString stringWithFormat:@"%@%@%@%@",Scheme,WaiwangIP,AppName,apath]
