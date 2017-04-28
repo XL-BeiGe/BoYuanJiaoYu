@@ -77,9 +77,9 @@
 }
 */
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-//   _inviteview.hidden =YES;
-//    [self remov];
     [self.view endEditing:YES];
+    _inviteview.hidden =YES;
+    [self remov];
 }
 //修改个人信息
 - (IBAction)Edit:(id)sender {
@@ -101,6 +101,7 @@
 }
 //关于我们
 - (IBAction)About:(id)sender {
+    //暂时还不知道是啥那
     ExplainViewController *explain = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"explain"];
     [self.navigationController pushViewController:explain animated:YES];
 }
@@ -109,12 +110,19 @@
     [self.navigationController pushViewController:change animated:YES];
 }
 - (IBAction)Sure:(id)sender {
+    if(![self isMobileNumber:_phoneNum.text]){
+         [_phoneNum resignFirstResponder];
+        [WarningBox warningBoxModeText:@"手机号输入有误,请重新输入" andView:self.view];
+       
+    }else{
     _inviteview.hidden= YES;
     [_phoneNum resignFirstResponder];
     [self inviteparents];
+    }
 }
 //邀请家人接口
 -(void)inviteparents{
+    
     [WarningBox warningBoxModeIndeterminate:@"正在邀请" andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/userInfo/userInfo";
@@ -138,7 +146,7 @@
         [self remov];
     }];
   
-    
+   
    
 }
 

@@ -331,7 +331,7 @@
     if(textField==_phone){
         [self isMobileNumber:_phone.text];
         if(![self isMobileNumber:_phone.text]){
-            NSLog(@"手机号错误");
+          [WarningBox warningBoxModeText:@"手机号码有误,请重新输入" andView:self.view];
         }
     }
 

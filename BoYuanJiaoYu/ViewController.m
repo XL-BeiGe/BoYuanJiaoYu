@@ -33,7 +33,7 @@
 //    _password.text =@"111111";
     [self registerForKeyboardNotifications];
     [self bianhua];
-    [self huoqujigou];
+    //[self huoqujigou];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -78,10 +78,10 @@
 
 
 - (IBAction)Login:(id)sender {
-
-     if(nil==jigouID){
-        [WarningBox warningBoxModeText:@"请选择机构" andView:self.view];
-    }else{
+[self.view endEditing:YES];
+//     if(nil==jigouID){
+//        [WarningBox warningBoxModeText:@"请选择机构" andView:self.view];
+//    }else{
         if(_username.text.length==0){
             [WarningBox warningBoxModeText:@"请输入手机号" andView:self.view];
             
@@ -89,22 +89,21 @@
             [WarningBox warningBoxModeText:@"密码或验证码不能为空" andView:self.view];
         }
         else{
-            
-            if(use==YES){
-                [self logined];
+            if(![self isMobileNumber:_username.text]){
+                [WarningBox warningBoxModeText:@"请检查手机号" andView:self.view];
             }else{
-                [self quecklogin];
+            [self huoqujigou];
             }
             
         }
-    }
+  //  }
     
 }
 //获取机构
 -(void)huoqujigou{
     NSString *fangshi =@"/curriculumCenter/officeList";
-    
-    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:nil type:Post success:^(id responseObject) {
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_username.text,@"tel", nil];
+    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
@@ -139,7 +138,15 @@
             
             //给新家的lable填写信息;
             
+            
+            
             jigouID=[NSString stringWithFormat:@"%@",[arrr[key] objectForKey:@"id"]];
+            if(use==YES){
+                [self logined];
+            }else{
+                [self quecklogin];
+            }
+            
             
         }];
         [alert addAction:action];
@@ -150,6 +157,7 @@
 }
 //快速登录
 -(void)quecklogin{
+    
     [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
     NSString *fangshi =@"/index/quickLogin";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_password.text,@"code",_username.text,@"userName",@"",@"deviceToken",jigouID,@"officeId", nil];
@@ -211,22 +219,27 @@
 
 //获取验证码
 -(void)SecurityCode{
-    
-    NSString *fangshi =@"/index/getAuthCode";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_username.text,@"userName",jigouID,@"officeId", nil];
-    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
-        
-        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            [WarningBox warningBoxModeText:@"验证码已发送" andView:self.view];
-        }else{
-           // [WarningBox warningBoxHide:YES andView:self.view];
-            [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
-        }
-        
-    } failure:^(NSError *error) {
-        NSLog(@"失败\n %@",error);
-    }];
+    [self.view endEditing:YES];
+    if(![self isMobileNumber:_username.text]){
+        [WarningBox warningBoxModeText:@"请检查手机号" andView:self.view];
+    }else{
+        NSString *fangshi =@"/index/getAuthCode";
+        NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_username.text,@"userName",jigouID,@"officeId", nil];
+        [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+            NSLog(@"成功\n%@",responseObject);
+            
+            if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+                [WarningBox warningBoxModeText:@"验证码已发送" andView:self.view];
+            }else{
+                // [WarningBox warningBoxHide:YES andView:self.view];
+                [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
+            }
+            
+        } failure:^(NSError *error) {
+            NSLog(@"失败\n %@",error);
+        }];
+    }
+   
     
     
 }
@@ -288,7 +301,7 @@
     _password.text =@"";
 }
 - (IBAction)Change:(id)sender {
-
+    
     [self huoqujigou];
 }
 

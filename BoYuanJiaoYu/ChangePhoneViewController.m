@@ -47,23 +47,28 @@
 */
 //获取验证码
 - (IBAction)secuti:(id)sender {
-    [WarningBox warningBoxModeIndeterminate:@"正在发送" andView:self.view];
-   NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
-    NSString *fangshi =@"/index/getAuthCode";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_phone.text,@"userName",[def objectForKey:@"officeId"],@"officeId", nil];
-    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
-        [WarningBox warningBoxHide:YES andView:self.view];
-        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-         [WarningBox warningBoxModeText:@"验证码已发送" andView:self.view];
+    if(![self isMobileNumber:_phone.text]){
+    [WarningBox warningBoxModeText:@"请检查手机号" andView:self.view];
+    }else{
+        [WarningBox warningBoxModeIndeterminate:@"正在发送" andView:self.view];
+        NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+        NSString *fangshi =@"/index/getAuthCode";
+        NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_phone.text,@"userName",[def objectForKey:@"officeId"],@"officeId", nil];
+        [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+            NSLog(@"成功\n%@",responseObject);
+            [WarningBox warningBoxHide:YES andView:self.view];
+            if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+                [WarningBox warningBoxModeText:@"验证码已发送" andView:self.view];
+                
+            }
             
-        }
-        
-    } failure:^(NSError *error) {
-         [WarningBox warningBoxHide:YES andView:self.view];
-        [WarningBox warningBoxModeText:@"发送失败,请重新发送" andView:self.view];
-        NSLog(@"失败\n %@",error);
-    }];
+        } failure:^(NSError *error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"发送失败,请重新发送" andView:self.view];
+            NSLog(@"失败\n %@",error);
+        }];
+    }
+    
 
     
 }
@@ -95,4 +100,20 @@
 
     
 }
+// 正则判断手机号码地址格式
+- (BOOL)isMobileNumber:(NSString *)mobileNum {
+    
+    //    电信号段:133/153/180/181/189/177
+    //    联通号段:130/131/132/155/156/185/186/145/176
+    //    移动号段:134/135/136/137/138/139/150/151/152/157/158/159/182/183/184/187/188/147/178
+    //    虚拟运营商:170
+    
+    NSString *MOBILE = @"^1(3[0-9]|4[57]|5[0-35-9]|8[0-9]|7[06-8])\\d{8}$";
+    
+    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
+    
+    return [regextestmobile evaluateWithObject:mobileNum];
+}
+
+
 @end

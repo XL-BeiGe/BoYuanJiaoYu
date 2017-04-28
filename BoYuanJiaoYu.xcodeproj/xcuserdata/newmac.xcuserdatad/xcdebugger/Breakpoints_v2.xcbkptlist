@@ -26,7 +26,7 @@
                   moduleName = "BoYuanJiaoYu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/BackHistoryViewController.m"
-                  timestampString = "514705793.940617"
+                  timestampString = "514974629.824733"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "37"
@@ -41,60 +41,12 @@
                   moduleName = "BoYuanJiaoYu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/BackHistoryViewController.m"
-                  timestampString = "514705793.942715"
+                  timestampString = "514974629.826944"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "38"
                   endingLineNumber = "38"
                   offsetFromSymbolStart = "48">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BoYuanJiaoYu/OwnerViewController.m"
-            timestampString = "512105596.327508"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "-gerenxinxi"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[OwnerViewController gerenxinxi]"
-                  moduleName = "BoYuanJiaoYu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/OwnerViewController.m"
-                  timestampString = "511250591.891478"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "152"
-                  endingLineNumber = "152"
-                  offsetFromSymbolStart = "436">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__33-[OwnerViewController gerenxinxi]_block_invoke"
-                  moduleName = "BoYuanJiaoYu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/OwnerViewController.m"
-                  timestampString = "511250591.893459"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "153"
-                  endingLineNumber = "153"
-                  offsetFromSymbolStart = "68">
                </Location>
             </Locations>
          </BreakpointContent>

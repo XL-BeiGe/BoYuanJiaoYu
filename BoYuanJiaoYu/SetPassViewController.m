@@ -46,28 +46,34 @@
 */
 
 - (IBAction)Sure:(id)sender {
-   [WarningBox warningBoxModeIndeterminate:@"正在修改" andView:self.view];
-   NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
-    NSString *fangshi =@"/index/setPassword";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"parentId"],@"userId",_password.text,@"passWord", nil];
-
-    
-    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
-        [WarningBox warningBoxModeText:@"修改成功" andView:self.view];
-        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-           
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                ViewController *view = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
-                [self presentViewController:view animated:YES completion:^{}];
-            });
-            
-        }
+    if(_password.text.length==0){
+    [WarningBox warningBoxModeText:@"请输入密码" andView:self.view];
+    }else{
+        [WarningBox warningBoxModeIndeterminate:@"正在修改" andView:self.view];
+        NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+        NSString *fangshi =@"/index/setPassword";
+        NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"parentId"],@"userId",_password.text,@"passWord", nil];
         
-    } failure:^(NSError *error) {
-        [WarningBox warningBoxHide:YES andView:self.view];
-        [WarningBox warningBoxModeText:@"修改失败，请重试" andView:self.view];
-        NSLog(@"失败\n %@",error);
-    }];
+        
+        [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+            NSLog(@"成功\n%@",responseObject);
+            [WarningBox warningBoxModeText:@"修改成功" andView:self.view];
+            if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    ViewController *view = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
+                    [self presentViewController:view animated:YES completion:^{}];
+                });
+                
+            }
+            
+        } failure:^(NSError *error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"修改失败，请重试" andView:self.view];
+            NSLog(@"失败\n %@",error);
+        }];
+    }
+    
+  
 }
 @end

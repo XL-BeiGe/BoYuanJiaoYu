@@ -108,10 +108,10 @@
     }else{
         if(indexPath.row==0){
             NSString* ss=[[NSString alloc] init];
-                        //            if(nil==[pushTemplate objectForKey:@"title"]){
+                        //            if(nil==[infoarr objectForKey:@"title"]){
                         //                ss =@"";
                         //            }else{
-                        //                ss =[NSString stringWithFormat:@"%@",[pushTemplate objectForKey:@"context"]];
+                        //                ss =[NSString stringWithFormat:@"%@",[infoarr objectForKey:@"context"]];
                         //            }
             ss =@"因为iPhone平庸了几";
             title=[[UILabel alloc] init];
@@ -131,10 +131,10 @@
       
         if (indexPath.row==1){
             NSString* ss=[[NSString alloc] init];
-            //            if(nil==[pushTemplate objectForKey:@"title"]){
+            //            if(nil==[infoarr objectForKey:@"title"]){
             //                ss =@"";
             //            }else{
-            //                ss =[NSString stringWithFormat:@"%@",[pushTemplate objectForKey:@"context"]];
+            //                ss =[NSString stringWithFormat:@"%@",[infoarr objectForKey:@"context"]];
             //            }
             ss =@"因为iPhone平庸了几代，也因为今年是iPhone诞生十周。";
             ownans=[[UILabel alloc] init];
@@ -152,10 +152,10 @@
         }
         if (indexPath.row==2){
             NSString* ss=[[NSString alloc] init];
-            //            if(nil==[pushTemplate objectForKey:@"title"]){
+            //            if(nil==[infoarr objectForKey:@"title"]){
             //                ss =@"";
             //            }else{
-            //                ss =[NSString stringWithFormat:@"%@",[pushTemplate objectForKey:@"context"]];
+            //                ss =[NSString stringWithFormat:@"%@",[infoarr objectForKey:@"context"]];
             //            }
             ss =@"详细描述了一种通过红外发射器、传感器和高分辨率触摸来读取指纹的屏幕。";
             answer=[[UILabel alloc] init];
