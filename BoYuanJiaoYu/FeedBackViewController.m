@@ -175,6 +175,7 @@
         [left2 setTitle:@"" forState:UIControlStateNormal];
         }else{
         [left2 setTitle:[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"classType"]] forState:UIControlStateNormal];
+            left2.titleLabel.adjustsFontSizeToFitWidth =YES;
         }
         
         
@@ -211,26 +212,26 @@
     }
     else{
       
-        UIButton *btn1 =[[UIButton alloc]initWithFrame:CGRectMake(width/2-140, 10, 130, 30)];
-        UIButton *btn2 =[[UIButton alloc]initWithFrame:CGRectMake(width/2+20, 10, 130, 30)];
+        UIButton *btn1 =[[UIButton alloc]initWithFrame:CGRectMake(20, 10,width-40, 30)];
+        //UIButton *btn2 =[[UIButton alloc]initWithFrame:CGRectMake(width/2+20, 10, 130, 30)];
         [btn1 setTitle:@"今日作业" forState:UIControlStateNormal];
-        [btn2 setTitle:@"课堂测试" forState:UIControlStateNormal];
+       
         [btn1 setTitleColor:[UIColor colorWithHexString:@"fe528e"] forState:UIControlStateNormal];
-        [btn2 setTitleColor:[UIColor colorWithHexString:@"01b9fe"] forState:UIControlStateNormal];
+       
         btn1.titleLabel.font =[UIFont systemFontOfSize:15];
-        btn2.titleLabel.font =[UIFont systemFontOfSize:15];
+        
         [btn1 setImage:[UIImage imageNamed:@"zuoye.png"] forState:UIControlStateNormal];
-        [btn2 setImage:[UIImage imageNamed:@"ceshi.png"] forState:UIControlStateNormal];
+        
         [btn1 setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
-        [btn2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+ 
         btn1.layer.borderWidth =1;
-        btn2.layer.borderWidth =1;
+ 
         btn1.layer.cornerRadius =15;
-        btn2.layer.cornerRadius =15;
+      
         btn1.layer.borderColor =[[UIColor colorWithHexString:@"fe528e"]CGColor];
-        btn2.layer.borderColor =[[UIColor colorWithHexString:@"01b9fe"]CGColor];
+      
         [cell addSubview:btn1];
-        [cell addSubview:btn2];
+  
         
     }
     

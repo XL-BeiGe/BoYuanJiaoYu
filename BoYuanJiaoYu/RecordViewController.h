@@ -10,6 +10,8 @@
 
 @interface RecordViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *table;
+@property (weak, nonatomic) IBOutlet UIImageView *backImg;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
 - (IBAction)Segments:(UISegmentedControl *)sender;
 

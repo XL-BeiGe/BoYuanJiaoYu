@@ -157,11 +157,12 @@
        xuek.titleLabel.textAlignment =NSTextAlignmentCenter;
        niaj.textAlignment =NSTextAlignmentRight;
        banj.font =[UIFont systemFontOfSize:15];
+    banj.adjustsFontSizeToFitWidth =YES;
        laos.font =[UIFont systemFontOfSize:15];
        shij.font =[UIFont systemFontOfSize:15];
        xuek.titleLabel.font =[UIFont systemFontOfSize:15];
        niaj.font =[UIFont systemFontOfSize:15];
-        
+        xuek.titleLabel.adjustsFontSizeToFitWidth =YES;
        //banj.text =@"初一数学A2班";
        //laos.text =@"张老师";
        //shij.text =@"周六9:00-11:00";

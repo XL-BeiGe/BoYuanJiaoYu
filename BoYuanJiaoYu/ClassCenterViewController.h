@@ -10,5 +10,6 @@
 
 @interface ClassCenterViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *table;
+@property (weak, nonatomic) IBOutlet UIImageView *BackImg;
 
 @end

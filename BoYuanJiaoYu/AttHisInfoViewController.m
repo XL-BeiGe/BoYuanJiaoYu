@@ -62,8 +62,8 @@
                 _table.hidden=YES;
                 
             }else{
-                _backimg.hidden =YES;
-                _table.hidden=NO;
+                 _backimg.hidden =YES;
+                 _table.hidden=NO;
                  [_table reloadData];
             }
             
@@ -154,7 +154,7 @@
         time.text =@"";
     }else{
         NSString *ss =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"attendanceTime"]];
-        ss =[ss substringFromIndex:ss.length-8];
+        ss =[ss substringToIndex:10];
         time.text =[NSString stringWithFormat:@"签到时间:%@",ss];
         
     }
@@ -171,7 +171,7 @@
             type.textColor =[UIColor colorWithHexString:@"40bcff"];
         }else if ([sda intValue]==3){
             type.text =@"请假";
-            type.textColor =[UIColor colorWithHexString:@"40bcff"];
+            type.textColor =[UIColor colorWithHexString:@"EA2121"];
         }else if ([sda intValue]==4){
             type.text =@"补课";
             type.textColor =[UIColor colorWithHexString:@"40bcff"];

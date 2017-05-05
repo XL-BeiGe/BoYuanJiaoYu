@@ -142,9 +142,11 @@
     backview.layer.cornerRadius =5;
     UILabel *banji = [[UILabel alloc]initWithFrame:CGRectMake(10,15, 130, 20)];
     UILabel *xueke = [[UILabel alloc]initWithFrame:CGRectMake(backview.frame.size.width-130,15, 120, 20)];
-    UILabel *jiaoshi = [[UILabel alloc]initWithFrame:CGRectMake(10,50, 130, 20)];
+    UILabel *jiaoshi = [[UILabel alloc]initWithFrame:CGRectMake(10,50, 150, 20)];
     banji.font =[UIFont systemFontOfSize:15];
     xueke.font =[UIFont systemFontOfSize:15];
+    banji.adjustsFontSizeToFitWidth =YES;
+    xueke.adjustsFontSizeToFitWidth =YES;
     jiaoshi.font =[UIFont systemFontOfSize:15];
     xueke.textAlignment =NSTextAlignmentRight;
     if(nil==[arr[indexPath.row]objectForKey:@"className"]){
@@ -157,14 +159,17 @@
        
         xueke.text =@"";
     }else{
-         xueke.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"classType"]];
+         xueke.text =[NSString stringWithFormat:@"学科:%@",[arr[indexPath.row]objectForKey:@"classType"]];
         
     }
     if(nil==[arr[indexPath.row]objectForKey:@"teacherName"]){
         
         jiaoshi.text =@"";
     }else{
-        jiaoshi.text =[NSString stringWithFormat:@"任课教师:%@",[arr[indexPath.row]objectForKey:@"teacherName"]];
+        NSString *iqoq =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"teacherName"]];
+        iqoq =[iqoq substringToIndex:1];
+        
+        jiaoshi.text =[NSString stringWithFormat:@"任课教师:%@老师",iqoq];
         
     }
     

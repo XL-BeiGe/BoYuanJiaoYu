@@ -103,10 +103,15 @@
             arr =[NSMutableArray array];
            arr =[[responseObject objectForKey:@"data"] objectForKey:@"errorList"];
             if(arr.count==0){
-                NSLog(@"没有");
+                _backImg.hidden=NO;
+                _table.hidden=YES;
             }else{
+                _backImg.hidden=YES;
+                _table.hidden=NO;
                 [_table reloadData];
             }
+
+            
         }
         
     } failure:^(NSError *error) {
@@ -172,6 +177,7 @@
     leftview.layer.borderWidth =0;
     fengview.layer.borderWidth =0;
     class.layer.cornerRadius =5;
+    
     //题目
     if(nil==[arr[indexPath.section]objectForKey:@"quesionName"]){
     title.text =@"";
@@ -183,6 +189,7 @@
      [class setTitle:@"" forState:UIControlStateNormal];
     }else{
       [class setTitle:[arr[indexPath.section]objectForKey:@"xkName"] forState:UIControlStateNormal];
+        class.titleLabel.adjustsFontSizeToFitWidth =YES;
     }
     //年级
     if(nil==[arr[indexPath.section]objectForKey:@"className"]){

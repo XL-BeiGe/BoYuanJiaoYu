@@ -15,7 +15,8 @@
     float width;
     float height;
     UILabel *messa;
-    NSMutableArray*arr;
+    UILabel *titt;
+    NSDictionary*arr;
 }
 @end
 
@@ -47,15 +48,14 @@
     [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
     //通知的状态还不知道有几个
     NSString *fangshi =@"/userInfo/pushInfo";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_pushId,@"pushId",@"2",@"State", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_pushId,@"pushId",@"1",@"state", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            arr =[NSMutableArray array];
-            arr =[[responseObject objectForKey:@"data"] objectForKey:@"List"];
-            
-            
+          
+            arr =[responseObject objectForKey:@"data"];
+            [_table reloadData];
         }
         
     } failure:^(NSError *error) {
@@ -67,23 +67,7 @@
     
     
 }
--(void)refrish{
-    //NSLog(@"setupRefresh -- 下拉刷新");
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
-    [self.table addSubview:refreshControl];
-    
-}
-- (void)refreshClick:(UIRefreshControl *)refreshControl {
-    
-    [refreshControl beginRefreshing];
-    
-    // NSLog(@"refreshClick: -- 刷新触发");
-    // 此处添加刷新tableView数据的代码
-    [self wangluo];
-    [refreshControl endRefreshing];
-    //[self.table reloadData];// 刷新tableView即可
-}
+
 
 -(void)delegate{
     _table.delegate=self;
@@ -100,21 +84,42 @@
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return 4;
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row==0){
         return 40;
-    }else{
-        if (indexPath.row==1){
+    }else if (indexPath.row==1){
+        NSString* s=[[NSString alloc] init];
+        if(nil==[arr objectForKey:@"title"]){
+            s =@"";
+        }else{
+            s =[NSString stringWithFormat:@"%@",[arr objectForKey:@"title"]];
+        }
+        titt=[[UILabel alloc] init];
+        UIFont *font = [UIFont fontWithName:@"Arial" size:20];
+        titt.textAlignment =NSTextAlignmentCenter;
+        NSAttributedString *attributedText =
+        [[NSAttributedString alloc]initWithString:s attributes:@{NSFontAttributeName: font}];
+        CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-40, CGFLOAT_MAX}
+                                                   options:NSStringDrawingUsesLineFragmentOrigin
+                                                   context:nil];
+        
+        
+        titt.text=s;
+        [titt setFrame:CGRectMake(20,10,width-40, rect.size.height)];
+        return titt.frame.size.height+15>40? titt.frame.size.height+15:40;
+
+    }
+    else if (indexPath.row==2){
             NSString* ss=[[NSString alloc] init];
-            //            if(nil==[pushTemplate objectForKey:@"title"]){
-            //                ss =@"";
-            //            }else{
-            //                ss =[NSString stringWithFormat:@"%@",[pushTemplate objectForKey:@"context"]];
-            //            }
-            ss =@"因为iPhone平庸了几代";
+            if(nil==[arr objectForKey:@"context"]){
+                ss =@"";
+            }else{
+                ss =[NSString stringWithFormat:@"%@",[arr objectForKey:@"context"]];
+            }
+        
             messa=[[UILabel alloc] init];
             UIFont *font = [UIFont fontWithName:@"Arial" size:15];
             NSAttributedString *attributedText =
@@ -128,11 +133,11 @@
             
             return messa.frame.size.height+15>40? messa.frame.size.height+55:40;
         }
-        else{
-            return 40;
-        }
-        
+    else{
+        return 40;
     }
+        
+   
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -149,28 +154,52 @@
     //        [suView removeFromSuperview];//移除全部子视图
     //    }
    
+    if(indexPath.section==0){
         if(indexPath.row==0){
-            UIView *imgv= [[UIView alloc]initWithFrame:CGRectMake(10,20, 5, 20)];
-            imgv.backgroundColor =[UIColor colorWithHexString:@"FFDB00"];
-            UILabel *jjj =[[UILabel alloc]initWithFrame:CGRectMake(20,20, 150, 20)];
-            UILabel *jjjj =[[UILabel alloc]initWithFrame:CGRectMake(width-120,20, 100, 20)];
-            jjj.font =[UIFont systemFontOfSize:15];
-            jjj.text =@"通知标题";
-            jjjj.font =[UIFont systemFontOfSize:15];
-            jjjj.textAlignment =NSTextAlignmentRight;
-            jjjj.text =@"2017.10.4";
-            [cell addSubview:imgv];
-            [cell addSubview:jjj];
-            [cell addSubview:jjjj];
+            UIView *sdid = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
+            sdid.backgroundColor = [UIColor colorWithHexString:@"EFEFEF"];
+            UIImageView *images = [[UIImageView alloc]init];
+            images.frame = CGRectMake(width/2-20,10,40,40);
+            images.image =[UIImage imageNamed:@"通知详情.png"];
+            [cell.contentView addSubview:sdid];
+            [cell.contentView addSubview:images];
+            
         }
         else if (indexPath.row==1){
+            titt.numberOfLines=0;
             
-            messa.numberOfLines =0;
-            messa.font =[UIFont fontWithName:@"Arial" size:15];
-            
-            [cell addSubview:messa];
+            titt.font=[UIFont fontWithName:@"Arial" size:20];
+            titt.textColor=[UIColor colorWithHexString:@"323232"];
+            [cell.contentView addSubview:titt];
         }
-     
+        else if (indexPath.row==2){
+            messa.numberOfLines=0;
+            messa.font= [UIFont systemFontOfSize:14];
+            messa.textColor=[UIColor colorWithHexString:@"323232"];
+            [cell.contentView addSubview:messa];
+            
+        }
+        else{
+            UILabel *time= [[UILabel alloc]initWithFrame:CGRectMake(width-250, 10,230, 20)];
+
+            time.textColor =[UIColor colorWithHexString:@"fd8f30"];
+           
+            time.font= [UIFont systemFontOfSize:14];
+          
+            time.textAlignment = NSTextAlignmentRight;
+         
+            if(nil==[arr objectForKey:@"pushTime"]){
+                time.text =@"";
+            }else{
+                NSString *ss =[NSString stringWithFormat:@"时间:%@",[arr objectForKey:@"pushTime"]];
+                //NSString *sss = [ss substringToIndex:10];
+                time.text =ss;
+            }
+            [cell.contentView addSubview:time];
+            
+        }
+        
+    }
     
     
     

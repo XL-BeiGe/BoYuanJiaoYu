@@ -10,5 +10,6 @@
 
 @interface NoteListViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *table;
+@property (weak, nonatomic) IBOutlet UIImageView *Img;
 
 @end

@@ -78,8 +78,8 @@
 */
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
-    _inviteview.hidden =YES;
-    [self remov];
+//    _inviteview.hidden =YES;
+//    [self remov];
 }
 //修改个人信息
 - (IBAction)Edit:(id)sender {

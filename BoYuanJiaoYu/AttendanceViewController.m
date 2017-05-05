@@ -223,7 +223,7 @@
     UIImageView *backimg =[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, width, 185)];
     backimg.image =[UIImage imageNamed:@"考勤背景.png"];
     UILabel *banj =[[UILabel alloc]initWithFrame:CGRectMake(30, 15,180, 25)];
-    UILabel *xuek =[[UILabel alloc]initWithFrame:CGRectMake(width-110, 15,70, 25)];
+    UILabel *xuek =[[UILabel alloc]initWithFrame:CGRectMake(width-120, 15,80, 25)];
     xuek.textAlignment =NSTextAlignmentRight;
     UIImageView *toux =[[UIImageView alloc]initWithFrame:CGRectMake(40,65, 25,25)];
     UIImageView *time =[[UIImageView alloc]initWithFrame:CGRectMake(40,105, 25,25)];
@@ -240,6 +240,8 @@
     UILabel *qian =[[UILabel alloc]initWithFrame:CGRectMake(70, 105, 140, 25)];
     UILabel *qtyp =[[UILabel alloc]initWithFrame:CGRectMake(width-110,105, 70, 25)];
     UILabel *bzhu =[[UILabel alloc]initWithFrame:CGRectMake(70, 145,width-105, 25)];
+    banj.adjustsFontSizeToFitWidth =YES;
+    xuek.adjustsFontSizeToFitWidth =YES;
     name.font =[UIFont systemFontOfSize:15];
     tims.font =[UIFont systemFontOfSize:15];
     qian.font =[UIFont systemFontOfSize:15];

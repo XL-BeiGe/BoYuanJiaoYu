@@ -134,11 +134,11 @@
             arr=[[responseObject objectForKey:@"data"] objectForKey:@"classInfoList"];
            
             if(arr.count==0){
-                //_BackImage.hidden=NO;
+                _BackImg.hidden=NO;
                 _table.hidden=YES;
                 
             }else{
-               // _BackImage.hidden=YES;
+                _BackImg.hidden=YES;
                 _table.hidden=NO;
                 [_table reloadData];
             }
@@ -257,7 +257,7 @@
         banji.text =@"";
     }else{
         banji.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"className"]];
-        
+        banji.adjustsFontSizeToFitWidth =YES;
     }
     
     if(nil==[arr[indexPath.row]objectForKey:@"classType"]){
@@ -265,6 +265,7 @@
     }else{
         //kemu.titleLabel.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"classType"]];
         [kemu setTitle:[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"classType"]] forState:UIControlStateNormal];
+        kemu.titleLabel.adjustsFontSizeToFitWidth=YES;
     }
     
     
@@ -501,8 +502,13 @@
     
     UICollectionViewCell *cell =  [mainCollectionView cellForItemAtIndexPath:indexPath];
     
+    if(indexPath.section==0){
     cell.backgroundColor = [UIColor clearColor];
-    
+    }else if (indexPath.section==1){
+    cell.backgroundColor = [UIColor clearColor];
+    }else if (indexPath.section==2){
+    cell.backgroundColor = [UIColor clearColor];
+    }
    
     
     

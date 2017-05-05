@@ -11,12 +11,12 @@
 #import "Color+Hex.h"
 #import "WarningBox.h"
 #import "XL_wangluo.h"
+#import "HongDingYi.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 @interface BackInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     float width;
-    UILabel *title;
-    UILabel *ownans;
-    UILabel *answer;
+    UILabel *message;
     NSMutableArray *infoarr;
 }
 @end
@@ -68,7 +68,7 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             infoarr =[NSMutableArray array];
             infoarr =[[responseObject objectForKey:@"data"] objectForKey:@"feedbackSubjectList"];
-            
+            [_table reloadData];
         }
         
     } failure:^(NSError *error) {
@@ -92,97 +92,57 @@
     _table.bounces =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return infoarr.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(section==0){
-        return 1;
-    }else{
-        return 3;
-    }
-    
+        return 4;
+
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section==0){
-        return 0;
-    }else{
-        if(indexPath.row==0){
-            NSString* ss=[[NSString alloc] init];
-                        //            if(nil==[infoarr objectForKey:@"title"]){
-                        //                ss =@"";
-                        //            }else{
-                        //                ss =[NSString stringWithFormat:@"%@",[infoarr objectForKey:@"context"]];
-                        //            }
-            ss =@"因为iPhone平庸了几";
-            title=[[UILabel alloc] init];
-            UIFont *font = [UIFont fontWithName:@"Arial" size:15];
-            NSAttributedString *attributedText =[[NSAttributedString alloc]initWithString:ss attributes:@{NSFontAttributeName: font}];
-            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-50, CGFLOAT_MAX}
-                                                                   options:NSStringDrawingUsesLineFragmentOrigin
-                                                                   context:nil];
-            
-            title.text=ss;
-            [title setFrame:CGRectMake(25,10, rect.size.width, rect.size.height)];
-                        
-            return title.frame.size.height+15>40? title.frame.size.height+15:40;
-            }
+    if(indexPath.row==0){
+        NSString* ss=[[NSString alloc] init];
+        if(nil==[infoarr[indexPath.section] objectForKey:@"quesionName"]){
+            ss =@"";
+        }else{
+            ss =[NSString stringWithFormat:@"%@",[infoarr[indexPath.section] objectForKey:@"quesionName"]];
+        }
+        message=[[UILabel alloc] init];
+        UIFont *font = [UIFont fontWithName:@"Arial" size:15];
+        NSAttributedString *attributedText =
+        [[NSAttributedString alloc]initWithString:ss attributes:@{NSFontAttributeName: font}];
+        CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-40, CGFLOAT_MAX}
+                                                   options:NSStringDrawingUsesLineFragmentOrigin
+                                                   context:nil];
         
-
-      
-        if (indexPath.row==1){
-            NSString* ss=[[NSString alloc] init];
-            //            if(nil==[infoarr objectForKey:@"title"]){
-            //                ss =@"";
-            //            }else{
-            //                ss =[NSString stringWithFormat:@"%@",[infoarr objectForKey:@"context"]];
-            //            }
-            ss =@"因为iPhone平庸了几代，也因为今年是iPhone诞生十周。";
-            ownans=[[UILabel alloc] init];
-            UIFont *font = [UIFont fontWithName:@"Arial" size:15];
-            NSAttributedString *attributedText =
-            [[NSAttributedString alloc]initWithString:ss attributes:@{NSFontAttributeName: font}];
-            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-150, CGFLOAT_MAX}
-                                                       options:NSStringDrawingUsesLineFragmentOrigin
-                                                       context:nil];
-            
-            ownans.text=ss;
-            [ownans setFrame:CGRectMake(100,15, rect.size.width, rect.size.height)];
-            
-            return ownans.frame.size.height+15>40? ownans.frame.size.height+15:40;
+        message.text=ss;
+        [message setFrame:CGRectMake(20,10, rect.size.width, rect.size.height)];
+        
+        return message.frame.size.height+15>40? message.frame.size.height+55:40;
+    }
+    else if (indexPath.row==1){
+        if(nil==[infoarr[indexPath.section]objectForKey:@"quesionImg1"]){
+            return 0;
+        }else{
+            return 150;
         }
-        if (indexPath.row==2){
-            NSString* ss=[[NSString alloc] init];
-            //            if(nil==[infoarr objectForKey:@"title"]){
-            //                ss =@"";
-            //            }else{
-            //                ss =[NSString stringWithFormat:@"%@",[infoarr objectForKey:@"context"]];
-            //            }
-            ss =@"详细描述了一种通过红外发射器、传感器和高分辨率触摸来读取指纹的屏幕。";
-            answer=[[UILabel alloc] init];
-            UIFont *font = [UIFont fontWithName:@"Arial" size:15];
-            NSAttributedString *attributedText =
-            [[NSAttributedString alloc]initWithString:ss attributes:@{NSFontAttributeName: font}];
-            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-130, CGFLOAT_MAX}
-                                                       options:NSStringDrawingUsesLineFragmentOrigin
-                                                       context:nil];
-            
-            answer.text=ss;
-            [answer setFrame:CGRectMake(100,15, rect.size.width, rect.size.height)];
-            
-            return answer.frame.size.height+25>40? answer.frame.size.height+25:40;
+    }
+    else if (indexPath.row==1){
+        if(nil==[infoarr[indexPath.section]objectForKey:@"quesionImg2"]){
+            return 0;
+        }else{
+            return 150;
         }
-        else{
-            return 40;
+    }else{
+        if(nil==[infoarr[indexPath.section]objectForKey:@"quesionImg3"]){
+            return 0;
+        }else{
+            return 150;
         }
-     
     }
     
 }
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if(section==0){
-        return 0;
-    }else
-        return 10;
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return @"问题内容";
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *aa=@"heheda";
@@ -193,62 +153,66 @@
     //    for (id suView in cell.contentView.subviews) {//获取当前cell的全部子视图
     //        [suView removeFromSuperview];//移除全部子视图
     //    }
-    if(indexPath.section==0){
-//        UILabel *score =[[UILabel alloc]initWithFrame:CGRectMake(width/2-40,10,70,40)];
-//        
-//        score.textAlignment =NSTextAlignmentCenter;
-//        score.font =[UIFont systemFontOfSize:25];
-//        score.text =@"100分";
-//        score.textColor =[UIColor redColor];
-//        [cell addSubview:score];
-//        cell.backgroundColor =[UIColor clearColor];
-    }else{
-        if(indexPath.row==0){
-           
-            UIImageView *img =[[UIImageView alloc]initWithFrame:CGRectMake(10, 15,10,10)];
-            img.image =[UIImage imageNamed:@"teacher.png"];
-            title.numberOfLines =0;
-            title.font =[UIFont fontWithName:@"Arial" size:15];
-            
-            [cell addSubview:img];
-            [cell addSubview:title];
-        }else if (indexPath.row==1){
-            UIView *iii =[[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 1)];
-            iii.backgroundColor =[UIColor redColor];
-            [cell addSubview:iii];
-            UILabel *owns =[[UILabel alloc]initWithFrame:CGRectMake(25, 15,70, 20)];
-            owns.text =@"我的回答:";
-            owns.font =[UIFont systemFontOfSize:15];
-            
-            ownans.numberOfLines =0;
-            ownans.font =[UIFont fontWithName:@"Arial" size:15];
-            
-            UIImageView *imgs =[[UIImageView alloc]initWithFrame:CGRectMake(width-50, 15,25,25)];
-            imgs.image =[UIImage imageNamed:@"teacher.png"];
-            
-            [cell addSubview:owns];
-            [cell addSubview:ownans];
-            [cell addSubview:imgs];
+     if(indexPath.row==0){
+        message.numberOfLines =0;
+        message.font =[UIFont fontWithName:@"Arial" size:15];
+        [cell addSubview:message];
+    }else if (indexPath.row==1){
+        if([infoarr[indexPath.section] objectForKey:@"quesionImg1"]!=nil){
+            UIImageView *image =[[UIImageView alloc]init];
+            image.frame = CGRectMake(0,0,width,150);
+            //image.contentMode = UIViewContentModeScaleAspectFill;
+            image.contentMode = UIViewContentModeScaleAspectFit;
+            image.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
+            [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
+            NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[infoarr[indexPath.section] objectForKey:@"quesionImg1"]];
+            url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
+            //        [self Imageshows];
+            [cell.contentView addSubview:image];
         }else{
-            UILabel *owns =[[UILabel alloc]initWithFrame:CGRectMake(25, 15,70, 20)];
-            owns.text =@"正确答案:";
-            owns.font =[UIFont systemFontOfSize:15];
-    
-            answer.numberOfLines =0;
-            answer.font =[UIFont fontWithName:@"Arial" size:15];
-    
-            [cell addSubview:owns];
-            [cell addSubview:answer];
         
         }
-    
-    
+    }
+     else if (indexPath.row==2){
+        if([infoarr[indexPath.section] objectForKey:@"quesionImg2"]!=nil){
+            UIImageView *image =[[UIImageView alloc]init];
+            image.frame = CGRectMake(0,0,width,150);
+            //image.contentMode = UIViewContentModeScaleAspectFill;
+            image.contentMode = UIViewContentModeScaleAspectFit;
+            image.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
+            [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
+            NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[infoarr[indexPath.section] objectForKey:@"quesionImg2"]];
+            url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
+            //        [self Imageshows];
+            [cell.contentView addSubview:image];
+        }else{
+        
+        }
+    }
+     else{
+        if([infoarr[indexPath.section] objectForKey:@"quesionImg3"]!=nil){
+            UIImageView *image =[[UIImageView alloc]init];
+            image.frame = CGRectMake(0,0,width,150);
+            //image.contentMode = UIViewContentModeScaleAspectFill;
+            image.contentMode = UIViewContentModeScaleAspectFit;
+            image.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
+            [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
+            NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[infoarr[indexPath.section] objectForKey:@"quesionImg3"]];
+            url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
+            //        [self Imageshows];
+            [cell.contentView addSubview:image];
+        }
+        else{
+        
+        }
     }
    
     
     
     cell.layer.cornerRadius =5;
-    
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
