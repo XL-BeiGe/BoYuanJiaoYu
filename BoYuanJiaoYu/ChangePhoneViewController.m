@@ -53,7 +53,7 @@
         [WarningBox warningBoxModeIndeterminate:@"正在发送" andView:self.view];
         NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
         NSString *fangshi =@"/index/getAuthCode";
-        NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_phone.text,@"userName",[def objectForKey:@"officeId"],@"officeId", nil];
+        NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_phone.text,@"userName",[def objectForKey:@"officeId"],@"officeId",@"1",@"type", nil];
         [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
             NSLog(@"成功\n%@",responseObject);
             [WarningBox warningBoxHide:YES andView:self.view];
