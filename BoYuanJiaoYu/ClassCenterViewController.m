@@ -229,15 +229,11 @@
     UILabel *xiang = [[UILabel alloc]initWithFrame:CGRectMake(width/2+45,110,100, 20)];
     
     UIButton *kemu =[[UIButton alloc]initWithFrame:CGRectMake(width-90,30,70, 20)];
-    kemu.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+   
     [kemu setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     kemu.layer.cornerRadius =5;
    // kemu.textAlignment =NSTextAlignmentCenter;
-    imageview.image =[UIImage imageNamed:@"课程-背景.png"];
-    lsimg.image =[UIImage imageNamed:@"课程-老师.png"];
-    njimg.image =[UIImage imageNamed:@"课程-年级.png"];
-    bmimg.image =[UIImage imageNamed:@"课程-已报名.png"];
-    xqimg.image =[UIImage imageNamed:@"课程-查看详情.png"];
+     imageview.image =[UIImage imageNamed:@"课程-背景.png"];
     nianj.font =[UIFont systemFontOfSize:15];
     kemu.titleLabel.font =[UIFont systemFontOfSize:15];
     jiaos.font =[UIFont systemFontOfSize:15];
@@ -290,16 +286,28 @@
     }
  
     
-    if(nil==[arr[indexPath.row]objectForKey:@"isEnrol"]){
-        
-        baomi.text =@"";
-    }else{
+//    if(nil==[arr[indexPath.row]objectForKey:@"isEnrol"]){
+//        
+//        baomi.text =@"";
+//    }else{
         if([[arr[indexPath.row]objectForKey:@"isEnrol"]intValue]==0){
-        baomi.text=@"未报名";
+            kemu.backgroundColor =[UIColor colorWithHexString:@"fc619d"];
+           
+            lsimg.image =[UIImage imageNamed:@"课程-老师2.png"];
+            njimg.image =[UIImage imageNamed:@"课程-年级2.png"];
+            bmimg.image =[UIImage imageNamed:@"课程-已报名2.png"];
+            xqimg.image =[UIImage imageNamed:@"课程-查看详情2.png"];
+            baomi.text=@"未报名";
         }else{
-        baomi.text=@"已报名";
+            kemu.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+          
+            lsimg.image =[UIImage imageNamed:@"课程-老师.png"];
+            njimg.image =[UIImage imageNamed:@"课程-年级.png"];
+            bmimg.image =[UIImage imageNamed:@"课程-已报名.png"];
+            xqimg.image =[UIImage imageNamed:@"课程-查看详情.png"];
+            baomi.text=@"已报名";
         }
-    }
+   // }
     xiang.text =@"查看详情";
  
     [cell addSubview:imageview];
@@ -396,18 +404,22 @@
     
     
     if(indexPath.section==0){
+        
         if(nil==[leavearr[indexPath.row] objectForKey:@"classLevel"]){
         cell.blabel.text =@"";
         }else{
       cell.blabel.text =[NSString stringWithFormat:@"%@",[leavearr[indexPath.row] objectForKey:@"classLevel"]];
         }
+        cell.blabel.tag=indexPath.row+100;
     }else if (indexPath.section==1){
         if(nil==[typearr[indexPath.row] objectForKey:@"classType"]){
             cell.blabel.text =@"";
         }else{
       cell.blabel.text =[NSString stringWithFormat:@"%@",[typearr[indexPath.row] objectForKey:@"classType"]];
         }
+         cell.blabel.tag=indexPath.row+200;
     }else{
+        
         if(nil==[teacharr[indexPath.row] objectForKey:@"teacherName"]){
             cell.blabel.text =@"";
         }else{
@@ -416,6 +428,7 @@
             cell.blabel.text=[NSString stringWithFormat:@"%@老师",dss];
         
         }
+       cell.blabel.tag=indexPath.row+300;
     }
     
     // cell.backgroundColor = [UIColor yellowColor];
@@ -474,6 +487,7 @@
     return headerView;
 }
 
+
 //didselect方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
    
@@ -495,6 +509,8 @@
    teacheid =[NSString stringWithFormat:@"%@",[teacharr[indexPath.row] objectForKey:@"teacherId"]];
     }
   
+   
+    
 }
 
 

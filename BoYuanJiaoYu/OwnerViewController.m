@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self navagat];
-    [self gerenxinxi];
+    
     _inviteview.hidden =YES;
     _phoneNum.delegate =self;
     self.title =@"个人中心";
@@ -42,7 +42,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [self gerenxinxi];
+}
 -(void)navagat{
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"通知" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
