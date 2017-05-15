@@ -373,12 +373,12 @@
     
     //4.设置代理
     
-    //    mainCollectionView.allowsSelection = YES;
+      //  mainCollectionView.allowsSelection = YES;
     mainCollectionView.allowsMultipleSelection = YES;
     mainCollectionView.delegate = self;
     mainCollectionView.dataSource = self;
     mainCollectionView.bounces = NO;
-    
+
     [VVV addSubview:mainCollectionView];
 }
 
@@ -400,9 +400,9 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath  {
     
-    MyCollectionViewCell *cell = (MyCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndexPath:indexPath];
-    
-    
+     MyCollectionViewCell *cell = (MyCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndexPath:indexPath];
+    //MyCollectionViewCell *cell = (MyCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+ 
     if(indexPath.section==0){
         
         if(nil==[leavearr[indexPath.row] objectForKey:@"classLevel"]){
@@ -410,14 +410,14 @@
         }else{
       cell.blabel.text =[NSString stringWithFormat:@"%@",[leavearr[indexPath.row] objectForKey:@"classLevel"]];
         }
-        cell.blabel.tag=indexPath.row+100;
+        cell.tag=indexPath.row+100;
     }else if (indexPath.section==1){
         if(nil==[typearr[indexPath.row] objectForKey:@"classType"]){
             cell.blabel.text =@"";
         }else{
       cell.blabel.text =[NSString stringWithFormat:@"%@",[typearr[indexPath.row] objectForKey:@"classType"]];
         }
-         cell.blabel.tag=indexPath.row+200;
+         cell.tag=indexPath.row+200;
     }else{
         
         if(nil==[teacharr[indexPath.row] objectForKey:@"teacherName"]){
@@ -428,11 +428,11 @@
             cell.blabel.text=[NSString stringWithFormat:@"%@老师",dss];
         
         }
-       cell.blabel.tag=indexPath.row+300;
+       cell.tag=indexPath.row+300;
     }
     
     // cell.backgroundColor = [UIColor yellowColor];
-   
+    cell.backgroundColor =[UIColor colorWithHexString:@"FFDB01"];
     
     
     cell.layer.cornerRadius =5;
@@ -491,21 +491,58 @@
 //didselect方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
    
-    UICollectionViewCell *cell =  [mainCollectionView cellForItemAtIndexPath:indexPath];
+    //UICollectionViewCell *cell =  [mainCollectionView cellForItemAtIndexPath:indexPath];
     
-    cell.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+   // cell.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
 //    MyCollectionViewCell *cell = (MyCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
 //    NSString *msg = cell.blabel.text;
 //    NSLog(@"%@",msg);
 //    NSLog(@"-----%ld----%ld",(long)indexPath.section,(long)indexPath.row);
     if(indexPath.section==0){
-         cell.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+        for(UICollectionViewCell *celll in mainCollectionView.visibleCells){
+            
+            if(celll.tag==100+indexPath.row){
+         
+            celll.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+            }else{
+                if(celll.tag>99&&celll.tag<200){
+                
+                celll.backgroundColor =[UIColor colorWithHexString:@"FFDB01"];
+                }
+            }
+        }
+        
+       //  cell.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
       leave =[NSString stringWithFormat:@"%@",[leavearr[indexPath.row] objectForKey:@"classLevelId"]];
-    }else if(indexPath.section==1){
-         cell.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+    }
+    else if(indexPath.section==1){
+        for(UICollectionViewCell *celll in mainCollectionView.visibleCells){
+            
+            if(celll.tag==200+indexPath.row){
+           
+                celll.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+            }else{
+                if(celll.tag>199&&celll.tag<300){
+                 
+                    celll.backgroundColor =[UIColor colorWithHexString:@"FFDB01"];
+                }
+            }
+        }
      clastyp =[NSString stringWithFormat:@"%@",[typearr[indexPath.row] objectForKey:@"classTypeId"]];
-    }else if (indexPath.section==2){
-         cell.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+    }
+    else if (indexPath.section==2){
+        for(UICollectionViewCell *celll in mainCollectionView.visibleCells){
+            
+            if(celll.tag==300+indexPath.row){
+              
+                celll.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+            }else{
+                if(celll.tag>299&&celll.tag<400){
+                 
+                    celll.backgroundColor =[UIColor colorWithHexString:@"FFDB01"];
+                }
+            }
+        }
    teacheid =[NSString stringWithFormat:@"%@",[teacharr[indexPath.row] objectForKey:@"teacherId"]];
     }
   
@@ -514,21 +551,21 @@
 }
 
 
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    UICollectionViewCell *cell =  [mainCollectionView cellForItemAtIndexPath:indexPath];
-    
-    if(indexPath.section==0){
-    cell.backgroundColor = [UIColor clearColor];
-    }else if (indexPath.section==1){
-    cell.backgroundColor = [UIColor clearColor];
-    }else if (indexPath.section==2){
-    cell.backgroundColor = [UIColor clearColor];
-    }
-   
-    
-    
-}
+//- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    UICollectionViewCell *cell =  [mainCollectionView cellForItemAtIndexPath:indexPath];
+//    
+//    if(indexPath.section==0){
+//    cell.backgroundColor = [UIColor clearColor];
+//    }else if (indexPath.section==1){
+//    cell.backgroundColor = [UIColor clearColor];
+//    }else if (indexPath.section==2){
+//    cell.backgroundColor = [UIColor clearColor];
+//    }
+//   
+//    
+//    
+//}
 
 
 
