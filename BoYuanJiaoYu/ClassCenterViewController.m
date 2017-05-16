@@ -72,6 +72,7 @@
     [UIView commitAnimations];
     touchNumber=1;
     [self kechengclassleave:leave classtype:clastyp teacherid:teacheid];
+    [mainCollectionView reloadData];
     leave =@"0";
     clastyp =@"0";
     teacheid =@"0";
@@ -100,6 +101,7 @@
         touchNumber=0;
         _table.userInteractionEnabled =NO;
     }else{
+         [mainCollectionView reloadData];
         [UIView beginAnimations:nil context:nil];
         //执行动画
         //设置动画执行时间
@@ -506,7 +508,7 @@
             celll.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
             }else{
                 if(celll.tag>99&&celll.tag<200){
-                
+              
                 celll.backgroundColor =[UIColor colorWithHexString:@"FFDB01"];
                 }
             }
@@ -551,21 +553,63 @@
 }
 
 
-//- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//    UICollectionViewCell *cell =  [mainCollectionView cellForItemAtIndexPath:indexPath];
-//    
-//    if(indexPath.section==0){
-//    cell.backgroundColor = [UIColor clearColor];
-//    }else if (indexPath.section==1){
-//    cell.backgroundColor = [UIColor clearColor];
-//    }else if (indexPath.section==2){
-//    cell.backgroundColor = [UIColor clearColor];
-//    }
-//   
-//    
-//    
-//}
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+
+    //UICollectionViewCell *cell =  [mainCollectionView cellForItemAtIndexPath:indexPath];
+    
+    // cell.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+    //    MyCollectionViewCell *cell = (MyCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    //    NSString *msg = cell.blabel.text;
+    //    NSLog(@"%@",msg);
+    //    NSLog(@"-----%ld----%ld",(long)indexPath.section,(long)indexPath.row);
+    if(indexPath.section==0){
+        for(UICollectionViewCell *celll in mainCollectionView.visibleCells){
+            
+            if(celll.tag==100+indexPath.row){
+                
+                celll.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+            }else{
+                if(celll.tag>99&&celll.tag<200){
+                
+                    celll.backgroundColor =[UIColor colorWithHexString:@"FFDB01"];
+                }
+            }
+        }
+        leave =[NSString stringWithFormat:@"%@",[leavearr[indexPath.row] objectForKey:@"classLevelId"]];
+    }
+    else if(indexPath.section==1){
+        for(UICollectionViewCell *celll in mainCollectionView.visibleCells){
+            
+            if(celll.tag==200+indexPath.row){
+                
+                celll.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+            }else{
+                if(celll.tag>199&&celll.tag<300){
+                    
+                    celll.backgroundColor =[UIColor colorWithHexString:@"FFDB01"];
+                }
+            }
+        }
+        clastyp =[NSString stringWithFormat:@"%@",[typearr[indexPath.row] objectForKey:@"classTypeId"]];
+    }
+    else if (indexPath.section==2){
+        for(UICollectionViewCell *celll in mainCollectionView.visibleCells){
+            
+            if(celll.tag==300+indexPath.row){
+                
+                celll.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
+            }else{
+                if(celll.tag>299&&celll.tag<400){
+                    
+                    celll.backgroundColor =[UIColor colorWithHexString:@"FFDB01"];
+                }
+            }
+        }
+        teacheid =[NSString stringWithFormat:@"%@",[teacharr[indexPath.row] objectForKey:@"teacherId"]];
+    }
+    
+    
+}
 
 
 

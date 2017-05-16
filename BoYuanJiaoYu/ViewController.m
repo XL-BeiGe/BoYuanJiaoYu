@@ -229,14 +229,7 @@
                [self tan];
             }
 
-//            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"userId"] forKey:@"studentId"];
-//            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"parentId"] forKey:@"parentId"];
-//            [[NSUserDefaults standardUserDefaults]setObject:[[responseObject objectForKey:@"data"]objectForKey:@"officeId"] forKey:@"officeId"];
-//            [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",_username.text] forKey:@"username"];
-//            [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",_password.text] forKey:@"password"];
-//            //
-//            TabBarViewController *atten = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
-//            [self presentViewController:atten animated:YES completion:^{}];
+
             
         }else{
               [WarningBox warningBoxHide:YES andView:self.view];

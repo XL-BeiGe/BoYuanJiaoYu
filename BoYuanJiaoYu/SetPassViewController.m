@@ -52,14 +52,15 @@
         [WarningBox warningBoxModeIndeterminate:@"正在修改" andView:self.view];
         NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
         NSString *fangshi =@"/index/setPassword";
-        NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"parentId"],@"userId",_password.text,@"password", nil];
+        NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"parentId"],@"userId",_password.text,@"passWord", nil];
         
         
         [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-            NSLog(@"成功\n%@",responseObject);
-            [WarningBox warningBoxModeText:@"修改成功" andView:self.view];
+       
+           
             if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-                
+                [WarningBox warningBoxHide:YES andView:self.view];
+                [WarningBox warningBoxModeText:@"修改成功" andView:self.view];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     ViewController *view = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
                     [self presentViewController:view animated:YES completion:^{}];
