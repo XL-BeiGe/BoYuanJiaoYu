@@ -56,7 +56,6 @@
 		D7217C4F1E5A7E2E00AE9C89 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D7217C3F1E5A7E2E00AE9C89 /* UIView+WebCacheOperation.m */; };
 		D7217C531E5A956900AE9C89 /* StuRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7217C521E5A956900AE9C89 /* StuRecordViewController.m */; };
 		D7217C581E5AC62000AE9C89 /* ExplainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7217C571E5AC62000AE9C89 /* ExplainViewController.m */; };
-		D7217C5B1E5AC65700AE9C89 /* ChangePassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7217C5A1E5AC65700AE9C89 /* ChangePassViewController.m */; };
 		D72447321E5290E8003DBCE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D72447311E5290E8003DBCE4 /* main.m */; };
 		D72447351E5290E8003DBCE4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D72447341E5290E8003DBCE4 /* AppDelegate.m */; };
 		D72447381E5290E8003DBCE4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72447371E5290E8003DBCE4 /* ViewController.m */; };
@@ -102,7 +101,6 @@
 		D72447C31E52F439003DBCE4 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72447C21E52F439003DBCE4 /* TabBarViewController.m */; };
 		D72447C51E52F527003DBCE4 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D72447C41E52F527003DBCE4 /* back@2x.png */; };
 		D728BA821E61161E000FFF4F /* BackInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D728BA811E61161E000FFF4F /* BackInfoViewController.m */; };
-		D728BA851E611631000FFF4F /* BackHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D728BA841E611631000FFF4F /* BackHistoryViewController.m */; };
 		D729DD351E53E51500A67C07 /* banyuan.png in Resources */ = {isa = PBXBuildFile; fileRef = D729DD341E53E51500A67C07 /* banyuan.png */; };
 		D729DD3B1E53FC5B00A67C07 /* OwnerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D729DD3A1E53FC5B00A67C07 /* OwnerViewController.m */; };
 		D729DD3E1E541B1100A67C07 /* ClassCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D729DD3D1E541B1100A67C07 /* ClassCenterViewController.m */; };
@@ -257,8 +255,6 @@
 		D7217C521E5A956900AE9C89 /* StuRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StuRecordViewController.m; sourceTree = "<group>"; };
 		D7217C561E5AC62000AE9C89 /* ExplainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplainViewController.h; sourceTree = "<group>"; };
 		D7217C571E5AC62000AE9C89 /* ExplainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplainViewController.m; sourceTree = "<group>"; };
-		D7217C591E5AC65700AE9C89 /* ChangePassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePassViewController.h; sourceTree = "<group>"; };
-		D7217C5A1E5AC65700AE9C89 /* ChangePassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePassViewController.m; sourceTree = "<group>"; };
 		D724472D1E5290E8003DBCE4 /* BoYuanJiaoYu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoYuanJiaoYu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D72447311E5290E8003DBCE4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D72447331E5290E8003DBCE4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -316,8 +312,6 @@
 		D72447C41E52F527003DBCE4 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		D728BA801E61161E000FFF4F /* BackInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackInfoViewController.h; sourceTree = "<group>"; };
 		D728BA811E61161E000FFF4F /* BackInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackInfoViewController.m; sourceTree = "<group>"; };
-		D728BA831E611631000FFF4F /* BackHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackHistoryViewController.h; sourceTree = "<group>"; };
-		D728BA841E611631000FFF4F /* BackHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackHistoryViewController.m; sourceTree = "<group>"; };
 		D729DD341E53E51500A67C07 /* banyuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banyuan.png; sourceTree = "<group>"; };
 		D729DD391E53FC5B00A67C07 /* OwnerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OwnerViewController.h; sourceTree = "<group>"; };
 		D729DD3A1E53FC5B00A67C07 /* OwnerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OwnerViewController.m; sourceTree = "<group>"; };
@@ -532,18 +526,8 @@
 				D7F3B0D21E554C8E00FA620D /* FeedBackViewController.h */,
 				D7F3B0D31E554C8E00FA620D /* FeedBackViewController.m */,
 				D728BA7F1E6115FD000FFF4F /* 反馈详情 */,
-				D728BA7E1E6115F3000FFF4F /* 反馈历史不用了 */,
 			);
 			name = "课堂反馈";
-			sourceTree = "<group>";
-		};
-		D7217C541E5AC53100AE9C89 /* 重置密码不用了 */ = {
-			isa = PBXGroup;
-			children = (
-				D7217C591E5AC65700AE9C89 /* ChangePassViewController.h */,
-				D7217C5A1E5AC65700AE9C89 /* ChangePassViewController.m */,
-			);
-			name = "重置密码不用了";
 			sourceTree = "<group>";
 		};
 		D7217C551E5AC53B00AE9C89 /* 关于我们 */ = {
@@ -713,15 +697,6 @@
 			name = "考勤";
 			sourceTree = "<group>";
 		};
-		D728BA7E1E6115F3000FFF4F /* 反馈历史不用了 */ = {
-			isa = PBXGroup;
-			children = (
-				D728BA831E611631000FFF4F /* BackHistoryViewController.h */,
-				D728BA841E611631000FFF4F /* BackHistoryViewController.m */,
-			);
-			name = "反馈历史不用了";
-			sourceTree = "<group>";
-		};
 		D728BA7F1E6115FD000FFF4F /* 反馈详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -740,7 +715,6 @@
 				D72F75AD1E669C27004FBCA6 /* 设置密码 */,
 				D73180D41E5C381900C85384 /* 学生与家长信息 */,
 				D7217C551E5AC53B00AE9C89 /* 关于我们 */,
-				D7217C541E5AC53100AE9C89 /* 重置密码不用了 */,
 			);
 			name = "个人中心";
 			sourceTree = "<group>";
@@ -1044,7 +1018,6 @@
 				D7217C4D1E5A7E2E00AE9C89 /* UIImageView+HighlightedWebCache.m in Sources */,
 				D72447C01E52E5C2003DBCE4 /* AttenHistoryViewController.m in Sources */,
 				D7217C161E5A7E2700AE9C89 /* SBJsonStreamParserAdapter.m in Sources */,
-				D7217C5B1E5AC65700AE9C89 /* ChangePassViewController.m in Sources */,
 				D7217BE31E5A7BF500AE9C89 /* Color+Hex.m in Sources */,
 				D7217C151E5A7E2700AE9C89 /* SBJsonStreamParserAccumulator.m in Sources */,
 				D7F3B0D41E554C8E00FA620D /* FeedBackViewController.m in Sources */,
@@ -1083,7 +1056,6 @@
 				D7217BF41E5A7E1E00AE9C89 /* AFSecurityPolicy.m in Sources */,
 				D7217C1D1E5A7E2700AE9C89 /* SBJsonWriter.m in Sources */,
 				D7217C121E5A7E2700AE9C89 /* NSObject+SBJson.m in Sources */,
-				D728BA851E611631000FFF4F /* BackHistoryViewController.m in Sources */,
 				D7217C401E5A7E2E00AE9C89 /* MKAnnotationView+WebCache.m in Sources */,
 				D7217C4B1E5A7E2E00AE9C89 /* UIImage+MultiFormat.m in Sources */,
 				D7217BDF1E5A7BD900AE9C89 /* MBProgressHUD.m in Sources */,

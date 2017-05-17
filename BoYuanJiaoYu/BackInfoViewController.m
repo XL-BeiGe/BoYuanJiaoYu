@@ -7,7 +7,6 @@
 //
 
 #import "BackInfoViewController.h"
-#import "BackHistoryViewController.h"
 #import "Color+Hex.h"
 #import "WarningBox.h"
 #import "XL_wangluo.h"
@@ -25,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  //  [self navagat];
+ 
     [self delegate];
     [self fankuixiangqing];
     self.title =@"反馈详情";
@@ -42,16 +41,16 @@
     
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)navagat{
-    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
-    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"反馈历史" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
-    [self.navigationItem setRightBarButtonItem:right];
-}
-
--(void)History{
-    BackHistoryViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"backhis"];
-    [self.navigationController pushViewController:his animated:YES];
-}
+//-(void)navagat{
+//    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+//    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"反馈历史" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
+//    [self.navigationItem setRightBarButtonItem:right];
+//}
+//
+//-(void)History{
+//    BackHistoryViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"backhis"];
+//    [self.navigationController pushViewController:his animated:YES];
+//}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
