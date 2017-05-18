@@ -292,6 +292,7 @@
 -(void)animals{
     
     if(touchNumber==1){
+        [mainCollectionView reloadData];
         [UIView beginAnimations:nil context:nil];
         //执行动画
         //设置动画执行时间
@@ -347,7 +348,9 @@
     //设置headerView的尺寸大小
     layout.headerReferenceSize = CGSizeMake(self.view.frame.size.width, 30);
     //该方法也可以设置itemSize
-    layout.itemSize =CGSizeMake(110, 150);
+    // layout.itemSize =CGSizeMake(110, 150);
+    // layout约束这边必须要用estimatedItemSize才能实现自适应,使用itemSzie无效
+    layout.estimatedItemSize = CGSizeMake(80, 30);
     
     //2.初始化collectionView
     mainCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10,64,width-100, VVV.frame.size.height-113) collectionViewLayout:layout];
@@ -418,13 +421,13 @@
     
 }
 
-//按照这个尺寸设置宽和高
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath  {
-    
-    CGSize cc = CGSizeMake(80, 30);
-    
-    return cc;
-}
+////按照这个尺寸设置宽和高
+//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath  {
+//    
+//    CGSize cc = CGSizeMake(80, 30);
+//    
+//    return cc;
+//}
 //cell间距
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return 15;
