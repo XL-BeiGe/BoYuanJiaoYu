@@ -37,10 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegate];
-    leave =@"0";
-    clastyp =@"0";
-    teacheid =@"0";
-    [self kechengclassleave:leave classtype:clastyp teacherid:teacheid];
+
     [self shaixuan];
     [self navagat];
     [self collectiondelegate];
@@ -51,7 +48,12 @@
     // Do any additional setup after loading the view.
 }
 
-
+-(void)viewWillAppear:(BOOL)animated{
+    leave =@"0";
+    clastyp =@"0";
+    teacheid =@"0";
+    [self kechengclassleave:leave classtype:clastyp teacherid:teacheid];
+}
 
 
 
@@ -147,7 +149,10 @@
             }
             
         }
+        else{
+            NSLog(@"asdsdasdasdasd");
         
+        }
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
@@ -163,7 +168,7 @@
     NSString *fangshi =@"/curriculumCenter/classConditionList";
    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"筛选成功\n%@",responseObject);
+        //NSLog(@"筛选成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             leavearr =[NSMutableArray array];
@@ -293,8 +298,8 @@
 //        
 //        baomi.text =@"";
 //    }else{
-        if([[arr[indexPath.row]objectForKey:@"isEnrol"]intValue]==0){
-            kemu.backgroundColor =[UIColor colorWithHexString:@"fc619d"];
+        if([[arr[indexPath.row]objectForKey:@"isEnrol"]intValue]==2){
+            kemu.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
            
             lsimg.image =[UIImage imageNamed:@"课程-老师2.png"];
             njimg.image =[UIImage imageNamed:@"课程-年级2.png"];

@@ -25,12 +25,16 @@
     
     [self navagat];
     [self delegate];
-    [self lirequest];
+   
     [self refrish];
     self.title =@"最新考勤";
     width =[UIScreen mainScreen].bounds.size.width;
     // Do any additional setup after loading the view.
 }
+-(void)viewWillAppear:(BOOL)animated{
+ [self lirequest];
+}
+
 -(void)comeback{
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back@2x"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
