@@ -34,9 +34,23 @@
     [self registerForKeyboardNotifications];
     [self bianhua];
     //[self huoqujigou];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+//                                                  forBarMetrics:UIBarMetricsDefault];
+//    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    
+    _label1.font = [UIFont boldSystemFontOfSize:20];
+    _label1.font = [UIFont fontWithName:@"Arial-BoldItalicMT" size:40];
+    _label2.font = [UIFont boldSystemFontOfSize:20];
+    _label2.font = [UIFont fontWithName:@ "Arial Rounded MT Bold"  size:(40.0)];
+    
+    _label1.shadowColor = [UIColor blackColor];
+    _label1.shadowOffset = CGSizeMake(4.0,5.0);
+    _label2.shadowColor = [UIColor blackColor];
+    _label2.shadowOffset = CGSizeMake(4.0,5.0);
+    
+    
+    
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 -(void)viewWillAppear:(BOOL)animated{

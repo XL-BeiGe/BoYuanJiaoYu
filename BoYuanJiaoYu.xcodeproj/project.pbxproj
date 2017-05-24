@@ -130,6 +130,7 @@
 		D72F75B71E66BBB8004FBCA6 /* AttHisInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72F75B61E66BBB8004FBCA6 /* AttHisInfoViewController.m */; };
 		D7308B811E5D228C00FF19CD /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = D7308B801E5D228C00FF19CD /* next.png */; };
 		D73180D71E5C384600C85384 /* StuInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D73180D61E5C384600C85384 /* StuInfoTableViewController.m */; };
+		D733C5F91ED2768900E7CC86 /* login_bghead.png in Resources */ = {isa = PBXBuildFile; fileRef = D733C5F81ED2768900E7CC86 /* login_bghead.png */; };
 		D7343ACE1E6FD5FC00DDBCAC /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7343ACD1E6FD5FC00DDBCAC /* MyCollectionViewCell.m */; };
 		D749C6CF1EB8523200D19AE7 /* 通知详情.png in Resources */ = {isa = PBXBuildFile; fileRef = D749C6CE1EB8523200D19AE7 /* 通知详情.png */; };
 		D749C6D11EB8528000D19AE7 /* 通知列表小标.png in Resources */ = {isa = PBXBuildFile; fileRef = D749C6D01EB8528000D19AE7 /* 通知列表小标.png */; };
@@ -376,6 +377,7 @@
 		D7308B801E5D228C00FF19CD /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		D73180D51E5C384600C85384 /* StuInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StuInfoTableViewController.h; sourceTree = "<group>"; };
 		D73180D61E5C384600C85384 /* StuInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StuInfoTableViewController.m; sourceTree = "<group>"; };
+		D733C5F81ED2768900E7CC86 /* login_bghead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bghead.png; sourceTree = "<group>"; };
 		D7343ACC1E6FD5FC00DDBCAC /* MyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
 		D7343ACD1E6FD5FC00DDBCAC /* MyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
 		D749C6CE1EB8523200D19AE7 /* 通知详情.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "通知详情.png"; sourceTree = "<group>"; };
@@ -704,6 +706,7 @@
 		D72447631E52D4EC003DBCE4 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				D733C5F81ED2768900E7CC86 /* login_bghead.png */,
 				D71AD7761ECDA1F7008FBA81 /* Default.png */,
 				D749C6D41EB8623800D19AE7 /* 消息背景.png */,
 				D749C6D21EB8609600D19AE7 /* 试题背景.png */,
@@ -1012,6 +1015,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D733C5F91ED2768900E7CC86 /* login_bghead.png in Resources */,
 				D72447A81E52D522003DBCE4 /* item_beizhu.png in Resources */,
 				D749C6D11EB8528000D19AE7 /* 通知列表小标.png in Resources */,
 				D724479E1E52D522003DBCE4 /* attendance_history.png in Resources */,
