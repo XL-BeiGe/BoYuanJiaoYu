@@ -1,16 +1,18 @@
 //
-//  RecordInfoViewController.h
+//  FeedHistoryViewController.h
 //  BoYuanJiaoYu
 //
-//  Created by newmac on 2017/3/13.
+//  Created by newmac on 2017/5/25.
 //  Copyright © 2017年 BeiGe. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface RecordInfoViewController : UIViewController
+@interface FeedHistoryViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (weak, nonatomic) IBOutlet UIImageView *backimg;
 
-@property (strong, nonatomic) NSString *questionId;
+
+@property (strong, nonatomic) NSString *classID;
 @end

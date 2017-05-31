@@ -64,8 +64,17 @@
     vv =[[UIView alloc]initWithFrame:CGRectMake(0, 0, width, height)];
     vv.backgroundColor =[UIColor blackColor];
     vv.alpha =0.7;
+    
+    UITapGestureRecognizer* singleRecognizer= [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapFrom)];
+    singleRecognizer.numberOfTapsRequired = 1; // 单击
+    [vv addGestureRecognizer:singleRecognizer];
     [self.view addSubview:vv];
 }
+-(void)handleSingleTapFrom{
+        _inviteview.hidden =YES;
+        [self remov];
+}
+
 -(void)remov{
     [vv removeFromSuperview];
 }
@@ -104,8 +113,8 @@
 //关于我们
 - (IBAction)About:(id)sender {
     //暂时还不知道是啥那
-    ExplainViewController *explain = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"explain"];
-    [self.navigationController pushViewController:explain animated:YES];
+//    ExplainViewController *explain = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"explain"];
+//    [self.navigationController pushViewController:explain animated:YES];
 }
 - (IBAction)ChangePho:(id)sender {
     ChangePhoneViewController *change = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"changephone"];

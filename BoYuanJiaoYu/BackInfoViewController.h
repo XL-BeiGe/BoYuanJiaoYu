@@ -10,5 +10,8 @@
 
 @interface BackInfoViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *table;
+@property (weak, nonatomic) IBOutlet UIImageView *backimg;
+
+
 @property (strong, nonatomic) NSString *classID;
 @end

@@ -46,7 +46,7 @@
 }
 -(void)navagat{
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
-    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"考勤历史" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
+    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"历史考勤" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
     [self.navigationItem setRightBarButtonItem:right];
 }
 
@@ -60,7 +60,7 @@
     [WarningBox warningBoxModeIndeterminate:@"正在加载,请稍后" andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/attend/attendMainList";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1",@"pageNo",@"10",@"pageSize", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"officeId"],@"officeId",@"1",@"pageNo",@"10",@"pageSize", nil];
    
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
@@ -69,7 +69,6 @@
             
             arr = [NSMutableArray array];
             arr=[[responseObject objectForKey:@"data"] objectForKey:@"attendList"];
-            NSLog(@"%@",arr);
             if(arr.count==0){
                 _BackImage.hidden=NO;
                 _table.hidden=YES;

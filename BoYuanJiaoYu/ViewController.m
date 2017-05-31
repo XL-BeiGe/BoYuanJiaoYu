@@ -148,7 +148,7 @@
 }
 -(void)tan{
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请选择机构" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请选择" preferredStyle:UIAlertControllerStyleActionSheet];
     for (int index = 0; index <arrr.count; index++) {
         int  key = index;
         NSString*message=[NSString stringWithFormat:@"%@",[arrr[key] objectForKey:@"officeName"]];

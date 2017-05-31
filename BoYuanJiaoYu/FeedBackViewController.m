@@ -11,6 +11,7 @@
 #import "BackInfoViewController.h"
 #import "WarningBox.h"
 #import "XL_wangluo.h"
+#import "FeedHistoryViewController.h"
 @interface FeedBackViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     float width;
@@ -28,7 +29,7 @@
     //[self navagat];
     [self ketangfankui];
     [self refrish];
-    
+    _backimg.hidden=YES;
     self.title =@"课堂反馈";
     // Do any additional setup after loading the view.
 }
@@ -54,9 +55,12 @@
             arr =[NSMutableArray array];
             arr =[[responseObject objectForKey:@"data"] objectForKey:@"feedbackSubjectList"];
             if(arr.count==0){
-                NSLog(@"暂无反馈");
+                _backimg.hidden =NO;
+                _table.hidden =YES;
             }else{
-             [_table reloadData];
+                _table.hidden =NO;
+                _backimg.hidden =YES;
+                [_table reloadData];
             }
             
         }
@@ -114,37 +118,15 @@
     return arr.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-        return 4;
+        return 2;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row==0){
         return 45;
     }
-  else if(indexPath.row==1){
-            return 40;
-        }
-   else if (indexPath.row==2){
-            NSString* ss=[[NSString alloc] init];
-                        if(nil==[arr[indexPath.section] objectForKey:@"comment"]){
-                            ss =@"";
-                        }else{
-                            ss =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"comment"]];
-                       }
-            messa=[[UILabel alloc] init];
-            UIFont *font = [UIFont fontWithName:@"Arial" size:15];
-            NSAttributedString *attributedText =
-            [[NSAttributedString alloc]initWithString:ss attributes:@{NSFontAttributeName: font}];
-            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-50, CGFLOAT_MAX}
-                                                       options:NSStringDrawingUsesLineFragmentOrigin
-                                                       context:nil];
-            
-            messa.text=ss;
-            [messa setFrame:CGRectMake(20,4, rect.size.width, rect.size.height)];
-            
-            return messa.frame.size.height+15>40? messa.frame.size.height+5:40;
-        }
+  
    else{
-       return 60;
+       return 80;
    }
     
 }
@@ -193,56 +175,70 @@
         [cell addSubview:left2];
         [cell addSubview:fenview];
     }
-    else if (indexPath.row==1){
-    
-        UIImageView *img =[[UIImageView alloc]initWithFrame:CGRectMake(15, 5, 30, 30)];
-        UILabel *dianp =[[UILabel alloc]initWithFrame:CGRectMake(50,10,70, 20)];
-         dianp.font =[UIFont systemFontOfSize:15];
-         dianp.text =@"教师点评:";
-         img.image =[UIImage imageNamed:@"teacher.png"];
-        [cell addSubview:img];
-        [cell addSubview:dianp];
-    }
-    else if (indexPath.row==2){
-      
-        messa.numberOfLines =0;
-        messa.font =[UIFont fontWithName:@"Arial" size:15];
-        
-        [cell addSubview:messa];
-    }
     else{
       
-        UIButton *btn1 =[[UIButton alloc]initWithFrame:CGRectMake(20, 10,width-40, 30)];
-        //UIButton *btn2 =[[UIButton alloc]initWithFrame:CGRectMake(width/2+20, 10, 130, 30)];
+        UIButton *btn1 =[[UIButton alloc]initWithFrame:CGRectMake(10, 30,(width-50)/2, 30)];
+        UIButton *btn2 =[[UIButton alloc]initWithFrame:CGRectMake(width/2, 30,(width-50)/2, 30)];
         [btn1 setTitle:@"今日作业" forState:UIControlStateNormal];
-       
         [btn1 setTitleColor:[UIColor colorWithHexString:@"fe528e"] forState:UIControlStateNormal];
-       
         btn1.titleLabel.font =[UIFont systemFontOfSize:15];
-        
         [btn1 setImage:[UIImage imageNamed:@"zuoye.png"] forState:UIControlStateNormal];
-        
         [btn1 setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
- 
         btn1.layer.borderWidth =1;
- 
         btn1.layer.cornerRadius =15;
-      
         btn1.layer.borderColor =[[UIColor colorWithHexString:@"fe528e"]CGColor];
+        
+        
+        [btn2 setTitle:@"历史作业" forState:UIControlStateNormal];
+        [btn2 setTitleColor:[UIColor colorWithHexString:@"41beff"] forState:UIControlStateNormal];
+        btn2.titleLabel.font =[UIFont systemFontOfSize:15];
+        [btn2 setImage:[UIImage imageNamed:@"ceshi.png"] forState:UIControlStateNormal];
+        [btn2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+        btn2.layer.borderWidth =1;
+        btn2.layer.cornerRadius =15;
+        btn2.layer.borderColor =[[UIColor colorWithHexString:@"41beff"]CGColor];
+        
+        [btn1  addTarget:self action:@selector(jinrizuoye:) forControlEvents:UIControlEventTouchUpInside];
+        [btn2  addTarget:self action:@selector(lishizuoye:) forControlEvents:UIControlEventTouchUpInside];
+        
       
         [cell addSubview:btn1];
-  
+        [cell addSubview:btn2];
         
     }
     
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    BackInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"backinfo"];
-    his.classID=_classId;
-    [self.navigationController pushViewController:his animated:YES];
+-(void)jinrizuoye:(UIButton*)btn{
+    UITableViewCell *cell=(UITableViewCell*)[[btn superview] superview];
+    
+    NSIndexPath *index=[_table indexPathForCell:cell];
+    
+        BackInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"backinfo"];
+       his.classID=[NSString stringWithFormat:@"%@",[arr[index.row]objectForKey:@"classId"]];
+        [self.navigationController pushViewController:his animated:YES];
 }
+-(void)lishizuoye:(UIButton*)btn{
+   
+    UITableViewCell *cell=(UITableViewCell*)[[btn superview] superview ];
+    
+    NSIndexPath *index=[_table indexPathForCell:cell];
+    
+    FeedHistoryViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"feedhistory"];
+    his.classID=[NSString stringWithFormat:@"%@",[arr[index.row]objectForKey:@"classId"]];
+ 
+    [self.navigationController pushViewController:his animated:YES];
+    
+    
+        
+}
+
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    BackInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"backinfo"];
+//    his.classID=_classId;
+//    [self.navigationController pushViewController:his animated:YES];
+//}
 /*
 #pragma mark - Navigation
 

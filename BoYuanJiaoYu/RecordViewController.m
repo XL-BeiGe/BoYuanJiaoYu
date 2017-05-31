@@ -216,13 +216,13 @@
     if(nil==[arr[indexPath.section]objectForKey:@"errorCount"]){
        fcnum.text =@"";
     }else{
-       fcnum.text=[NSString stringWithFormat:@"%@次",[arr[indexPath.section]objectForKey:@"errorCount"]];
+       fcnum.text=[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"errorCount"]];
     }
     //个人犯错
     if(nil==[arr[indexPath.section]objectForKey:@"errorSelfCount"]){
         wrnum.text =@""; 
     }else{
-      wrnum.text=[NSString stringWithFormat:@"%@次",[arr[indexPath.section]objectForKey:@"errorSelfCount"]];
+      wrnum.text=[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"errorSelfCount"]];
     }
     
     

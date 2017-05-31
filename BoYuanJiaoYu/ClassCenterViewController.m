@@ -221,9 +221,9 @@
     if (cell==nil) {
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:aa];
     }
-    //    for (id suView in cell.contentView.subviews) {//获取当前cell的全部子视图
-    //        [suView removeFromSuperview];//移除全部子视图
-    //    }
+        for (id suView in cell.subviews) {//获取当前cell的全部子视图
+            [suView removeFromSuperview];//移除全部子视图
+        }
     
     UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(0,0,width, 155)];
     UIImageView*lsimg=[[UIImageView alloc] initWithFrame:CGRectMake(width/2-100,70,20, 20)];

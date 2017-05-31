@@ -23,9 +23,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title =@"错题详情";
     [self cuotixiangqing];
     [self comeback];
     [self delegate];
+    _backimg.hidden=YES;
     width =[UIScreen mainScreen].bounds.size.width;
     // Do any additional setup after loading the view.
 }
@@ -49,7 +52,16 @@
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             [WarningBox warningBoxHide:YES andView:self.view];
             arr =[responseObject objectForKey:@"data"];
+            if(arr.count==0){
+                _backimg.hidden =NO;
+                _table.hidden =YES;
+            }else{
+                _table.hidden =NO;
+                _backimg.hidden =YES;
             [_table reloadData];
+            }
+            
+            
         }
         
     } failure:^(NSError *error) {

@@ -1,35 +1,34 @@
 //
-//  BackInfoViewController.m
+//  FeedHistoryViewController.m
 //  BoYuanJiaoYu
 //
-//  Created by newmac on 2017/2/25.
+//  Created by newmac on 2017/5/25.
 //  Copyright © 2017年 BeiGe. All rights reserved.
 //
 
-#import "BackInfoViewController.h"
-#import "Color+Hex.h"
+#import "FeedHistoryViewController.h"
 #import "WarningBox.h"
-#import "XL_wangluo.h"
 #import "HongDingYi.h"
+#import "XL_wangluo.h"
+#import "Color+Hex.h"
 #import "SDWebImage/UIImageView+WebCache.h"
-@interface BackInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface FeedHistoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
-    float width;
-    UILabel *message;
     NSMutableArray *infoarr;
+    float width;
+     UILabel *message;
 }
 @end
 
-@implementation BackInfoViewController
+@implementation FeedHistoryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
+    [self history];
     [self delegate];
-    [self fankuixiangqing];
-    self.title =@"课堂作业";
     [self comeback];
-   _backimg.hidden =YES;
+    _backimg.hidden =YES;
+    self.title =@"反馈历史";
     // Do any additional setup after loading the view.
 }
 -(void)comeback{
@@ -41,26 +40,12 @@
     
     [self.navigationController popViewControllerAnimated:YES];
 }
-//-(void)navagat{
-//    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
-//    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"反馈历史" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
-//    [self.navigationItem setRightBarButtonItem:right];
-//}
-//
-//-(void)History{
-//    BackHistoryViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"backhis"];
-//    [self.navigationController pushViewController:his animated:YES];
-//}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)fankuixiangqing{
+-(void)history{
     [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
-    NSString *fangshi =@"/learningPortfolio/feedbackInfo";
+    NSString *fangshi =@"/learningPortfolio/feedbackHistory";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_classID,@"classId",@"1",@"pageNo",@"10",@"pageSize", nil];
+    NSLog(@"%@",datadic);
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
@@ -75,6 +60,7 @@
                 _backimg.hidden =YES;
                 [_table reloadData];
             }
+            
         }
         
     } failure:^(NSError *error) {
@@ -85,6 +71,7 @@
 
 
 }
+
 
 
 -(void)delegate{
@@ -101,8 +88,8 @@
     return infoarr.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-        return 4;
-
+    return 4;
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row==0){
@@ -148,12 +135,12 @@
     
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-   
+    
     NSString* ss=[[NSString alloc] init];
     if(nil==[infoarr[section] objectForKey:@"quesionId"]){
         ss =@"";
     }else{
-    ss =[NSString stringWithFormat:@"试题编号:%@",[infoarr[section] objectForKey:@"quesionId"]];
+        ss =[NSString stringWithFormat:@"试题编号:%@",[infoarr[section] objectForKey:@"quesionId"]];
     }
     return ss;
 }
@@ -166,7 +153,7 @@
     //    for (id suView in cell.contentView.subviews) {//获取当前cell的全部子视图
     //        [suView removeFromSuperview];//移除全部子视图
     //    }
-     if(indexPath.row==0){
+    if(indexPath.row==0){
         message.numberOfLines =0;
         message.font =[UIFont fontWithName:@"Arial" size:15];
         [cell addSubview:message];
@@ -184,10 +171,10 @@
             //        [self Imageshows];
             [cell.contentView addSubview:image];
         }else{
-        
+            
         }
     }
-     else if (indexPath.row==2){
+    else if (indexPath.row==2){
         if([infoarr[indexPath.section] objectForKey:@"quesionImg2"]!=nil){
             UIImageView *image =[[UIImageView alloc]init];
             image.frame = CGRectMake(0,0,width,150);
@@ -201,10 +188,10 @@
             //        [self Imageshows];
             [cell.contentView addSubview:image];
         }else{
-        
+            
         }
     }
-     else{
+    else{
         if([infoarr[indexPath.section] objectForKey:@"quesionImg3"]!=nil){
             UIImageView *image =[[UIImageView alloc]init];
             image.frame = CGRectMake(0,0,width,150);
@@ -219,16 +206,25 @@
             [cell.contentView addSubview:image];
         }
         else{
-        
+            
         }
     }
-   
+    
     
     
     cell.layer.cornerRadius =5;
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
+
+
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 /*
 #pragma mark - Navigation
 
