@@ -31,6 +31,7 @@
 		D719C4EB1ED66EC300B2B683 /* FeedHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D719C4EA1ED66EC300B2B683 /* FeedHistoryViewController.m */; };
 		D71AD7771ECDA1F7008FBA81 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D71AD7761ECDA1F7008FBA81 /* Default.png */; };
 		D72000F51EDF9EE000E0BB9B /* EBImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D72000F41EDF9EE000E0BB9B /* EBImageBrowser.m */; };
+		D72000FD1EDFF25F00E0BB9B /* ChangePassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72000FC1EDFF25F00E0BB9B /* ChangePassViewController.m */; };
 		D7217BDF1E5A7BD900AE9C89 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D7217BDC1E5A7BD900AE9C89 /* MBProgressHUD.m */; };
 		D7217BE01E5A7BD900AE9C89 /* WarningBox.m in Sources */ = {isa = PBXBuildFile; fileRef = D7217BDE1E5A7BD900AE9C89 /* WarningBox.m */; };
 		D7217BE31E5A7BF500AE9C89 /* Color+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = D7217BE21E5A7BF500AE9C89 /* Color+Hex.m */; };
@@ -219,6 +220,8 @@
 		D71AD7761ECDA1F7008FBA81 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D72000F31EDF9EE000E0BB9B /* EBImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBImageBrowser.h; sourceTree = "<group>"; };
 		D72000F41EDF9EE000E0BB9B /* EBImageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBImageBrowser.m; sourceTree = "<group>"; };
+		D72000FB1EDFF25F00E0BB9B /* ChangePassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePassViewController.h; sourceTree = "<group>"; };
+		D72000FC1EDFF25F00E0BB9B /* ChangePassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePassViewController.m; sourceTree = "<group>"; };
 		D7217BDB1E5A7BD900AE9C89 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		D7217BDC1E5A7BD900AE9C89 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		D7217BDD1E5A7BD900AE9C89 /* WarningBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningBox.h; sourceTree = "<group>"; };
@@ -521,6 +524,15 @@
 				D719C4EA1ED66EC300B2B683 /* FeedHistoryViewController.m */,
 			);
 			name = "反馈历史";
+			sourceTree = "<group>";
+		};
+		D72000FA1EDFF22900E0BB9B /* 修改密码 */ = {
+			isa = PBXGroup;
+			children = (
+				D72000FB1EDFF25F00E0BB9B /* ChangePassViewController.h */,
+				D72000FC1EDFF25F00E0BB9B /* ChangePassViewController.m */,
+			);
+			name = "修改密码";
 			sourceTree = "<group>";
 		};
 		D7217BE41E5A7E1E00AE9C89 /* AFNetworking 3.0.4 */ = {
@@ -868,6 +880,7 @@
 			children = (
 				D72F75AE1E669C44004FBCA6 /* SetPassViewController.h */,
 				D72F75AF1E669C44004FBCA6 /* SetPassViewController.m */,
+				D72000FA1EDFF22900E0BB9B /* 修改密码 */,
 			);
 			name = "设置密码";
 			sourceTree = "<group>";
@@ -1180,6 +1193,7 @@
 				D71842351ECE7E4B00E9CAD5 /* MASConstraint.m in Sources */,
 				D71842371ECE7E4B00E9CAD5 /* MASLayoutConstraint.m in Sources */,
 				D7343ACE1E6FD5FC00DDBCAC /* MyCollectionViewCell.m in Sources */,
+				D72000FD1EDFF25F00E0BB9B /* ChangePassViewController.m in Sources */,
 				D7217C4C1E5A7E2E00AE9C89 /* UIImage+WebP.m in Sources */,
 				D72447C31E52F439003DBCE4 /* TabBarViewController.m in Sources */,
 				D7217C1C1E5A7E2700AE9C89 /* SBJsonUTF8Stream.m in Sources */,

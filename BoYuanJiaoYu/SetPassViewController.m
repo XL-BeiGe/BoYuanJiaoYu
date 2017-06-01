@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title =@"修改密码";
+    self.title =@"设置密码";
     [self comeback];
     // Do any additional setup after loading the view.
 }
@@ -49,6 +49,7 @@
     if(_password.text.length==0){
     [WarningBox warningBoxModeText:@"请输入密码" andView:self.view];
     }else{
+        [self.view endEditing:YES];
         [WarningBox warningBoxModeIndeterminate:@"正在修改" andView:self.view];
         NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
         NSString *fangshi =@"/index/setPassword";
@@ -56,7 +57,7 @@
         
         
         [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-       
+            NSLog(@"%@",responseObject);
            
             if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
                 [WarningBox warningBoxHide:YES andView:self.view];

@@ -9,7 +9,7 @@
 #import "OwnerViewController.h"
 #import "Color+Hex.h"
 #import "ExplainViewController.h"
-//#import "ChangePassViewController.h"
+#import "ChangePassViewController.h"
 #import "StuInfoTableViewController.h"
 #import "WarningBox.h"
 #import "SetPassViewController.h"
@@ -107,8 +107,18 @@
 }
 //修改密码
 - (IBAction)Change:(id)sender {
+    NSUserDefaults *def =[NSUserDefaults standardUserDefaults];
+    
+    NSLog(@"%@",[def objectForKey:@"Panduan"]);
+    if([[def objectForKey:@"Panduan"] isEqualToString:@"2"]){
+        ChangePassViewController *pass = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"changep"];
+        [self.navigationController pushViewController:pass animated:YES];
+        
+    }else{
+    
     SetPassViewController *set = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"setpass"];
     [self.navigationController pushViewController:set animated:YES];
+    }
 }
 //关于我们
 - (IBAction)About:(id)sender {

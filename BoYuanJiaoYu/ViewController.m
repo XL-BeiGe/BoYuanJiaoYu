@@ -175,6 +175,7 @@
 }
 //快速登录
 -(void)quecklogin{
+    [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"Panduan"];
     
     [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
     NSString *fangshi =@"/index/quickLogin";
@@ -193,6 +194,9 @@
                 [[NSUserDefaults standardUserDefaults]setObject:[arrr[0] objectForKey:@"officeId"] forKey:@"officeId"];
                 [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",_username.text] forKey:@"username"];
                 [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",_password.text] forKey:@"password"];
+                
+                
+            
                 //
                 TabBarViewController *atten = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
                 [self presentViewController:atten animated:YES completion:^{}];
@@ -216,6 +220,8 @@
 }
 //账号密码登录
 -(void)logined{
+    [[NSUserDefaults standardUserDefaults]setObject:@"2" forKey:@"Panduan"];
+    
     [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
     NSString *fangshi =@"/index/login";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_password.text,@"passWord",_username.text,@"userName",@"",@"deviceToken",@"1",@"type", nil];
@@ -234,7 +240,11 @@
                 [[NSUserDefaults standardUserDefaults]setObject:[arrr[0] objectForKey:@"officeId"] forKey:@"officeId"];
                 [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",_username.text] forKey:@"username"];
                 [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",_password.text] forKey:@"password"];
-                //
+                
+                
+    
+                
+            
                 TabBarViewController *atten = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
                 [self presentViewController:atten animated:YES completion:^{}];
             }else{
