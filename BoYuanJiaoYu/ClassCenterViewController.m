@@ -149,9 +149,13 @@
             }
             
         }
+        else if ([[responseObject objectForKey:@"code"]isEqual:@"9999"]){
+            //账号在其他手机登录，请重新登录。
+            [XL_wangluo sigejiu:self];
+        }
         else{
-            NSLog(@"asdsdasdasdasd");
-        
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
@@ -178,6 +182,14 @@
            typearr = [[responseObject objectForKey:@"data"] objectForKey:@"classTypeList"];
            teacharr = [[responseObject objectForKey:@"data"] objectForKey:@"teacherList"];
             [mainCollectionView reloadData];
+        }
+        else if ([[responseObject objectForKey:@"code"]isEqual:@"9999"]){
+            //账号在其他手机登录，请重新登录。
+            [XL_wangluo sigejiu:self];
+        }
+        else{
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }
         
     } failure:^(NSError *error) {

@@ -21,5 +21,5 @@ typedef NS_ENUM(NSUInteger,Post_or_Get) {
 @interface XL_wangluo : NSObject
 +(void)JieKouwithBizMethod:(NSString*)BizMetho Rucan:(NSDictionary*)BizParamSt type:(Post_or_Get)type success:(void (^)(id responseObject))success
 failure:(void (^)(NSError *error))failure;
-
++(void)sigejiu:(UIViewController*)vv;
 @end

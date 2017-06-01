@@ -30,7 +30,7 @@
     def =[NSUserDefaults standardUserDefaults];
     self.title =@"登录";
 //    _username.text =@"13845120257";
-//    _password.text =@"111111";
+//    _password.text =@"123456";
     [self registerForKeyboardNotifications];
     [self bianhua];
     //[self huoqujigou];
@@ -265,15 +265,18 @@
     if(![self isMobileNumber:_username.text]){
         [WarningBox warningBoxModeText:@"请检查手机号" andView:self.view];
     }else{
+        
+     [WarningBox warningBoxModeIndeterminate:@"正在发送" andView:self.view];
         NSString *fangshi =@"/index/getAuthCode";
         NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_username.text,@"userName",@"",@"officeId",@"",@"type", nil];
         [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
             NSLog(@"成功\n%@",responseObject);
             
             if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+                [WarningBox warningBoxHide:YES andView:self.view];
                 [WarningBox warningBoxModeText:@"验证码已发送" andView:self.view];
             }else{
-                // [WarningBox warningBoxHide:YES andView:self.view];
+                 [WarningBox warningBoxHide:YES andView:self.view];
                 [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
             }
             

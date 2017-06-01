@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title =@"设置密码";
+    self.title =@"修改密码";
     [self comeback];
     // Do any additional setup after loading the view.
 }
@@ -66,6 +66,14 @@
                     [self presentViewController:view animated:YES completion:^{}];
                 });
                 
+            }
+            else if ([[responseObject objectForKey:@"code"]isEqual:@"9999"]){
+                //账号在其他手机登录，请重新登录。
+                [XL_wangluo sigejiu:self];
+            }
+            else{
+                [WarningBox warningBoxHide:YES andView:self.view];
+                [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
             }
             
         } failure:^(NSError *error) {

@@ -54,7 +54,7 @@
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
        [WarningBox warningBoxHide:YES andView:self.view];
-        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]){
             arr =[NSMutableArray array];
             arr=[[responseObject objectForKey:@"data"] objectForKey:@"attendList"];
             if(arr.count==0){
@@ -67,6 +67,14 @@
                  [_table reloadData];
             }
             
+        }
+        else if ([[responseObject objectForKey:@"code"]isEqual:@"9999"]){
+            //账号在其他手机登录，请重新登录。
+            [XL_wangluo sigejiu:self];
+        }
+        else{
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }
         
     } failure:^(NSError *error) {

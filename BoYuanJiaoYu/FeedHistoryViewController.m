@@ -12,6 +12,7 @@
 #import "XL_wangluo.h"
 #import "Color+Hex.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "EBImageBrowser.h"
 @interface FeedHistoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *infoarr;
@@ -62,6 +63,14 @@
             }
             
         }
+        else if ([[responseObject objectForKey:@"code"]isEqual:@"9999"]){
+            //账号在其他手机登录，请重新登录。
+            [XL_wangluo sigejiu:self];
+        }
+        else{
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
+        }
         
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
@@ -82,7 +91,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
     width =[UIScreen mainScreen].bounds.size.width;
-    _table.bounces =NO;
+    //_table.bounces =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return infoarr.count;
@@ -119,7 +128,7 @@
             return 150;
         }
     }
-    else if (indexPath.row==1){
+    else if (indexPath.row==2){
         if(nil==[infoarr[indexPath.section]objectForKey:@"quesionImg2"]){
             return 0;
         }else{
@@ -144,6 +153,10 @@
     }
     return ss;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 5;
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *aa=@"heheda";
     UITableViewCell *cell=[self.table cellForRowAtIndexPath:indexPath];
@@ -158,7 +171,9 @@
         message.font =[UIFont fontWithName:@"Arial" size:15];
         [cell addSubview:message];
     }else if (indexPath.row==1){
-        if([infoarr[indexPath.section] objectForKey:@"quesionImg1"]!=nil){
+        if([[infoarr[indexPath.section] objectForKey:@"quesionImg1"]isEqualToString:@""]){
+            
+        }else{
             UIImageView *image =[[UIImageView alloc]init];
             image.frame = CGRectMake(0,0,width,150);
             //image.contentMode = UIViewContentModeScaleAspectFill;
@@ -168,14 +183,16 @@
             NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[infoarr[indexPath.section] objectForKey:@"quesionImg1"]];
             url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
-            //        [self Imageshows];
+            UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
+            [image addGestureRecognizer:tapGestureRecognizer1];
+            //让UIImageView和它的父类开启用户交互属性
+            [image setUserInteractionEnabled:YES];
             [cell.contentView addSubview:image];
-        }else{
-            
         }
     }
     else if (indexPath.row==2){
-        if([infoarr[indexPath.section] objectForKey:@"quesionImg2"]!=nil){
+        if([[infoarr[indexPath.section] objectForKey:@"quesionImg2"]isEqualToString:@""]){
+        }else{
             UIImageView *image =[[UIImageView alloc]init];
             image.frame = CGRectMake(0,0,width,150);
             //image.contentMode = UIViewContentModeScaleAspectFill;
@@ -185,14 +202,17 @@
             NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[infoarr[indexPath.section] objectForKey:@"quesionImg2"]];
             url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
-            //        [self Imageshows];
+            UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
+            [image addGestureRecognizer:tapGestureRecognizer1];
+            //让UIImageView和它的父类开启用户交互属性
+            [image setUserInteractionEnabled:YES];
             [cell.contentView addSubview:image];
-        }else{
-            
         }
     }
     else{
-        if([infoarr[indexPath.section] objectForKey:@"quesionImg3"]!=nil){
+        if([[infoarr[indexPath.section] objectForKey:@"quesionImg3"]isEqualToString:@""]){
+        
+        }else{
             UIImageView *image =[[UIImageView alloc]init];
             image.frame = CGRectMake(0,0,width,150);
             //image.contentMode = UIViewContentModeScaleAspectFill;
@@ -202,21 +222,29 @@
             NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[infoarr[indexPath.section] objectForKey:@"quesionImg3"]];
             url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
-            //        [self Imageshows];
+            UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
+            [image addGestureRecognizer:tapGestureRecognizer1];
+            //让UIImageView和它的父类开启用户交互属性
+            [image setUserInteractionEnabled:YES];
             [cell.contentView addSubview:image];
         }
-        else{
-            
-        }
+       
     }
     
     
-    
+    cell.backgroundColor =[UIColor whiteColor];
     cell.layer.cornerRadius =5;
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
 
+
+-(void)scanBigImageClick1:(UITapGestureRecognizer *)tap{
+    NSLog(@"点击图片");
+    UIImageView *clickedImageView = (UIImageView *)tap.view;
+    //    [XWScanImage scanBigImageWithImageView:clickedImageView];
+    [EBImageBrowser showImage:clickedImageView];
+}
 
 
 

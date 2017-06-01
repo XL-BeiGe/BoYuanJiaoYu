@@ -10,6 +10,7 @@
 #import "HongDingYi.h"
 #import "AFNetworking.h"
 #import "SBJsonWriter.h"
+#import "ViewController.h"
 @implementation XL_wangluo
 +(void)JieKouwithBizMethod:(NSString*)BizMethod Rucan:(NSDictionary*)BizParamSt type:(Post_or_Get)type success:(void (^)(id responseObject))success
                    failure:(void (^)(NSError *error))failure{
@@ -57,4 +58,23 @@
             break;
     }
 }
++(void)sigejiu:(UIViewController*)vv{
+    
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"注意" message:@"您的账号已在其他手机登录，请重新登录..." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        //具体实现逻辑代码
+        ViewController *view = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
+        [view setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+        [vv presentViewController:view animated:YES completion:nil];
+        
+        
+    }];
+    [alert addAction:cancel];
+    //显示提示框
+    [vv presentViewController:alert animated:YES completion:nil];
+    
+}
+
 @end

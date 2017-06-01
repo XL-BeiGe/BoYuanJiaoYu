@@ -19,53 +19,5 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BoYuanJiaoYu/BackInfoViewController.m"
-            timestampString = "517457954.601028"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "-fankuixiangqing"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[BackInfoViewController fankuixiangqing]"
-                  moduleName = "BoYuanJiaoYu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/BackInfoViewController.m"
-                  timestampString = "517457954.824396"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "456">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__41-[BackInfoViewController fankuixiangqing]_block_invoke"
-                  moduleName = "BoYuanJiaoYu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/newmac/Desktop/BoYuanJiaoYu/BoYuanJiaoYu/BackInfoViewController.m"
-                  timestampString = "517457954.826831"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65"
-                  offsetFromSymbolStart = "64">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

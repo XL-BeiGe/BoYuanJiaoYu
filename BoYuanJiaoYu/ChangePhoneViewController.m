@@ -50,6 +50,7 @@
     if(![self isMobileNumber:_phone.text]){
     [WarningBox warningBoxModeText:@"请检查手机号" andView:self.view];
     }else{
+        [self.view endEditing:YES];
         [WarningBox warningBoxModeIndeterminate:@"正在发送" andView:self.view];
         NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
         NSString *fangshi =@"/index/getAuthCode";
@@ -60,6 +61,14 @@
             if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
                 [WarningBox warningBoxModeText:@"验证码已发送" andView:self.view];
                 
+            }
+            else if ([[responseObject objectForKey:@"code"]isEqual:@"9999"]){
+                //账号在其他手机登录，请重新登录。
+                [XL_wangluo sigejiu:self];
+            }
+            else{
+                [WarningBox warningBoxHide:YES andView:self.view];
+                [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
             }
             
         } failure:^(NSError *error) {
@@ -88,7 +97,13 @@
                 ViewController *view = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
                 [self presentViewController:view animated:YES completion:^{}];
             });
-        }else{
+        }
+        else if ([[responseObject objectForKey:@"code"]isEqual:@"9999"]){
+            //账号在其他手机登录，请重新登录。
+            [XL_wangluo sigejiu:self];
+        }
+        else{
+       [WarningBox warningBoxHide:YES andView:self.view];
        [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }
         
