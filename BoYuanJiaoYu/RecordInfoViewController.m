@@ -45,9 +45,9 @@
 //错题详情
 -(void)cuotixiangqing{
     [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
-    // NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
+     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/errorInfo";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_questionId,@"questionId", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_questionId,@"questionId",[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
@@ -175,7 +175,6 @@
         [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
         NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[arr objectForKey:@"quesionImg1"]];
         url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSLog(@"%@",url);
         [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
             //为UIImageView1添加点击事件
         UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];

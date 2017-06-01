@@ -47,8 +47,9 @@
 -(void)wangluo{
     [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
     //通知的状态还不知道有几个
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/userInfo/pushInfo";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_pushId,@"pushId",@"1",@"state", nil];
+    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_pushId,@"pushId",@"1",@"state",[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
         NSLog(@"成功\n%@",responseObject);
         [WarningBox warningBoxHide:YES andView:self.view];
