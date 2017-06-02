@@ -45,6 +45,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
+
 //获取验证码
 - (IBAction)secuti:(id)sender {
     if(![self isMobileNumber:_phone.text]){
@@ -83,6 +87,7 @@
 }
 //修改手机号
 - (IBAction)Sure:(id)sender {
+    [self.view endEditing:YES];
     [WarningBox warningBoxModeIndeterminate:@"修改中" andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/index/modifyTel";

@@ -52,8 +52,10 @@
 }
 
 -(void)History{
+    self.hidesBottomBarWhenPushed=YES;
     NoteListViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"notelist"];
     [self.navigationController pushViewController:his animated:YES];
+    self.hidesBottomBarWhenPushed=NO;
 }
 -(void)backview{
     width =[UIScreen mainScreen].bounds.size.width;
@@ -94,10 +96,11 @@
 }
 //修改个人信息
 - (IBAction)Edit:(id)sender {
+    self.hidesBottomBarWhenPushed=YES;
     StuInfoTableViewController *stuinfo = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"stuinfo"];
     stuinfo.Gerenxinxi=Gerenxinxi;
     [self.navigationController pushViewController:stuinfo animated:YES];
-    
+    self.hidesBottomBarWhenPushed=NO;
 }
 //邀请家人
 - (IBAction)Invite:(id)sender {
@@ -111,13 +114,15 @@
     
     NSLog(@"%@",[def objectForKey:@"Panduan"]);
     if([[def objectForKey:@"Panduan"] isEqualToString:@"2"]){
+        self.hidesBottomBarWhenPushed=YES;
         ChangePassViewController *pass = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"changep"];
         [self.navigationController pushViewController:pass animated:YES];
-        
+        self.hidesBottomBarWhenPushed=NO;
     }else{
-    
+    self.hidesBottomBarWhenPushed=YES;
     SetPassViewController *set = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"setpass"];
     [self.navigationController pushViewController:set animated:YES];
+        self.hidesBottomBarWhenPushed=NO;
     }
 }
 //关于我们
@@ -127,8 +132,10 @@
 //    [self.navigationController pushViewController:explain animated:YES];
 }
 - (IBAction)ChangePho:(id)sender {
+    self.hidesBottomBarWhenPushed=YES;
     ChangePhoneViewController *change = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"changephone"];
     [self.navigationController pushViewController:change animated:YES];
+    self.hidesBottomBarWhenPushed=NO;
 }
 - (IBAction)Sure:(id)sender {
     if(![self isMobileNumber:_phoneNum.text]){

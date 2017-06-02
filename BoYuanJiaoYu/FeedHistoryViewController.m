@@ -97,11 +97,14 @@
     return infoarr.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return 3;
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row==0){
+        return 30;
+    }
+    else if(indexPath.row==1){
         NSString* ss=[[NSString alloc] init];
         if(nil==[infoarr[indexPath.section] objectForKey:@"quesionName"]){
             ss =@"";
@@ -121,42 +124,41 @@
         
         return message.frame.size.height+15>40? message.frame.size.height+55:40;
     }
-    else if (indexPath.row==1){
-        if(nil==[infoarr[indexPath.section]objectForKey:@"quesionImg1"]){
-            return 0;
-        }else{
-            return 150;
-        }
+    else{
+        return  width/3-15;
     }
-    else if (indexPath.row==2){
-        if(nil==[infoarr[indexPath.section]objectForKey:@"quesionImg2"]){
-            return 0;
-        }else{
-            return 150;
-        }
-    }else{
-        if(nil==[infoarr[indexPath.section]objectForKey:@"quesionImg3"]){
-            return 0;
-        }else{
-            return 150;
-        }
-    }
+    
+    //    else if (indexPath.row==1){
+    //        if(nil==[infoarr[indexPath.section]objectForKey:@"quesionImg1"]){
+    //            return 0;
+    //        }else{
+    //            return 150;
+    //        }
+    //    }
+    //    else if (indexPath.row==2){
+    //        if(nil==[infoarr[indexPath.section]objectForKey:@"quesionImg2"]){
+    //            return 0;
+    //        }else{
+    //            return 150;
+    //        }
+    //    }else{
+    //        if(nil==[infoarr[indexPath.section]objectForKey:@"quesionImg3"]){
+    //            return 0;
+    //        }else{
+    //            return 150;
+    //        }
+    //    }
     
 }
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *vv= [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 5)];
+    vv.backgroundColor =[UIColor colorWithHexString:@"EAEEF2"];
     
-    NSString* ss=[[NSString alloc] init];
-    if(nil==[infoarr[section] objectForKey:@"quesionId"]){
-        ss =@"";
-    }else{
-        ss =[NSString stringWithFormat:@"试题编号:%@",[infoarr[section] objectForKey:@"quesionId"]];
-    }
-    return ss;
+    return vv;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 5;
 }
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *aa=@"heheda";
     UITableViewCell *cell=[self.table cellForRowAtIndexPath:indexPath];
@@ -167,77 +169,99 @@
     //        [suView removeFromSuperview];//移除全部子视图
     //    }
     if(indexPath.row==0){
+        UILabel *label =[[UILabel alloc]initWithFrame:CGRectMake(20, 10, width-60, 20)];
+        NSString* ss=[[NSString alloc] init];
+        if(nil==[infoarr[indexPath.section] objectForKey:@"quesionId"]){
+            ss =@"";
+        }else{
+            ss =[NSString stringWithFormat:@"试题编号:%@",[infoarr[indexPath.section] objectForKey:@"quesionId"]];
+        }
+        label.text =ss;
+        label.textColor =[UIColor  colorWithHexString:@"AAAAAA"];
+        [cell addSubview:label];
+    }
+    
+    else if(indexPath.row==1){
         message.numberOfLines =0;
         message.font =[UIFont fontWithName:@"Arial" size:15];
         [cell addSubview:message];
-    }else if (indexPath.row==1){
-        if([[infoarr[indexPath.section] objectForKey:@"quesionImg1"]isEqualToString:@""]){
-            
-        }else{
-            UIImageView *image =[[UIImageView alloc]init];
-            image.frame = CGRectMake(0,0,width,150);
-            //image.contentMode = UIViewContentModeScaleAspectFill;
-            image.contentMode = UIViewContentModeScaleAspectFit;
-            image.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
-            [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
-            NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[infoarr[indexPath.section] objectForKey:@"quesionImg1"]];
-            url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
-            UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
-            [image addGestureRecognizer:tapGestureRecognizer1];
-            //让UIImageView和它的父类开启用户交互属性
-            [image setUserInteractionEnabled:YES];
-            [cell.contentView addSubview:image];
-        }
-    }
-    else if (indexPath.row==2){
-        if([[infoarr[indexPath.section] objectForKey:@"quesionImg2"]isEqualToString:@""]){
-        }else{
-            UIImageView *image =[[UIImageView alloc]init];
-            image.frame = CGRectMake(0,0,width,150);
-            //image.contentMode = UIViewContentModeScaleAspectFill;
-            image.contentMode = UIViewContentModeScaleAspectFit;
-            image.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
-            [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
-            NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[infoarr[indexPath.section] objectForKey:@"quesionImg2"]];
-            url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
-            UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
-            [image addGestureRecognizer:tapGestureRecognizer1];
-            //让UIImageView和它的父类开启用户交互属性
-            [image setUserInteractionEnabled:YES];
-            [cell.contentView addSubview:image];
-        }
     }
     else{
-        if([[infoarr[indexPath.section] objectForKey:@"quesionImg3"]isEqualToString:@""]){
         
-        }else{
-            UIImageView *image =[[UIImageView alloc]init];
-            image.frame = CGRectMake(0,0,width,150);
+        if(![[infoarr[indexPath.section] objectForKey:@"quesionImg1"]isEqualToString:@""]){
+            UIImageView *img1 = [[UIImageView alloc]initWithFrame:CGRectMake(30, 0,width/3-30, width/3-30)];
             //image.contentMode = UIViewContentModeScaleAspectFill;
-            image.contentMode = UIViewContentModeScaleAspectFit;
-            image.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
-            [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
+            //image.contentMode = UIViewContentModeScaleAspectFit;
+            img1.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
+            [img1 setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
+            NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[infoarr[indexPath.section] objectForKey:@"quesionImg1"]];
+            url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [img1 sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
+            UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
+            [img1 addGestureRecognizer:tapGestureRecognizer1];
+            //让UIImageView和它的父类开启用户交互属性
+            NSString *ss=[NSString stringWithFormat:@"%@%@(null)",Scheme,WaiwangIP];
+            if([url isEqual:ss]){
+                [img1 setUserInteractionEnabled:NO];
+            }else{
+                [img1 setUserInteractionEnabled:YES];
+            }
+            [cell addSubview:img1];
+        }
+        if(![[infoarr[indexPath.section] objectForKey:@"quesionImg2"]isEqualToString:@""]){
+            UIImageView *img2 = [[UIImageView alloc]initWithFrame:CGRectMake(width/3+20,0 , width/3-30, width/3-30)];
+            //image.contentMode = UIViewContentModeScaleAspectFill;
+            //image.contentMode = UIViewContentModeScaleAspectFit;
+            img2.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
+            [img2 setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
+            NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[infoarr[indexPath.section] objectForKey:@"quesionImg2"]];
+            
+            url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [img2 sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
+            UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
+            [img2 addGestureRecognizer:tapGestureRecognizer1];
+            //让UIImageView和它的父类开启用户交互属性
+            NSString *ss=[NSString stringWithFormat:@"%@%@(null)",Scheme,WaiwangIP];
+            if([url isEqual:ss]){
+                [img2 setUserInteractionEnabled:NO];
+            }else{
+                [img2 setUserInteractionEnabled:YES];
+            }
+            [cell addSubview:img2];
+        }
+        
+        
+        if(![[infoarr[indexPath.section] objectForKey:@"quesionImg3"]isEqualToString:@""]){
+            UIImageView *img3 = [[UIImageView alloc]initWithFrame:CGRectMake((width/3)*2+10, 0, width/3-30, width/3-30)];
+            //image.contentMode = UIViewContentModeScaleAspectFill;
+            //image.contentMode = UIViewContentModeScaleAspectFit;
+            img3.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
+            [img3 setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
             NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[infoarr[indexPath.section] objectForKey:@"quesionImg3"]];
             url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
+            [img3 sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
             UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
-            [image addGestureRecognizer:tapGestureRecognizer1];
+            [img3 addGestureRecognizer:tapGestureRecognizer1];
             //让UIImageView和它的父类开启用户交互属性
-            [image setUserInteractionEnabled:YES];
-            [cell.contentView addSubview:image];
+            NSString *ss=[NSString stringWithFormat:@"%@%@(null)",Scheme,WaiwangIP];
+            if([url isEqual:ss]){
+                [img3 setUserInteractionEnabled:NO];
+            }else{
+                [img3 setUserInteractionEnabled:YES];
+            }
+            [cell addSubview:img3];
         }
-       
+        
+        
+        
     }
     
     
-    cell.backgroundColor =[UIColor whiteColor];
-    cell.layer.cornerRadius =5;
+    cell.backgroundColor= [UIColor whiteColor];
+    //cell.layer.cornerRadius =5;
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
-
 
 -(void)scanBigImageClick1:(UITapGestureRecognizer *)tap{
     NSLog(@"点击图片");

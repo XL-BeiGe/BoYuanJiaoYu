@@ -51,8 +51,11 @@
 }
 
 -(void)History{
+    
+    self.hidesBottomBarWhenPushed=YES;
     AttenHistoryViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"atthistory"];
     [self.navigationController pushViewController:his animated:YES];
+     self.hidesBottomBarWhenPushed=NO;
 }
 
 

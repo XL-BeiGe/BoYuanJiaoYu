@@ -221,7 +221,7 @@
     UITableViewCell *cell=(UITableViewCell*)[[btn superview] superview];
     
     NSIndexPath *index=[_table indexPathForCell:cell];
-    
+    self.hidesBottomBarWhenPushed=YES;
         BackInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"backinfo"];
        his.classID=[NSString stringWithFormat:@"%@",[arr[index.row]objectForKey:@"classId"]];
         [self.navigationController pushViewController:his animated:YES];
@@ -231,7 +231,8 @@
     UITableViewCell *cell=(UITableViewCell*)[[btn superview] superview ];
     
     NSIndexPath *index=[_table indexPathForCell:cell];
-    
+    self.hidesBottomBarWhenPushed=YES;
+   
     FeedHistoryViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"feedhistory"];
     his.classID=[NSString stringWithFormat:@"%@",[arr[index.row]objectForKey:@"classId"]];
  

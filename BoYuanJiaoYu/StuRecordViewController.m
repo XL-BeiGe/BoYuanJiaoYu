@@ -155,12 +155,13 @@
     if([_clas.text isEqualToString:@""]){
         [WarningBox warningBoxModeText:@"您没有选课" andView:self.view];
     }else{
-    
+     self.hidesBottomBarWhenPushed=YES;
     FeedBackViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"feedback"];
         his.classId =clasid;
 //        [[NSUserDefaults standardUserDefaults]setObject:clasid forKey:@"classid"];
         
     [self.navigationController pushViewController:his animated:YES];
+         self.hidesBottomBarWhenPushed=NO;
     }
 }
 
@@ -168,8 +169,10 @@
     if([_clas.text isEqualToString:@""]){
         [WarningBox warningBoxModeText:@"您没有选课" andView:self.view];
     }else{
+        self.hidesBottomBarWhenPushed=YES;  
     RecordViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"record"];
     [self.navigationController pushViewController:his animated:YES];
+         self.hidesBottomBarWhenPushed=NO;
     //[self.navigationController pushViewController:atten animated:YES];
     }
 }

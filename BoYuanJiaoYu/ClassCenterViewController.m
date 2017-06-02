@@ -349,10 +349,12 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.hidesBottomBarWhenPushed=YES;
     ClassInfoViewController *class = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"classinfo"];
     class.claassID =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"classId"]];
     [self.navigationController pushViewController:class animated:YES];
-
+    self.hidesBottomBarWhenPushed=NO;
 }
 #pragma mark--collectionview DataSourec代理
 -(void)collectiondelegate{

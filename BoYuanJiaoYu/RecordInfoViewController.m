@@ -129,11 +129,11 @@
     }
     else{
         if(![[arr objectForKey:@"quesionImg1"]isEqualToString:@""]){
-         return 150;
+         return 155;
         }else if(![[arr objectForKey:@"quesionImg2"]isEqualToString:@""]){
-          return 150;
+          return 155;
         }else if(![[arr objectForKey:@"quesionImg3"]isEqualToString:@""]){
-            return 150;
+            return 155;
         }else{
          return 0;
         }
@@ -168,9 +168,9 @@
     else if (indexPath.section==2){
         if(![[arr objectForKey:@"quesionImg1"]isEqualToString:@""]){
       UIImageView *image =[[UIImageView alloc]init];
-        image.frame = CGRectMake(0,0,width,150);
+        image.frame = CGRectMake(0,0,width-20,150);
         //image.contentMode = UIViewContentModeScaleAspectFill;
-        image.contentMode = UIViewContentModeScaleAspectFit;
+       // image.contentMode = UIViewContentModeScaleAspectFit;
         image.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
         [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
         NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[arr objectForKey:@"quesionImg1"]];
@@ -180,7 +180,12 @@
         UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
         [image addGestureRecognizer:tapGestureRecognizer1];
             //让UIImageView和它的父类开启用户交互属性
-        [image setUserInteractionEnabled:YES];
+            NSString *ss=[NSString stringWithFormat:@"%@%@(null)",Scheme,WaiwangIP];
+            if([url isEqual:ss]){
+                [image setUserInteractionEnabled:NO];
+            }else{
+                [image setUserInteractionEnabled:YES];
+            }
             
             
             
@@ -190,9 +195,9 @@
     else if (indexPath.section==3){
         if(![[arr objectForKey:@"quesionImg2"]isEqualToString:@""]){
         UIImageView *image =[[UIImageView alloc]init];
-        image.frame = CGRectMake(0,0,width,150);
+        image.frame = CGRectMake(0,0,width-20,150);
         //image.contentMode = UIViewContentModeScaleAspectFill;
-        image.contentMode = UIViewContentModeScaleAspectFit;
+        //image.contentMode = UIViewContentModeScaleAspectFit;
         image.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
         [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
         NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[arr objectForKey:@"quesionImg2"]];
@@ -201,16 +206,21 @@
             UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
             [image addGestureRecognizer:tapGestureRecognizer1];
             //让UIImageView和它的父类开启用户交互属性
-            [image setUserInteractionEnabled:YES];
+            NSString *ss=[NSString stringWithFormat:@"%@%@(null)",Scheme,WaiwangIP];
+            if([url isEqual:ss]){
+                [image setUserInteractionEnabled:NO];
+            }else{
+                [image setUserInteractionEnabled:YES];
+            }
         [cell.contentView addSubview:image];
         }
     }
     else{
         if(![[arr objectForKey:@"quesionImg3"]isEqualToString:@""]){
         UIImageView *image =[[UIImageView alloc]init];
-        image.frame = CGRectMake(0,0,width,150);
+        image.frame = CGRectMake(0,0,width-20,150);
         //image.contentMode = UIViewContentModeScaleAspectFill;
-        image.contentMode = UIViewContentModeScaleAspectFit;
+        //image.contentMode = UIViewContentModeScaleAspectFit;
         image.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
         [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
         NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,WaiwangIP,[arr objectForKey:@"quesionImg3"]];
@@ -219,7 +229,12 @@
             UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
             [image addGestureRecognizer:tapGestureRecognizer1];
             //让UIImageView和它的父类开启用户交互属性
-            [image setUserInteractionEnabled:YES];
+            NSString *ss=[NSString stringWithFormat:@"%@%@(null)",Scheme,WaiwangIP];
+            if([url isEqual:ss]){
+                [image setUserInteractionEnabled:NO];
+            }else{
+                [image setUserInteractionEnabled:YES];
+            }
         [cell.contentView addSubview:image];
         }
     }

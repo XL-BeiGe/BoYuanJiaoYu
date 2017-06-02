@@ -44,6 +44,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
+
 
 - (IBAction)Sure:(id)sender {
     if(_password.text.length==0){

@@ -17,7 +17,7 @@
 
 #define Scheme  @"http://"
 
-//#define WaiwangIP @"192.168.1.105:8080"
+//#define WaiwangIP @"192.168.1.115:8080"
 //#define WaiwangIP @"192.168.1.144:8082"
 #define WaiwangIP @"www.hljbyjy.com"
 #define AppName @"/boyuanjiaoyu"

@@ -253,6 +253,7 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.hidesBottomBarWhenPushed=YES;
     RecordInfoViewController *rec = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"recordinfo"];
     rec.questionId =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"quesionId"]];
     [self.navigationController pushViewController:rec animated:YES];

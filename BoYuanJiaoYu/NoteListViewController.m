@@ -183,12 +183,14 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.hidesBottomBarWhenPushed=YES;
     NoteInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]
      instantiateViewControllerWithIdentifier:@"noteinfo"];
     his.pushId =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
-    NSLog(@"%@",his.pushId);
     [self.navigationController pushViewController:his animated:YES];
-
+   
+   
 }
 /*
 #pragma mark - Navigation

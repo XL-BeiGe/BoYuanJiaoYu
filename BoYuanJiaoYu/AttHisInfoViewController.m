@@ -182,7 +182,7 @@
             type.textColor =[UIColor colorWithHexString:@"EA2121"];
         }else if ([sda intValue]==4){
             type.text =@"补课";
-            type.textColor =[UIColor colorWithHexString:@"40bcff"];
+            type.textColor =[UIColor colorWithHexString:@"fc619d"];
             
         }
      
