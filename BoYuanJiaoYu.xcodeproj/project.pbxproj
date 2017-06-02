@@ -30,6 +30,7 @@
 		D718423D1ECE7E4B00E9CAD5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = D71842321ECE7E4B00E9CAD5 /* README.md */; };
 		D719C4EB1ED66EC300B2B683 /* FeedHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D719C4EA1ED66EC300B2B683 /* FeedHistoryViewController.m */; };
 		D71AD7771ECDA1F7008FBA81 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D71AD7761ECDA1F7008FBA81 /* Default.png */; };
+		D71ED5FC1EE153DE003C64E8 /* AttentionInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71ED5FB1EE153DE003C64E8 /* AttentionInfoViewController.m */; };
 		D72000F51EDF9EE000E0BB9B /* EBImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D72000F41EDF9EE000E0BB9B /* EBImageBrowser.m */; };
 		D72000FD1EDFF25F00E0BB9B /* ChangePassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72000FC1EDFF25F00E0BB9B /* ChangePassViewController.m */; };
 		D7217BDF1E5A7BD900AE9C89 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D7217BDC1E5A7BD900AE9C89 /* MBProgressHUD.m */; };
@@ -218,6 +219,8 @@
 		D719C4E91ED66EC300B2B683 /* FeedHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedHistoryViewController.h; sourceTree = "<group>"; };
 		D719C4EA1ED66EC300B2B683 /* FeedHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedHistoryViewController.m; sourceTree = "<group>"; };
 		D71AD7761ECDA1F7008FBA81 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		D71ED5FA1EE153DE003C64E8 /* AttentionInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionInfoViewController.h; sourceTree = "<group>"; };
+		D71ED5FB1EE153DE003C64E8 /* AttentionInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionInfoViewController.m; sourceTree = "<group>"; };
 		D72000F31EDF9EE000E0BB9B /* EBImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBImageBrowser.h; sourceTree = "<group>"; };
 		D72000F41EDF9EE000E0BB9B /* EBImageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBImageBrowser.m; sourceTree = "<group>"; };
 		D72000FB1EDFF25F00E0BB9B /* ChangePassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePassViewController.h; sourceTree = "<group>"; };
@@ -526,6 +529,15 @@
 			name = "反馈历史";
 			sourceTree = "<group>";
 		};
+		D71ED5F91EE153B7003C64E8 /* 详情 */ = {
+			isa = PBXGroup;
+			children = (
+				D71ED5FA1EE153DE003C64E8 /* AttentionInfoViewController.h */,
+				D71ED5FB1EE153DE003C64E8 /* AttentionInfoViewController.m */,
+			);
+			name = "详情";
+			sourceTree = "<group>";
+		};
 		D72000FA1EDFF22900E0BB9B /* 修改密码 */ = {
 			isa = PBXGroup;
 			children = (
@@ -806,6 +818,7 @@
 				D72447BF1E52E5C2003DBCE4 /* AttenHistoryViewController.m */,
 				D72F75B51E66BBB8004FBCA6 /* AttHisInfoViewController.h */,
 				D72F75B61E66BBB8004FBCA6 /* AttHisInfoViewController.m */,
+				D71ED5F91EE153B7003C64E8 /* 详情 */,
 			);
 			name = "考勤";
 			sourceTree = "<group>";
@@ -1156,6 +1169,7 @@
 				D7217C191E5A7E2700AE9C89 /* SBJsonStreamWriterAccumulator.m in Sources */,
 				D7217C581E5AC62000AE9C89 /* ExplainViewController.m in Sources */,
 				D75F6DBA1E76433C00037E3E /* RecordInfoViewController.m in Sources */,
+				D71ED5FC1EE153DE003C64E8 /* AttentionInfoViewController.m in Sources */,
 				D7217C1B1E5A7E2700AE9C89 /* SBJsonTokeniser.m in Sources */,
 				D7217C181E5A7E2700AE9C89 /* SBJsonStreamWriter.m in Sources */,
 				D7217C431E5A7E2E00AE9C89 /* SDWebImageCompat.m in Sources */,

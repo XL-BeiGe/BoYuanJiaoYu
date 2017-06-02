@@ -10,10 +10,12 @@
 #import "Color+Hex.h"
 #import "XL_wangluo.h"
 #import "WarningBox.h"
+#import "AttentionInfoViewController.h"
 @interface AttHisInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     float width;
     NSMutableArray *arr;
+    NSDictionary *historylis;
 }
 @end
 
@@ -205,6 +207,19 @@
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.hidesBottomBarWhenPushed=YES;
+    AttentionInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"atteninfo"];
+    
+    historylis =arr[indexPath.row];
+    
+    his.Historylist =historylis;
+    
+    [self.navigationController pushViewController:his animated:YES];
+
+}
+
+
 
 /*
 #pragma mark - Navigation
