@@ -38,7 +38,7 @@
     [super viewDidLoad];
     [self delegate];
 
-    [self shaixuan];
+   // [self shaixuan];
     [self navagat];
     [self collectiondelegate];
     self.title =@"课程中心";
@@ -61,25 +61,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark--筛选完成按钮
--(void)animallllll{
-    _table.userInteractionEnabled =YES;
-    [UIView beginAnimations:nil context:nil];
-    //执行动画
-    //设置动画执行时间
-    [UIView setAnimationDuration:0.5];
-    //设置代理
-    [UIView setAnimationDelegate:self];
-    VVV.frame=CGRectMake(width,0,width-80,heigh);
-    [UIView commitAnimations];
-    touchNumber=1;
-    [self kechengclassleave:leave classtype:clastyp teacherid:teacheid];
-    [mainCollectionView reloadData];
-    leave =@"0";
-    clastyp =@"0";
-    teacheid =@"0";
-    
-}
+
+
 
 #pragma mark---筛选按钮+方法
 -(void)navagat{
@@ -87,41 +70,7 @@
     UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"筛选" style:UIBarButtonItemStyleDone target:self action:@selector(animals)];
     [self.navigationItem setRightBarButtonItem:right];
 }
--(void)animals{
-    
-    if(touchNumber==1){
-        [mainCollectionView reloadData];
-        [UIView beginAnimations:nil context:nil];
-        //执行动画
-        //设置动画执行时间
-        [UIView setAnimationDuration:0.5];
-        //设置代理
-        [UIView setAnimationDelegate:self];
-        //设置动画执行完毕调用的事件
-        //[UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
-        VVV.frame=CGRectMake(80, 0,width-80, heigh);
-        [UIView commitAnimations];
-        touchNumber=0;
-        _table.userInteractionEnabled =NO;
-    }else{
-         [mainCollectionView reloadData];
-        [UIView beginAnimations:nil context:nil];
-        //执行动画
-        //设置动画执行时间
-        [UIView setAnimationDuration:0.5];
-        //设置代理
-        [UIView setAnimationDelegate:self];
-        //设置动画执行完毕调用的事件
-        //[UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
-        VVV.frame=CGRectMake(width,0,width-80,heigh);
-        [UIView commitAnimations];
-        touchNumber=1;
-        _table.userInteractionEnabled =YES;
-    }
-    
-    
-    
-}
+
 
 
 #pragma mark--接口
@@ -168,6 +117,7 @@
 }
 //筛选接口
 -(void)shaixuan{
+    [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/curriculumCenter/classConditionList";
    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"officeId"],@"officeId", nil];
@@ -182,6 +132,19 @@
            typearr = [[responseObject objectForKey:@"data"] objectForKey:@"classTypeList"];
            teacharr = [[responseObject objectForKey:@"data"] objectForKey:@"teacherList"];
             [mainCollectionView reloadData];
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [UIView beginAnimations:nil context:nil];
+            //执行动画
+            //设置动画执行时间
+            [UIView setAnimationDuration:0.5];
+            //设置代理
+            [UIView setAnimationDelegate:self];
+            //设置动画执行完毕调用的事件
+            //[UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
+            VVV.frame=CGRectMake(0, 0,width, heigh);
+            [UIView commitAnimations];
+            touchNumber=0;
+            _table.userInteractionEnabled =NO;
         }
         else if ([[responseObject objectForKey:@"code"]isEqual:@"9999"]){
             //账号在其他手机登录，请重新登录。
@@ -198,7 +161,6 @@
     
 
 }
-
 
 
 #pragma mark--tableviewDataSource代理
@@ -359,15 +321,18 @@
 #pragma mark--collectionview DataSourec代理
 -(void)collectiondelegate{
     
-    VVV =[[UIView alloc]initWithFrame:CGRectMake(width,0,width-80,heigh-49)];
-    VVV.backgroundColor =[UIColor colorWithHexString:@"EFEFEF"];
+    VVV =[[UIView alloc]initWithFrame:CGRectMake(width,0,width,heigh-49)];
+   VVV.backgroundColor =[UIColor clearColor];
+    UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(receiveds)];
+    
+    
+    [VVV addGestureRecognizer:tapGestureRecognizer1];
     [self.view addSubview:VVV];
     
-    UIButton *bth =[[UIButton alloc]initWithFrame:CGRectMake(20,VVV.frame.size.height-40,VVV.frame.size.width-40, 30)];
-    [bth setTitle:@"完成" forState:UIControlStateNormal];
+    UIButton *bth =[[UIButton alloc]initWithFrame:CGRectMake(50,VVV.frame.size.height-44,VVV.frame.size.width-50, 45)];
+    [bth setTitle:@"确定" forState:UIControlStateNormal];
     [bth setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    bth.backgroundColor =[UIColor yellowColor];
-    
+    bth.backgroundColor =[UIColor colorWithHexString:@"ffdb01"];
     [bth  addTarget:self action:@selector(animallllll) forControlEvents:UIControlEventTouchUpInside];
     [VVV addSubview:bth];
     
@@ -382,9 +347,9 @@
     // layout约束这边必须要用estimatedItemSize才能实现自适应,使用itemSzie无效
     layout.estimatedItemSize = CGSizeMake(80, 30);
     //2.初始化collectionView
-    mainCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10,64,width-100, VVV.frame.size.height-113) collectionViewLayout:layout];
+    mainCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(50,64,width-50, VVV.frame.size.height-105) collectionViewLayout:layout];
     
-    mainCollectionView.backgroundColor = [UIColor clearColor];
+    mainCollectionView.backgroundColor = [UIColor colorWithHexString:@"EFEFEF"];
     
     //3.注册collectionViewCell
     //注意，此处的ReuseIdentifier 必须和 cellForItemAtIndexPath 方法中 一致 均为 cellId
@@ -404,6 +369,67 @@
 
     [VVV addSubview:mainCollectionView];
 }
+
+#pragma mark--筛选完成按钮
+-(void)animallllll{
+    _table.userInteractionEnabled =YES;
+    [UIView beginAnimations:nil context:nil];
+    //执行动画
+    //设置动画执行时间
+    [UIView setAnimationDuration:0.5];
+    //设置代理
+    [UIView setAnimationDelegate:self];
+    VVV.frame=CGRectMake(width,0,width,heigh);
+    [UIView commitAnimations];
+    touchNumber=1;
+    [self kechengclassleave:leave classtype:clastyp teacherid:teacheid];
+    [mainCollectionView reloadData];
+    leave =@"0";
+    clastyp =@"0";
+    teacheid =@"0";
+    
+}
+-(void)receiveds{
+    _table.userInteractionEnabled =YES;
+    [UIView beginAnimations:nil context:nil];
+    //执行动画
+    //设置动画执行时间
+    [UIView setAnimationDuration:0.5];
+    //设置代理
+    [UIView setAnimationDelegate:self];
+    VVV.frame=CGRectMake(width,0,width,heigh);
+    [UIView commitAnimations];
+    touchNumber=1;
+}
+-(void)animals{
+  
+    if(touchNumber==1){
+        [self shaixuan];
+       // [mainCollectionView reloadData];
+      
+    }else{
+        [mainCollectionView reloadData];
+        [UIView beginAnimations:nil context:nil];
+        //执行动画
+        //设置动画执行时间
+        [UIView setAnimationDuration:0.5];
+        //设置代理
+        [UIView setAnimationDelegate:self];
+        //设置动画执行完毕调用的事件
+        //[UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
+        VVV.frame=CGRectMake(width,0,width,heigh);
+        [UIView commitAnimations];
+        touchNumber=1;
+        _table.userInteractionEnabled =YES;
+    }
+    
+    
+    
+}
+
+
+
+
 
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

@@ -40,7 +40,7 @@
     [self navagat];
     touchNumber=1;
     
-    [self cuotishaixuan];
+    //[self cuotishaixuan];
     [self collectiondelegate];
     [self comeback];
     [self refrish];
@@ -71,7 +71,7 @@
 
 //错题筛选
 -(void)cuotishaixuan{
-
+[WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/errorScreen";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"officeId"],@"officeId", nil];
@@ -83,8 +83,22 @@
             typearr =[NSMutableArray array];
             leavearr = [[responseObject objectForKey:@"data"] objectForKey:@"grades"];
             typearr = [[responseObject objectForKey:@"data"] objectForKey:@"classes"];
+            [WarningBox warningBoxHide:YES andView:self.view];
             [mainCollectionView reloadData];
-   
+            [mainCollectionView reloadData];
+            [UIView beginAnimations:nil context:nil];
+            //执行动画
+            //设置动画执行时间
+            [UIView setAnimationDuration:0.5];
+            //设置代理
+            [UIView setAnimationDelegate:self];
+            //设置动画执行完毕调用的事件
+            //[UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
+            VVV.frame=CGRectMake(0, 0,width, heigh);
+            [UIView commitAnimations];
+            touchNumber=0;
+            _table.userInteractionEnabled =NO;
+        
         }
         else if ([[responseObject objectForKey:@"code"]isEqual:@"9999"]){
             //账号在其他手机登录，请重新登录。
@@ -297,6 +311,15 @@
     
 }
 #pragma mark-----筛选
+
+
+#pragma mark---筛选按钮+方法
+-(void)navagat{
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"筛选" style:UIBarButtonItemStyleDone target:self action:@selector(animals)];
+    [self.navigationItem setRightBarButtonItem:right];
+}
+
 #pragma mark--筛选完成按钮
 -(void)animallllll{
     _table.userInteractionEnabled =YES;
@@ -306,40 +329,35 @@
     [UIView setAnimationDuration:0.5];
     //设置代理
     [UIView setAnimationDelegate:self];
-    VVV.frame=CGRectMake(width,0,width-80,heigh);
+   VVV.frame=CGRectMake(width,0,width,heigh);
     [UIView commitAnimations];
     touchNumber=1;
     
     [self cuotijilu:@"1" leave:leave type:clastyp];
     [mainCollectionView reloadData];
-//    leave =@"";
-//    clastyp =@"";
-  
+    //    leave =@"";
+    //    clastyp =@"";
+    
     
 }
 
-#pragma mark---筛选按钮+方法
--(void)navagat{
-    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
-    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"筛选" style:UIBarButtonItemStyleDone target:self action:@selector(animals)];
-    [self.navigationItem setRightBarButtonItem:right];
+-(void)receiveds{
+    _table.userInteractionEnabled =YES;
+    [UIView beginAnimations:nil context:nil];
+    //执行动画
+    //设置动画执行时间
+    [UIView setAnimationDuration:0.5];
+    //设置代理
+    [UIView setAnimationDelegate:self];
+    VVV.frame=CGRectMake(width,0,width,heigh);
+    [UIView commitAnimations];
+    touchNumber=1;
 }
 -(void)animals{
     
     if(touchNumber==1){
-        [mainCollectionView reloadData];
-        [UIView beginAnimations:nil context:nil];
-        //执行动画
-        //设置动画执行时间
-        [UIView setAnimationDuration:0.5];
-        //设置代理
-        [UIView setAnimationDelegate:self];
-        //设置动画执行完毕调用的事件
-        //[UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
-        VVV.frame=CGRectMake(80, 0,width-80, heigh);
-        [UIView commitAnimations];
-        touchNumber=0;
-        _table.userInteractionEnabled =NO;
+        [self cuotishaixuan];
+        
     }else{
         [mainCollectionView reloadData];
         [UIView beginAnimations:nil context:nil];
@@ -350,7 +368,7 @@
         [UIView setAnimationDelegate:self];
         //设置动画执行完毕调用的事件
         //[UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
-        VVV.frame=CGRectMake(width,0,width-80,heigh);
+        VVV.frame=CGRectMake(width,0,width,heigh);
         [UIView commitAnimations];
         touchNumber=1;
         _table.userInteractionEnabled =YES;
@@ -364,15 +382,18 @@
 -(void)collectiondelegate{
     width =[UIScreen mainScreen].bounds.size.width;
     heigh =[UIScreen mainScreen].bounds.size.height;
-    VVV =[[UIView alloc]initWithFrame:CGRectMake(width,0,width-80,heigh-49)];
-    VVV.backgroundColor =[UIColor colorWithHexString:@"EFEFEF"];
+    VVV =[[UIView alloc]initWithFrame:CGRectMake(width,0,width,heigh)];
+    VVV.backgroundColor =[UIColor clearColor];
+    UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(receiveds)];
+    
+    
+    [VVV addGestureRecognizer:tapGestureRecognizer1];
     [self.view addSubview:VVV];
     
-    UIButton *bth =[[UIButton alloc]initWithFrame:CGRectMake(20,VVV.frame.size.height-40,VVV.frame.size.width-40, 30)];
-    [bth setTitle:@"完成" forState:UIControlStateNormal];
+    UIButton *bth =[[UIButton alloc]initWithFrame:CGRectMake(50,VVV.frame.size.height-45,VVV.frame.size.width-50, 45)];
+    [bth setTitle:@"确定" forState:UIControlStateNormal];
     [bth setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    bth.backgroundColor =[UIColor yellowColor];
-    
+    bth.backgroundColor =[UIColor colorWithHexString:@"ffdb01"];
     [bth  addTarget:self action:@selector(animallllll) forControlEvents:UIControlEventTouchUpInside];
     [VVV addSubview:bth];
     
@@ -386,11 +407,10 @@
     // layout.itemSize =CGSizeMake(110, 150);
     // layout约束这边必须要用estimatedItemSize才能实现自适应,使用itemSzie无效
     layout.estimatedItemSize = CGSizeMake(80, 30);
-    
     //2.初始化collectionView
-    mainCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10,64,width-100, VVV.frame.size.height-113) collectionViewLayout:layout];
+    mainCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(50,64,width-50, VVV.frame.size.height-105) collectionViewLayout:layout];
     
-    mainCollectionView.backgroundColor = [UIColor clearColor];
+    mainCollectionView.backgroundColor = [UIColor colorWithHexString:@"EFEFEF"];
     
     //3.注册collectionViewCell
     //注意，此处的ReuseIdentifier 必须和 cellForItemAtIndexPath 方法中 一致 均为 cellId
@@ -402,8 +422,8 @@
     
     //4.设置代理
     
-    //    mainCollectionView.allowsSelection = YES;
-    mainCollectionView.allowsMultipleSelection = YES;//允许多选
+    //  mainCollectionView.allowsSelection = YES;
+    mainCollectionView.allowsMultipleSelection = YES;
     mainCollectionView.delegate = self;
     mainCollectionView.dataSource = self;
     mainCollectionView.bounces = NO;
