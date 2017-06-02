@@ -25,7 +25,7 @@
     [self comeback];
     [self delegate];
      [self wlrequest];
-    
+    [self refrish];
     width =[UIScreen mainScreen].bounds.size.width;
     // Do any additional setup after loading the view.
 }
@@ -111,7 +111,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
     _backimg.hidden =YES;
-     _table.bounces =NO;
+    // _table.bounces =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;

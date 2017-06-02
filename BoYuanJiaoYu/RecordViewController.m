@@ -43,6 +43,7 @@
     [self cuotishaixuan];
     [self collectiondelegate];
     [self comeback];
+    [self refrish];
     leave =@"";
     clastyp =@"";
    [self cuotijilu:@"1" leave:leave type:clastyp];
@@ -135,6 +136,24 @@
         NSLog(@"失败\n %@",error);
     }];
 }
+#pragma mark--刷新方法
+-(void)refrish{
+    //NSLog(@"setupRefresh -- 下拉刷新");
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
+    [self.table addSubview:refreshControl];
+    
+}
+- (void)refreshClick:(UIRefreshControl *)refreshControl {
+    
+    [refreshControl beginRefreshing];
+    
+    // NSLog(@"refreshClick: -- 刷新触发");
+    // 此处添加刷新tableView数据的代码
+    [self cuotijilu:@"1" leave:leave type:clastyp];
+    [refreshControl endRefreshing];
+    //[self.table reloadData];// 刷新tableView即可
+}
 
 
 
@@ -145,7 +164,7 @@
     //self.table.tableFooterView=[[UIView alloc] init];
     self.automaticallyAdjustsScrollViewInsets = NO;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _table.bounces =NO;
+   // _table.bounces =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return arr.count;

@@ -28,6 +28,7 @@
     [self history];
     [self delegate];
     [self comeback];
+    [self refrish];
     _backimg.hidden =YES;
     self.title =@"反馈历史";
     // Do any additional setup after loading the view.
@@ -80,7 +81,24 @@
 
 
 }
-
+#pragma mark--刷新方法
+-(void)refrish{
+    //NSLog(@"setupRefresh -- 下拉刷新");
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
+    [self.table addSubview:refreshControl];
+    
+}
+- (void)refreshClick:(UIRefreshControl *)refreshControl {
+    
+    [refreshControl beginRefreshing];
+    
+    // NSLog(@"refreshClick: -- 刷新触发");
+    // 此处添加刷新tableView数据的代码
+    [self history];
+    [refreshControl endRefreshing];
+    //[self.table reloadData];// 刷新tableView即可
+}
 
 
 -(void)delegate{
