@@ -155,6 +155,7 @@
 		D75DB9681E8B3D2D001A746C /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D75DB9671E8B3D2D001A746C /* libresolv.tbd */; };
 		D75DB96A1E8B3D46001A746C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D75DB9691E8B3D46001A746C /* AdSupport.framework */; };
 		D75F6DBA1E76433C00037E3E /* RecordInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75F6DB91E76433C00037E3E /* RecordInfoViewController.m */; };
+		D780B7561EE4DC5F00EAB56B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D780B7551EE4DC5F00EAB56B /* icon.png */; };
 		D7F3B0D41E554C8E00FA620D /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F3B0D31E554C8E00FA620D /* FeedBackViewController.m */; };
 		D7F3B0DB1E557A3400FA620D /* ceshi.png in Resources */ = {isa = PBXBuildFile; fileRef = D7F3B0D91E557A3400FA620D /* ceshi.png */; };
 		D7F3B0DC1E557A3400FA620D /* zuoye.png in Resources */ = {isa = PBXBuildFile; fileRef = D7F3B0DA1E557A3400FA620D /* zuoye.png */; };
@@ -414,6 +415,7 @@
 		D75DB9691E8B3D46001A746C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		D75F6DB81E76433C00037E3E /* RecordInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordInfoViewController.h; sourceTree = "<group>"; };
 		D75F6DB91E76433C00037E3E /* RecordInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordInfoViewController.m; sourceTree = "<group>"; };
+		D780B7551EE4DC5F00EAB56B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D7F3B0D21E554C8E00FA620D /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
 		D7F3B0D31E554C8E00FA620D /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		D7F3B0D91E557A3400FA620D /* ceshi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ceshi.png; sourceTree = "<group>"; };
@@ -683,6 +685,7 @@
 		D724472F1E5290E8003DBCE4 /* BoYuanJiaoYu */ = {
 			isa = PBXGroup;
 			children = (
+				D780B7551EE4DC5F00EAB56B /* icon.png */,
 				D71AD7761ECDA1F7008FBA81 /* Default.png */,
 				D7547C3B1E84FCE00051C94E /* BoYuanJiaoYu.entitlements */,
 				D75DB94C1E8B3C37001A746C /* JPush */,
@@ -1067,6 +1070,7 @@
 				D72447AF1E52D522003DBCE4 /* modify_ password.png in Resources */,
 				D72B31AD1E5FC5870092B9C2 /* 无历史.png in Resources */,
 				D70ED4DE1E57E3670045038C /* xxda_y.png in Resources */,
+				D780B7561EE4DC5F00EAB56B /* icon.png in Resources */,
 				D72447941E52D522003DBCE4 /* 课程-老师2.png in Resources */,
 				D72447901E52D522003DBCE4 /* 课程-背景.png in Resources */,
 				D71AD7771ECDA1F7008FBA81 /* Default.png in Resources */,
@@ -1365,6 +1369,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BoYuanJiaoYu/BoYuanJiaoYu.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = GP8BUACAG4;
 				INFOPLIST_FILE = BoYuanJiaoYu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1375,6 +1380,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zxc.BoYuanJiaoYu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -1383,6 +1389,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BoYuanJiaoYu/BoYuanJiaoYu.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = GP8BUACAG4;
 				INFOPLIST_FILE = BoYuanJiaoYu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1393,6 +1400,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zxc.BoYuanJiaoYu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
