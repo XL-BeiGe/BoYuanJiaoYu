@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIView *backview;
 - (IBAction)Users:(id)sender;//账号密码登录
 - (IBAction)passs:(id)sender;//验证码登录
-- (IBAction)Change:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIButton *lllll;
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;

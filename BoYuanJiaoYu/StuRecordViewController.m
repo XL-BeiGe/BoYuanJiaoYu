@@ -153,7 +153,7 @@
 - (IBAction)FanKui:(id)sender {
     
     if([_clas.text isEqualToString:@""]){
-        [WarningBox warningBoxModeText:@"您没有选课" andView:self.view];
+        [WarningBox warningBoxModeText:@"请选择已报班级" andView:self.view];
     }else{
      self.hidesBottomBarWhenPushed=YES;
     FeedBackViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"feedback"];
@@ -167,7 +167,7 @@
 
 - (IBAction)CuoTi:(id)sender {
     if([_clas.text isEqualToString:@""]){
-        [WarningBox warningBoxModeText:@"您没有选课" andView:self.view];
+        [WarningBox warningBoxModeText:@"请选择已报班级" andView:self.view];
     }else{
         self.hidesBottomBarWhenPushed=YES;  
     RecordViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"record"];

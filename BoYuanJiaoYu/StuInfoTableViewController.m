@@ -324,14 +324,18 @@
     [self datepicker];
     textField.inputView=picker;
     textField.tintColor=[UIColor clearColor];
+       return NO;
     }
     else if(textField==_xingbie){
+       
        _xingbie.inputView = [[UIView alloc] initWithFrame:CGRectZero];
        [self tan];
+         return NO;
     }
    else if(textField==_shenfen){
        _shenfen.inputView = [[UIView alloc] initWithFrame:CGRectZero];
        [self tan1];
+       return NO;
     }
     return YES;
 }

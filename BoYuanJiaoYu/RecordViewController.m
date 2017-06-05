@@ -26,7 +26,7 @@
     NSMutableArray*leavearr;
     NSMutableArray*typearr;
     NSMutableArray*arr;
-
+    UIView*leftview;
 }
 @end
 
@@ -79,25 +79,29 @@
         NSLog(@"筛选成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            [WarningBox warningBoxHide:YES andView:self.view];
             leavearr =[NSMutableArray array];
             typearr =[NSMutableArray array];
             leavearr = [[responseObject objectForKey:@"data"] objectForKey:@"grades"];
             typearr = [[responseObject objectForKey:@"data"] objectForKey:@"classes"];
-            [WarningBox warningBoxHide:YES andView:self.view];
-            [mainCollectionView reloadData];
-            [mainCollectionView reloadData];
-            [UIView beginAnimations:nil context:nil];
-            //执行动画
-            //设置动画执行时间
-            [UIView setAnimationDuration:0.5];
-            //设置代理
-            [UIView setAnimationDelegate:self];
-            //设置动画执行完毕调用的事件
-            //[UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
-            VVV.frame=CGRectMake(0, 0,width, heigh);
-            [UIView commitAnimations];
-            touchNumber=0;
-            _table.userInteractionEnabled =NO;
+            
+            if(leavearr.count!=0&&typearr.count!=0){
+                [mainCollectionView reloadData];
+                [UIView beginAnimations:nil context:nil];
+                //执行动画
+                //设置动画执行时间
+                [UIView setAnimationDuration:0.5];
+                //设置代理
+                [UIView setAnimationDelegate:self];
+                //设置动画执行完毕调用的事件
+                //[UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
+                VVV.frame=CGRectMake(0, 0,width, heigh);
+                [UIView commitAnimations];
+                touchNumber=0;
+                _table.userInteractionEnabled =NO;
+            }
+            
+         
         
         }
         else if ([[responseObject objectForKey:@"code"]isEqual:@"9999"]){
@@ -384,10 +388,16 @@
     heigh =[UIScreen mainScreen].bounds.size.height;
     VVV =[[UIView alloc]initWithFrame:CGRectMake(width,0,width,heigh)];
     VVV.backgroundColor =[UIColor clearColor];
+    
+    
+    leftview =[[UIView alloc]initWithFrame:CGRectMake(0,0,50,heigh-49)];
+    leftview.backgroundColor =[UIColor clearColor];
+   
     UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(receiveds)];
     
     
-    [VVV addGestureRecognizer:tapGestureRecognizer1];
+    [leftview addGestureRecognizer:tapGestureRecognizer1];
+     [VVV addSubview:leftview];
     [self.view addSubview:VVV];
     
     UIButton *bth =[[UIButton alloc]initWithFrame:CGRectMake(50,VVV.frame.size.height-45,VVV.frame.size.width-50, 45)];

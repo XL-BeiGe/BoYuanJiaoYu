@@ -11,6 +11,9 @@
 @interface ChangePhoneViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *phone;
 @property (weak, nonatomic) IBOutlet UITextField *pass;
+
+@property (weak, nonatomic) IBOutlet UIButton *lslsl;
+
 - (IBAction)secuti:(id)sender;
 
 - (IBAction)Sure:(id)sender;

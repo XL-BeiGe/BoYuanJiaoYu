@@ -20,6 +20,9 @@
     NSUserDefaults *def;
     CGFloat cha;
     int pan;
+    
+    int timeDown; //60秒后重新获取验证码
+    NSTimer *timer;
 }
 @end
 
@@ -118,34 +121,34 @@
     
 }
 //获取机构不用了
--(void)huoqujigou{
-    NSString *fangshi =@"/curriculumCenter/officeList";
-    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_username.text,@"tel", nil];
-    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
-        
-        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-            arrr =[NSMutableArray array];
-            arrr =[[responseObject objectForKey:@"data"] objectForKey:@"officeList"];
-            if(arrr.count==0){
-                NSLog(@"没有机构");
-            }else{
-                [self tan];
-            }
-            
-            
-        }else{
-            // [WarningBox warningBoxHide:YES andView:self.view];
-            [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
-        }
-        
-    } failure:^(NSError *error) {
-        
-        NSLog(@"失败\n %@",error);
-    }];
-    
-
-}
+//-(void)huoqujigou{
+//    NSString *fangshi =@"/curriculumCenter/officeList";
+//    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_username.text,@"tel", nil];
+//    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
+//        NSLog(@"成功\n%@",responseObject);
+//        
+//        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+//            arrr =[NSMutableArray array];
+//            arrr =[[responseObject objectForKey:@"data"] objectForKey:@"officeList"];
+//            if(arrr.count==0){
+//                NSLog(@"没有机构");
+//            }else{
+//                [self tan];
+//            }
+//            
+//            
+//        }else{
+//            // [WarningBox warningBoxHide:YES andView:self.view];
+//            [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
+//        }
+//        
+//    } failure:^(NSError *error) {
+//        
+//        NSLog(@"失败\n %@",error);
+//    }];
+//    
+//
+//}
 -(void)tan{
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请选择" preferredStyle:UIAlertControllerStyleActionSheet];
@@ -285,6 +288,11 @@
             if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
                 [WarningBox warningBoxHide:YES andView:self.view];
                 [WarningBox warningBoxModeText:@"验证码已发送" andView:self.view];
+                timeDown = 59;
+                [self handleTimer];
+                timer = [NSTimer scheduledTimerWithTimeInterval:(1.0) target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
+                
+                
             }else{
                  [WarningBox warningBoxHide:YES andView:self.view];
                 [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
@@ -335,8 +343,37 @@
 - (IBAction)Forgot:(id)sender {
     //调用获取验证码方法
     [self SecurityCode];
+   
+    
+    
     
 }
+
+-(void)handleTimer
+{
+    
+    if(timeDown>=0)
+    {
+        [_forgot setUserInteractionEnabled:NO];
+       // [_forgot setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        int sec = ((timeDown%(24*3600))%3600)%60;
+        [_forgot setTitle:[NSString stringWithFormat:@"%ds",sec] forState:UIControlStateNormal];
+        
+    }
+    else
+    {
+        [_forgot setUserInteractionEnabled:YES];
+       // [_forgot setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_forgot setTitle:@"重新发送" forState:UIControlStateNormal];
+        
+        [timer invalidate];
+        
+    }
+    timeDown = timeDown - 1;
+}
+
+
+
 //用户名密码登录方式
 - (IBAction)Users:(id)sender {
     use =YES;
@@ -360,10 +397,10 @@
     _password.placeholder =@"请输入验证码";
     _password.text =@"";
 }
-- (IBAction)Change:(id)sender {
-    //这个已经不用了
-    [self huoqujigou];
-}
+//- (IBAction)Change:(id)sender {
+//    //这个已经不用了
+//    [self huoqujigou];
+//}
 
 #pragma  mark ---注册通知
 - (void) registerForKeyboardNotifications

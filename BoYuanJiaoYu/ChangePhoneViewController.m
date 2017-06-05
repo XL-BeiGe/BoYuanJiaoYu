@@ -11,7 +11,11 @@
 #import "WarningBox.h"
 #import "ViewController.h"
 @interface ChangePhoneViewController ()
+{
+    int timeDown; //60秒后重新获取验证码
+    NSTimer *timer;
 
+}
 @end
 
 @implementation ChangePhoneViewController
@@ -63,7 +67,13 @@
             NSLog(@"成功\n%@",responseObject);
             [WarningBox warningBoxHide:YES andView:self.view];
             if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+                
+                timeDown = 59;
+                [self handleTimer];
+                timer = [NSTimer scheduledTimerWithTimeInterval:(1.0) target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
+                
                 [WarningBox warningBoxModeText:@"验证码已发送" andView:self.view];
+                
                 
             }
             else if ([[responseObject objectForKey:@"code"]isEqual:@"9999"]){
@@ -82,9 +92,35 @@
         }];
     }
     
-
+   
     
 }
+-(void)handleTimer
+{
+    
+    if(timeDown>=0)
+    {
+        [_lslsl setUserInteractionEnabled:NO];
+        // [_forgot setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        int sec = ((timeDown%(24*3600))%3600)%60;
+        [_lslsl setTitle:[NSString stringWithFormat:@"%ds",sec] forState:UIControlStateNormal];
+        
+    }
+    else
+    {
+        [_lslsl setUserInteractionEnabled:YES];
+        // [_forgot setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_lslsl setTitle:@"重新发送" forState:UIControlStateNormal];
+        
+        [timer invalidate];
+        
+    }
+    timeDown = timeDown - 1;
+}
+
+
+
+
 //修改手机号
 - (IBAction)Sure:(id)sender {
     [self.view endEditing:YES];

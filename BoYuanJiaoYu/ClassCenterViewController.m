@@ -28,6 +28,7 @@
     NSMutableArray*leavearr;
     NSMutableArray*typearr;
     NSMutableArray*teacharr;
+    UIView *leftview;
     
 }
 @end
@@ -125,26 +126,30 @@
         //NSLog(@"筛选成功\n%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            [WarningBox warningBoxHide:YES andView:self.view];
             leavearr =[NSMutableArray array];
             typearr =[NSMutableArray array];
             teacharr =[NSMutableArray array];
            leavearr = [[responseObject objectForKey:@"data"] objectForKey:@"classLevelList"];
            typearr = [[responseObject objectForKey:@"data"] objectForKey:@"classTypeList"];
            teacharr = [[responseObject objectForKey:@"data"] objectForKey:@"teacherList"];
-            [mainCollectionView reloadData];
-            [WarningBox warningBoxHide:YES andView:self.view];
-            [UIView beginAnimations:nil context:nil];
-            //执行动画
-            //设置动画执行时间
-            [UIView setAnimationDuration:0.5];
-            //设置代理
-            [UIView setAnimationDelegate:self];
-            //设置动画执行完毕调用的事件
-            //[UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
-            VVV.frame=CGRectMake(0, 0,width, heigh);
-            [UIView commitAnimations];
-            touchNumber=0;
-            _table.userInteractionEnabled =NO;
+            if(leavearr.count!=0&&typearr.count!=0&&teacharr.count!=0){
+                [mainCollectionView reloadData];
+                [UIView beginAnimations:nil context:nil];
+                //执行动画
+                //设置动画执行时间
+                [UIView setAnimationDuration:0.5];
+                //设置代理
+                [UIView setAnimationDelegate:self];
+                //设置动画执行完毕调用的事件
+                [mainCollectionView reloadData];
+                //[UIView setAnimationDidStopSelector:@selector(didStopAnimation)];
+                VVV.frame=CGRectMake(0, 0,width, heigh);
+                [UIView commitAnimations];
+                touchNumber=0;
+                _table.userInteractionEnabled =NO;
+            }
+            
         }
         else if ([[responseObject objectForKey:@"code"]isEqual:@"9999"]){
             //账号在其他手机登录，请重新登录。
@@ -323,10 +328,13 @@
     
     VVV =[[UIView alloc]initWithFrame:CGRectMake(width,0,width,heigh-49)];
    VVV.backgroundColor =[UIColor clearColor];
+    
+    leftview =[[UIView alloc]initWithFrame:CGRectMake(0,0,50,heigh-49)];
+    leftview.backgroundColor =[UIColor clearColor];
     UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(receiveds)];
+    [leftview addGestureRecognizer:tapGestureRecognizer1];
+    [VVV addSubview:leftview];
     
-    
-    [VVV addGestureRecognizer:tapGestureRecognizer1];
     [self.view addSubview:VVV];
     
     UIButton *bth =[[UIButton alloc]initWithFrame:CGRectMake(50,VVV.frame.size.height-44,VVV.frame.size.width-50, 45)];

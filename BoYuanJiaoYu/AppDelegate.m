@@ -18,7 +18,7 @@
 
 #define appkey @"f3655879f18d4f1465214ca4"
 #define channell @""
-#define isProduction @"0"
+#define isProduction 0
 
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 
@@ -64,17 +64,6 @@ static AppDelegate *_appDelegate;
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
 
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-}
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -135,6 +124,14 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     // Required,For systems with less than or equal to iOS6
     [JPUSHService handleRemoteNotification:userInfo];
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+}
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    [application setApplicationIconBadgeNumber:0];
+    [application cancelAllLocalNotifications];
 }
 
 @end
