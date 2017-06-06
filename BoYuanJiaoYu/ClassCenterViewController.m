@@ -82,7 +82,7 @@
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",classle,@"classLevel",type,@"classType",teachid,@"teacherId",[def objectForKey:@"officeId"],@"officeId", nil];
 
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"课程中心成功\n%@",responseObject);
+  
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             arr = [NSMutableArray array];
@@ -110,7 +110,7 @@
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
-        NSLog(@"失败\n %@",error);
+     
     }];
     
 
@@ -123,7 +123,7 @@
     NSString *fangshi =@"/curriculumCenter/classConditionList";
    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        //NSLog(@"筛选成功\n%@",responseObject);
+       
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             [WarningBox warningBoxHide:YES andView:self.view];
@@ -161,7 +161,8 @@
         }
         
     } failure:^(NSError *error) {
-        NSLog(@"失败\n %@",error);
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
     }];
     
 

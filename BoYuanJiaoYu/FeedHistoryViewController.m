@@ -47,9 +47,9 @@
     NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
     NSString *fangshi =@"/learningPortfolio/feedbackHistory";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",_classID,@"classId",@"1",@"pageNo",@"10",@"pageSize",[def objectForKey:@"officeId"],@"officeId", nil];
-    NSLog(@"%@",datadic);
+  
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
+       
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             [WarningBox warningBoxHide:YES andView:self.view];
             infoarr =[NSMutableArray array];
@@ -76,7 +76,7 @@
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败" andView:self.view];
-        NSLog(@"失败\n %@",error);
+   
     }];
 
 
@@ -282,7 +282,7 @@
 }
 
 -(void)scanBigImageClick1:(UITapGestureRecognizer *)tap{
-    NSLog(@"点击图片");
+   
     UIImageView *clickedImageView = (UIImageView *)tap.view;
     //    [XWScanImage scanBigImageWithImageView:clickedImageView];
     [EBImageBrowser showImage:clickedImageView];

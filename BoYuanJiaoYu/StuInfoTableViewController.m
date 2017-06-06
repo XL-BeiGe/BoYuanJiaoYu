@@ -275,10 +275,10 @@
     NSString *fangshi =@"/userInfo/modifyUserInfoBase";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"officeId"],@"officeId",_sutname.text,@"studentName",_birthday.text,@"studentBirtyday",_school.text,@"studentSchool",_groud.text,@"studentGrade",_parname.text,@"parentNick",_phone.text,@"parentTel",studentSex,@"studentSex",studentAge,@"studentAge",parentRole,@"parentRole", nil];
    
-    NSLog(@"-----------311---%@",datadic);
+   
     
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
+       
         [WarningBox warningBoxHide:YES andView:self.view];
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
@@ -300,7 +300,7 @@
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
-        NSLog(@"失败\n %@",error);
+        
     }];
 }
 
@@ -425,7 +425,7 @@
    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
-        NSLog(@"点击取消");
+      
         
     }]];
     
@@ -460,7 +460,7 @@
     UIAlertController *alertControllers = [UIAlertController alertControllerWithTitle:@"请选择" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     [alertControllers addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
-        NSLog(@"点击取消");
+     
         
     }]];
     

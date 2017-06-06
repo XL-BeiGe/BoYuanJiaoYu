@@ -76,7 +76,7 @@
     NSString *fangshi =@"/learningPortfolio/errorScreen";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"筛选成功\n%@",responseObject);
+      
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             [WarningBox warningBoxHide:YES andView:self.view];
@@ -114,7 +114,8 @@
         }
         
     } failure:^(NSError *error) {
-        NSLog(@"失败\n %@",error);
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
     }];
 }
 //错题记录
@@ -124,7 +125,7 @@
     NSString *fangshi =@"/learningPortfolio/errorList";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",leaves,@"classLevel",clastype,@"classType",@"1",@"pageNo",@"10",@"pageSize",[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"错题成功\n%@",responseObject);
+     
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             [WarningBox warningBoxHide:YES andView:self.view];
             arr =[NSMutableArray array];
@@ -151,7 +152,7 @@
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败" andView:self.view];
-        NSLog(@"失败\n %@",error);
+       
     }];
 }
 #pragma mark--刷新方法

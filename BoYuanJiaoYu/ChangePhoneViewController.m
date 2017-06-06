@@ -64,7 +64,7 @@
         NSString *fangshi =@"/index/getAuthCode";
         NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_phone.text,@"userName",[def objectForKey:@"officeId"],@"officeId",@"1",@"type", nil];
         [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-            NSLog(@"成功\n%@",responseObject);
+        
             [WarningBox warningBoxHide:YES andView:self.view];
             if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
                 
@@ -88,7 +88,7 @@
         } failure:^(NSError *error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"发送失败,请重新发送" andView:self.view];
-            NSLog(@"失败\n %@",error);
+         
         }];
     }
     
@@ -130,7 +130,7 @@
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"parentId"],@"userId",_phone.text,@"tel",_pass.text,@"code",[def objectForKey:@"officeId"],@"officeId", nil];
     
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
+       
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
         [WarningBox warningBoxModeText:@"修改成功" andView:self.view];
@@ -151,7 +151,7 @@
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
-        NSLog(@"失败\n %@",error);
+     
     }];
 
     

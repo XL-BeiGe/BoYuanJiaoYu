@@ -51,7 +51,7 @@
     NSString *fangshi =@"/userInfo/pushInfo";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_pushId,@"pushId",@"1",@"state",[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
+   
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
           
@@ -70,7 +70,7 @@
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
-        NSLog(@"失败\n %@",error);
+       
   
     }];
     

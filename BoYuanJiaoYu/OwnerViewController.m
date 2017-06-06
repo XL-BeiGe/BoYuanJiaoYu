@@ -112,7 +112,7 @@
 - (IBAction)Change:(id)sender {
     NSUserDefaults *def =[NSUserDefaults standardUserDefaults];
     
-    NSLog(@"%@",[def objectForKey:@"Panduan"]);
+  
     if([[def objectForKey:@"Panduan"] isEqualToString:@"2"]){
         self.hidesBottomBarWhenPushed=YES;
         ChangePassViewController *pass = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"changep"];
@@ -156,7 +156,7 @@
     NSString *fangshi =@"/userInfo/userInfo";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"parentId"],@"parentId",_phoneNum.text,@"tel",[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
+    
          [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
            [WarningBox warningBoxModeText:@"邀请成功" andView:self.view];
@@ -174,7 +174,7 @@
         }
         
     } failure:^(NSError *error) {
-        NSLog(@"失败\n %@",error);
+      
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"邀请失败,请重新邀请" andView:self.view];
         [self remov];
@@ -193,7 +193,7 @@
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"officeId"],@"officeId", nil];
     
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
+     
         
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
            
@@ -221,7 +221,8 @@
             [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }
     } failure:^(NSError *error) {
-        NSLog(@"失败\n %@",error);
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
     }];
 }
 

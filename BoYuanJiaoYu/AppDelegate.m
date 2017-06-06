@@ -18,7 +18,7 @@
 
 #define appkey @"f3655879f18d4f1465214ca4"
 #define channell @""
-#define isProduction 0
+#define isProduction 1
 
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 

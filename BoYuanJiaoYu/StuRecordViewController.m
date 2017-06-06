@@ -63,7 +63,7 @@
     NSString *fangshi =@"/learningPortfolio/attendanceInfoList";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"officeId"],@"officeId", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
+      
        
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
              [WarningBox warningBoxHide:YES andView:self.view];
@@ -89,7 +89,7 @@
     } failure:^(NSError *error) {
          [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败" andView:self.view];
-        NSLog(@"失败\n %@",error);
+    
     }];
 
 }

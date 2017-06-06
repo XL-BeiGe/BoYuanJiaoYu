@@ -1369,8 +1369,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BoYuanJiaoYu/BoYuanJiaoYu.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Harbin Aipuyifeng Science&Tech. Development Co., Ltd. (GP8BUACAG4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Harbin Aipuyifeng Science&Tech. Development Co., Ltd. (GP8BUACAG4)";
 				DEVELOPMENT_TEAM = GP8BUACAG4;
 				INFOPLIST_FILE = BoYuanJiaoYu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1381,8 +1381,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zxc.BoYuanJiaoYu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e29081ee-1eae-4af1-846e-22cfb4358f88";
-				PROVISIONING_PROFILE_SPECIFIER = YouXueBao_ceshi;
+				PROVISIONING_PROFILE = "828732b0-b8b2-4f0d-96ff-b7a1b45b32b7";
+				PROVISIONING_PROFILE_SPECIFIER = YouXueBao_shengchan1;
 			};
 			name = Debug;
 		};
@@ -1391,8 +1391,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BoYuanJiaoYu/BoYuanJiaoYu.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Harbin Aipuyifeng Science&Tech. Development Co., Ltd. (GP8BUACAG4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Harbin Aipuyifeng Science&Tech. Development Co., Ltd. (GP8BUACAG4)";
 				DEVELOPMENT_TEAM = GP8BUACAG4;
 				INFOPLIST_FILE = BoYuanJiaoYu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1403,8 +1403,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zxc.BoYuanJiaoYu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e29081ee-1eae-4af1-846e-22cfb4358f88";
-				PROVISIONING_PROFILE_SPECIFIER = YouXueBao_ceshi;
+				PROVISIONING_PROFILE = "828732b0-b8b2-4f0d-96ff-b7a1b45b32b7";
+				PROVISIONING_PROFILE_SPECIFIER = YouXueBao_shengchan1;
 			};
 			name = Release;
 		};

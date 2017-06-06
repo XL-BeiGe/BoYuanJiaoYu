@@ -184,7 +184,7 @@
     NSString *fangshi =@"/index/quickLogin";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_password.text,@"code",_username.text,@"userName",@"",@"deviceToken", nil];
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
+      
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             
             arrr =[NSMutableArray array];
@@ -218,7 +218,7 @@
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
        [WarningBox warningBoxModeText:@"网络连接失败" andView:self.view];
-        NSLog(@"失败\n %@",error);
+      
     }];
 }
 //账号密码登录
@@ -228,10 +228,9 @@
     [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
     NSString *fangshi =@"/index/login";
     NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_password.text,@"passWord",_username.text,@"userName",@"",@"deviceToken",@"1",@"type", nil];
-    NSLog(@"%@",datadic);
+   
     [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-        NSLog(@"成功\n%@",responseObject);
-       
+      
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             arrr =[NSMutableArray array];
             arrr =[[responseObject objectForKey:@"data"] objectForKey:@"mapList"];
@@ -267,7 +266,7 @@
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
          [WarningBox warningBoxModeText:@"网络连接失败" andView:self.view];
-        NSLog(@"失败\n %@",error);
+     
     }];
 
 }
@@ -283,7 +282,7 @@
         NSString *fangshi =@"/index/getAuthCode";
         NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:_username.text,@"userName",@"",@"officeId",@"",@"type", nil];
         [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-            NSLog(@"成功\n%@",responseObject);
+           
             
             if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
                 [WarningBox warningBoxHide:YES andView:self.view];
@@ -301,7 +300,7 @@
         } failure:^(NSError *error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败" andView:self.view];
-            NSLog(@"失败\n %@",error);
+        
         }];
     }
    

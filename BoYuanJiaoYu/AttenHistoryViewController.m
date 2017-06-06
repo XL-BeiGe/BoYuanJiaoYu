@@ -54,7 +54,7 @@
         NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",@"1",@"pageNo",@"10",@"pageSize",[def objectForKey:@"officeId"],@"officeId", nil];
         
         [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-            NSLog(@"成功\n%@",responseObject);
+          
             [WarningBox warningBoxHide:YES andView:self.view];
             if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
                 arr =[NSMutableArray array];
@@ -79,7 +79,7 @@
                 [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
             }
         } failure:^(NSError *error) {
-            NSLog(@"失败\n %@",error);
+          
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         }];

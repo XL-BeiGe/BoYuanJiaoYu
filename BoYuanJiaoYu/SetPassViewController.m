@@ -61,7 +61,7 @@
         
         
         [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-            NSLog(@"%@",responseObject);
+         
            
             if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
                 [WarningBox warningBoxHide:YES andView:self.view];
@@ -83,8 +83,8 @@
             
         } failure:^(NSError *error) {
             [WarningBox warningBoxHide:YES andView:self.view];
-            [WarningBox warningBoxModeText:@"修改失败，请重试" andView:self.view];
-            NSLog(@"失败\n %@",error);
+            [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
+         
         }];
     }
     
